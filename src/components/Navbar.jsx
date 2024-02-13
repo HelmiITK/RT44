@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { RxCross2 } from "react-icons/rx";
 import { useState, useEffect } from "react";
@@ -35,11 +35,11 @@ const Navbar = () => {
     },
     {
       name: "Profile",
-      link: "/profile",
+      link: "/myprofile",
     },
     {
       name: "Pembayaran",
-      link: "/pembayaran"
+      link: "/payment"
     },
     {
       name: "Permohonon Surat",
@@ -51,15 +51,17 @@ const Navbar = () => {
     <>
       <div className="w-full flex items-center justify-between mt-4 bg-white shadow-md mb-4">
         {/* logo */}
-        <div className="flex items-center gap-2 mb-2">
-          <img src={logo} alt="Ini Logo" className="w-20"/>
+        <div className="flex items-center gap-2 mb-2 ml-2">
+          <Link to={"/"}>
+            <img src={logo} alt="Ini Logo" className="w-20" />
+          </Link>
           <FaPhoneVolume />
           <p>Call Us - 085346901814
           </p>
 
         </div>
         {/* Navmenu Mobile */}
-        <div>
+        <div className="flex mx-4 lg:hidden">
           <button
             className="px-4"
             onClick={handleHamburgerClick}
@@ -72,8 +74,8 @@ const Navbar = () => {
           </button>
           {/* jika dia login ini muncul */}
           <div
-            className={`${openHamburger ? "translate-y-0" : "-translate-y-[290px]"
-              } transition-transform duration-300 ease-in-out absolute top-4 right-4 mt-16  bg-gradient-to-l from-orange-200 border border-orange-300 px-5 py-6 rounded-md shadow-lg `}
+            className={`${openHamburger ? "translate-y-0" : "-translate-y-[350px]"
+              } transition-transform duration-300 ease-in-out absolute top-4 right-4 mt-24 bg-gradient-to-l from-orange-200 border border-orange-300 px-5 py-6 rounded-md shadow-lg `}
           >
             <ul className="flex flex-col gap-2">
               {Menus.map((item, index) => (
@@ -85,11 +87,26 @@ const Navbar = () => {
               ))}
             </ul>
           </div>
+          {/* jika belum login ini muncul */}
+          <div>
+            <button className="py-2 px-4 rounded-md bg-orange-300 text-white tracking-wide font-medium">Login</button>
+          </div>
         </div>
-        {/* jika belum login */}
-        {/* <div>
-          <button className="py-2 px-4 rounded-md bg-orange-300">Login</button>
-        </div> */}
+
+        {/* Navmenu website */}
+        <div className="hidden lg:flex lg:gap-4 lg:items-center">
+          {Menus.map((item, index) => (
+            <ul key={index}>
+              <Link to={item.link}>
+                <li>{item.name}</li>
+              </Link>
+            </ul>
+          ))}
+          {/* jika belum login ini muncul */}
+          <div className="mx-4">
+            <button className="py-2 px-12 rounded-md bg-orange-300 text-white tracking-wider hover:text-orange-500 hover:bg-white hover:border-orange-500 hover:border-2 duration-300 hover:shadow-lg shadow-orange-500">Login</button>
+          </div>
+        </div>
       </div >
     </>
   )
