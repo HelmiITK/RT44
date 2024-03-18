@@ -12,6 +12,20 @@ import GambarLogoRT44 from "../assets/GambarLogoRT44.png"
 import { TbArrowBigRightLinesFilled } from "react-icons/tb";
 import { TbArrowBigLeftLinesFilled } from "react-icons/tb";
 
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/pagination';
+
+import { EffectCoverflow, Pagination } from 'swiper/modules';
+
+import gambar1 from "../assets/contoh.png";
+import gambar2 from "../assets/contoh2.png";
+import gambar3 from "../assets/helmi formal 0.png"
+
 const HomePage = () => {
    const settings = {
       dots: true,
@@ -156,9 +170,9 @@ const HomePage = () => {
                <div className="relative">
                   <div className="hidden lg:flex absolute h-1 w-[40%] top-[38px] bg-black"></div>
                   <h1 className="flex items-center justify-center gap-3 text-2xl font-medium text-center mb-7 lg:text-3xl lg:font-semibold lg:leading-10">
-                     <TbArrowBigRightLinesFilled className="hidden lg:flex"/>
+                     <TbArrowBigRightLinesFilled className="hidden lg:flex" />
                      Layanan RT 44 <br /> Gading City
-                     <TbArrowBigLeftLinesFilled className="hidden lg:flex"/>
+                     <TbArrowBigLeftLinesFilled className="hidden lg:flex" />
                   </h1>
                   <div className="hidden lg:flex absolute h-1 w-[40%] top-[38px] right-0 bg-black"></div>
                </div>
@@ -181,9 +195,72 @@ const HomePage = () => {
                   ))}
                </div>
             </div>
-            
-            {/* inti pengurus */}
-            <div></div>
+
+            {/* inti pedngurus */}
+            <div className="hidden mt-24 mx-4 relative lg:flex justify-between items-center ">
+               {/* heading */}
+               <h1 className="text-5xl font-bold ml-14 leading-relaxed tracking-wider text-orange-800">Inti Pengurus <br /> RT 44 Gading City</h1>
+               <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 1440 320"
+                  className="absolute top-0 bg-gradient-to-b from-orange-200"
+               >
+                  <path
+                     fill="#FABA59"
+                     fillOpacity="1"
+                     d="M0,192L48,176C96,160,192,128,288,128C384,128,480,160,576,170.7C672,181,768,171,864,160C960,149,1056,139,1152,138.7C1248,139,1344,149,1392,154.7L1440,160L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z">
+                  </path>
+               </svg>
+               {/* card pengurus */}
+               <Swiper
+                  effect={'coverflow'}
+                  grabCursor={true}
+                  centeredSlides={true}
+                  slidesPerView={'auto'}
+                  coverflowEffect={{
+                     rotate: 50,
+                     stretch: 0,
+                     depth: 100,
+                     modifier: 1,
+                     slideShadows: true,
+                  }}
+                  pagination={true}
+                  modules={[EffectCoverflow, Pagination]}
+                  className="w-[600px] h-[600px] py-10 px-36"
+               >
+                  <SwiperSlide className="flex justify-center flex-col text-center gap-4">
+                     <img src={gambar1} className="" />
+                     <div className="flex flex-col gap-3 px-4 pb-4">
+                        <div className="">
+                           <h1 className="font-semibold text-2xl">Helmi S.Kom</h1>
+                           <p className="font-light">Ketua RT</p>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo ipsa quam exercitationem officia amet. Id quaerat officia nisi atque iusto.</p>
+                     </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="flex justify-center flex-col text-center gap-4">
+                     <img src={gambar2} className="" />
+                     <div className="flex flex-col gap-3 px-4 pb-4">
+                        <div className="">
+                           <h1 className="font-semibold text-2xl">Helmi S.Kom</h1>
+                           <p className="font-light">Ketua RT</p>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo ipsa quam exercitationem officia amet. Id quaerat officia nisi atque iusto.</p>
+                     </div>
+                  </SwiperSlide>
+                  <SwiperSlide className="flex justify-center flex-col text-center gap-4">
+                     <img src={gambar3} className="h-[60%]" />
+                     <div className="flex flex-col gap-3 px-4 pb-4">
+                        <div className="">
+                           <h1 className="font-semibold text-2xl">Helmi S.Kom</h1>
+                           <p className="font-light">Ketua RT</p>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo ipsa quam exercitationem officia amet. Id quaerat officia nisi atque iusto.</p>
+                     </div>
+                  </SwiperSlide>
+               </Swiper>
+               <svg className="absolute bottom-0 bg-gradient-to-t from-orange-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#FABA59" fillOpacity="1" d="M0,224L48,202.7C96,181,192,139,288,144C384,149,480,203,576,208C672,213,768,171,864,170.7C960,171,1056,213,1152,218.7C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+            </div>
          </div>
       </>
    )
