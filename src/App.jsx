@@ -25,7 +25,7 @@ function App() {
           />
           <Route
             path="/payment"
-            element={<Payment/>}
+            element={<Payment />}
           />
         </Routes>
       </Router>
