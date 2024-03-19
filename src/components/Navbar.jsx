@@ -49,7 +49,7 @@ const Navbar = () => {
 
    return (
       <>
-         <nav className="w-full z-50 flex items-center justify-between py-2 bg-white shadow-md fixed z-20 bg-opacity-70">
+         <nav className="w-full flex items-center justify-between py-2 bg-white shadow-md fixed z-30 bg-opacity-70">
             {/* logo */}
             <div className="flex items-center gap-2 mb-2 ml-2">
                <Link to={"/"}>
@@ -61,7 +61,7 @@ const Navbar = () => {
 
             </div>
             {/* Navmenu Mobile */}
-            <div className="flex mx-4 z-30 lg:hidden">
+            <div className="flex mx-4 lg:hidden">
                <button
                   className="px-4"
                   onClick={handleHamburgerClick}
@@ -75,7 +75,7 @@ const Navbar = () => {
                {/* jika dia login ini muncul */}
                <div
                   className={`${openHamburger ? "translate-y-0" : "-translate-y-[350px]"
-                     } transition-transform duration-300 ease-in-out absolute top-4 right-4 mt-24 bg-gradient-to-r from-orange-600 via-orange-400 to-orange-300 px-5 py-6 rounded-md shadow-lg `}
+                     } transition-transform duration-300 ease-in-out absolute top-4 right-4 mt-24 bg-gradient-to-r from-orange-600 via-orange-400 to-orange-300 px-5 py-6 rounded-md shadow-lg`}
                >
                   <ul className="flex flex-col gap-2">
                      {Menus.map((item, index) => (
