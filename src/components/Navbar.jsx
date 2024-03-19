@@ -49,7 +49,7 @@ const Navbar = () => {
 
    return (
       <>
-         <nav className="w-full flex items-center justify-between py-2 bg-white shadow-md fixed z-20 bg-opacity-70">
+         <nav className="w-full z-50 flex items-center justify-between py-2 bg-white shadow-md fixed z-20 bg-opacity-70">
             {/* logo */}
             <div className="flex items-center gap-2 mb-2 ml-2">
                <Link to={"/"}>
@@ -61,7 +61,7 @@ const Navbar = () => {
 
             </div>
             {/* Navmenu Mobile */}
-            <div className="flex mx-4 z-20 lg:hidden">
+            <div className="flex mx-4 z-30 lg:hidden">
                <button
                   className="px-4"
                   onClick={handleHamburgerClick}
