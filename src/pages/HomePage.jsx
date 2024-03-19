@@ -6,6 +6,7 @@ import GambarLogoRT44 from "../assets/GambarLogoRT44.png"
 import gambar1 from "../assets/contoh.png";
 import gambar2 from "../assets/contoh2.png";
 import gambar3 from "../assets/helmi formal 0.png"
+import BarcodeIg from "../assets/BarcodeIg.jpg"
 
 import { FaCaretRight } from "react-icons/fa";
 import { FaCaretLeft } from "react-icons/fa";
@@ -23,10 +24,25 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-cards';
-import { EffectCoverflow, Pagination, EffectCards } from 'swiper/modules';
+import 'swiper/css/effect-flip';
+import 'swiper/css/navigation';
+import { EffectCoverflow, Pagination, EffectCards, Navigation, EffectFlip } from 'swiper/modules';
 
 const HomePage = () => {
-   const settings = {
+   const settingsWeb = {
+      dots: true,
+      infinite: true,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      autoplay: true,
+      vertical: true,
+      verticalSwiping: true,
+      speed: 2000,
+      autoplaySpeed: 2000,
+      cssEase: "linear",
+
+   };
+   const settingsHp = {
       dots: true,
       infinite: true,
       slidesToShow: 2,
@@ -34,7 +50,8 @@ const HomePage = () => {
       autoplay: true,
       speed: 2000,
       autoplaySpeed: 2000,
-      cssEase: "linear"
+      cssEase: "linear",
+
    };
 
    const menuLayanan = [
@@ -115,52 +132,141 @@ const HomePage = () => {
                      </div>
                   </div>
                   {/* mode laptop */}
-                  <div className="hidden lg:flex gap-4 mx-4 justify-between">
-                     <div className="leading-6 w-1/2 text-justify flex flex-col gap-2 mt-5">
-                        <p>Perumahan Gading City RT 44 Sepinggan Baru , merupakan perumahan yang berada di Jln. Sepinggan Pratama Blok G dan H, Kel. Sepinggan Baru, Kec. Balikpapan Selatan, Balikpapan, Kalimantan Timur.</p><br />
-                        <p>Kecamatan Balikpapan Selatan memiliki luas wilayah 37,82 km² dan terdiri dari 7 kelurahan, yaitu Kelurahan Gunung Bahagia, Kelurahan Sepinggan, Kelurahan Damai Baru, Kelurahan Sepinggan Raya, Kelurahan Sepinggan Baru, dan Kelurahan Sungai Nangka. Kelurahan yang menjadi sasaran program KKN yang kami adakan adalah Kelurahan Sepinggan Baru, tepatnya di Jalan Sepinggan Pratama Blok G dan H yang tergabung menjadi sebuah RT yaitu RT 44 yang terdiri dari 21 Kepala Keluarga.</p><br />
-                        <p>RT 44 Sepinggan Baru memiliki 3 lahan taman, 1 pos penjaga. 4 UMKM, dan 1 praktek dokter. Masyarakat RT 44 rata - rata bekerja sebagai karyawan swasta.</p>
+                  <div className="hidden lg:flex gap-8  mx-4 justify-between relative">
+                     <div className="leading-6 w-1/2 text-justify flex flex-col gap-2 mt-5 p-4 z-10">
+                        <p className="indent-6 leading-relaxed tracking-wider">Perumahan Gading City RT 44 Sepinggan Baru , merupakan perumahan yang berada di Jln. Sepinggan Pratama Blok G dan H, Kel. Sepinggan Baru, Kec. Balikpapan Selatan, Balikpapan, Kalimantan Timur.</p><br />
+                        <p className="indent-6 leading-relaxed tracking-wider">Kecamatan Balikpapan Selatan memiliki luas wilayah 37,82 km² dan terdiri dari 7 kelurahan, yaitu Kelurahan Gunung Bahagia, Kelurahan Sepinggan, Kelurahan Damai Baru, Kelurahan Sepinggan Raya, Kelurahan Sepinggan Baru, dan Kelurahan Sungai Nangka. Kelurahan yang menjadi sasaran program KKN yang kami adakan adalah Kelurahan Sepinggan Baru, tepatnya di Jalan Sepinggan Pratama Blok G dan H yang tergabung menjadi sebuah RT yaitu RT 44 yang terdiri dari 21 Kepala Keluarga.</p><br />
+                        <p className="indent-6 leading-relaxed tracking-wider">RT 44 Sepinggan Baru memiliki 3 lahan taman, 1 pos penjaga. 4 UMKM, dan 1 praktek dokter. Masyarakat RT 44 rata - rata bekerja sebagai karyawan swasta.</p>
                      </div>
-                     <img src={GambarTentang} alt="Gambar Tentang" />
+                     <img src={GambarTentang} alt="Gambar Tentang" className="lg:w-1/2" />
                   </div>
                </div>
             </div>
 
-            {/* Kegiatan RT 44 */}
-            <div className="mt-10 mx-4 lg:grid lg:grid-cols-2">
-               {/* heading */}
-               <div className="flex items-center gap-4 justify-center md:flex md:justify-evenly lg:justify-end lg:flex lg:flex-row-reverse lg:gap-10">
-                  <h1 className="text-2xl font-semibold text-black lg:text-4xl lg:font-extrabold lg:leading-relaxed lg:">Kegiatan RT 44 <br /> Gading City</h1>
-                  <img src={GambarLogoRT44} alt="Logo RT 44" className="w-48 h-48 lg:w-96 lg:h-96 rounded-full shadow-2xl" />
-               </div>
-               <div className="mt-12 border-2 border-orange-500 p-6 rounded-xl shadow-2xl shadow-orange-400">
+            {/* Kegiatan RT 44 mode web*/}
+            <div className="hidden mt-10 mx-4 lg:flex lg:justify-between lg:gap-5">
+               {/* slick card 1*/}
+               <div className="mt-12 w-1/3 border-2 border-gray-300 pb-10 shadow-2xl">
                   {/* card slick kegiatan */}
-                  <Slider {...settings} className="mt-6">
+                  <Slider {...settingsWeb} className="mt-6">
                      <img
                         src="https://images.unsplash.com/photo-1710441970901-c9c2ae39a77c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNXx8fGVufDB8fHx8fA%3D%3D"
                         alt=""
-                        className="w-44 h-44 px-4 lg:w-60 lg:h-60"
+                        className="w-44 h-44 px-4 lg:w-60 lg:h-60 py-4"
                      />
                      <img
                         src="https://images.unsplash.com/photo-1707327259268-2741b50ef5e5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D"
                         alt=""
-                        className="w-44 h-44 px-4 lg:w-60 lg:h-60"
+                        className="w-44 h-44 px-4 lg:w-60 lg:h-60 py-4"
                      />
                      <img
                         src="https://plus.unsplash.com/premium_photo-1710631508355-fb67bb79cd74?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMnx8fGVufDB8fHx8fA%3D%3D"
                         alt=""
-                        className="w-44 h-44 px-4 lg:w-60 lg:h-60"
+                        className="w-44 h-44 px-4 lg:w-60 lg:h-60 py-4"
                      />
                      <img
                         src="https://images.unsplash.com/photo-1682685794690-dea7c8847a50?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8fA%3D%3D"
                         alt=""
-                        className="w-44 h-44 px-4 lg:w-60 lg:h-60"
+                        className="w-44 h-44 px-4 lg:w-60 lg:h-60 py-4"
                      />
                   </Slider>
-                  {/* deskripsi kegiatan */}
-                  <div className="text-sm font-light mt-8 text-justify leading-6 tracking-wide lg:text-base lg">
-                     <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum eaque nisi quisquam fuga magni voluptates blanditiis ducimus enim, illo expedita optio totam sed impedit facilis et temporibus fugit sequi deleniti quia illum quod sunt? Accusamus temporibus rem facilis veritatis, eos dicta quae error veniam adipisci illum iste doloremque, et odio!</p>
+               </div>
+               {/* heading */}
+               <div className="flex items-center gap-4 justify-center md:flex md:justify-evenly lg:justify-end lg:flex lg:flex-col lg:gap-10">
+                  <h1 className="text-2xl font-semibold text-black lg:text-4xl lg:font-extrabold lg:leading-relaxed text-center decoration-primary underline">Kegiatan RT 44 <br /> Gading City</h1>
+                  <div>
+                     <Swiper
+                        effect={'flip'}
+                        grabCursor={true}
+                        pagination={true}
+                        navigation={true}
+                        modules={[EffectFlip, Pagination, Navigation]}
+                        className="mySwiper w-96 pb-10 "
+                     >
+                        <SwiperSlide>
+                           <img src={BarcodeIg} alt="Barcode ig RT 44" className="rounded-3xl" />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                           <img src={GambarLogoRT44} alt="Logo RT 44" className="w-48 h-48 lg:w-96 lg:h-96 rounded-full shadow-2xl" />
+                        </SwiperSlide>
+
+                     </Swiper>
                   </div>
+               </div>
+               {/* slick card 2*/}
+               <div className="mt-12 w-1/3 border-2 border-gray-300  pb-10 shadow-2xl">
+                  {/* card slick kegiatan */}
+                  <Slider {...settingsWeb} className="mt-6">
+                     <img
+                        src="https://images.unsplash.com/photo-1710441970901-c9c2ae39a77c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNXx8fGVufDB8fHx8fA%3D%3D"
+                        alt=""
+                        className="w-44 h-44 px-4 lg:w-60 lg:h-60 py-4"
+                     />
+                     <img
+                        src="https://images.unsplash.com/photo-1707327259268-2741b50ef5e5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D"
+                        alt=""
+                        className="w-44 h-44 px-4 lg:w-60 lg:h-60 py-4"
+                     />
+                     <img
+                        src="https://plus.unsplash.com/premium_photo-1710631508355-fb67bb79cd74?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMnx8fGVufDB8fHx8fA%3D%3D"
+                        alt=""
+                        className="w-44 h-44 px-4 lg:w-60 lg:h-60 py-4"
+                     />
+                     <img
+                        src="https://images.unsplash.com/photo-1682685794690-dea7c8847a50?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8fA%3D%3D"
+                        alt=""
+                        className="w-44 h-44 px-4 lg:w-60 lg:h-60 py-4"
+                     />
+                  </Slider>
+               </div>
+            </div>
+
+            {/* kegiatan RT 44 mode hp dan tablet */}
+            <div className="block lg:hidden mt-10 mx-4">
+               <div className="flex flex-col gap-4">
+                  <h1 className="text-2xl font-bold text-black leading-relaxed text-center decoration-primary underline">Kegiatan RT 44 <br /> Gading City</h1>
+                  <div>
+                     <Swiper
+                        effect={'flip'}
+                        grabCursor={true}
+                        pagination={true}
+                        navigation={true}
+                        modules={[EffectFlip, Pagination, Navigation]}
+                        className="mySwiper w-96 pb-10"
+                     >
+                        <SwiperSlide>
+                           <img src={BarcodeIg} alt="Barcode ig RT 44" className="rounded-3xl" />
+                        </SwiperSlide>
+                        <SwiperSlide>
+                           <img src={GambarLogoRT44} alt="Logo RT 44" className=" rounded-full shadow-2xl" />
+                        </SwiperSlide>
+                     </Swiper>
+                  </div>
+               </div>
+               <div className="mt-4 w-full border-2 border-gray-300  pb-10 shadow-2xl">
+                  {/* card slick kegiatan */}
+                  <Slider {...settingsHp} className="mt-6">
+                     <img
+                        src="https://images.unsplash.com/photo-1710441970901-c9c2ae39a77c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxNXx8fGVufDB8fHx8fA%3D%3D"
+                        alt=""
+                        className="w-44 h-44 px-4 lg:w-60 lg:h-60 py-4"
+                     />
+                     <img
+                        src="https://images.unsplash.com/photo-1707327259268-2741b50ef5e5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxNnx8fGVufDB8fHx8fA%3D%3D"
+                        alt=""
+                        className="w-44 h-44 px-4 lg:w-60 lg:h-60 py-4"
+                     />
+                     <img
+                        src="https://plus.unsplash.com/premium_photo-1710631508355-fb67bb79cd74?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMnx8fGVufDB8fHx8fA%3D%3D"
+                        alt=""
+                        className="w-44 h-44 px-4 lg:w-60 lg:h-60 py-4"
+                     />
+                     <img
+                        src="https://images.unsplash.com/photo-1682685794690-dea7c8847a50?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwyN3x8fGVufDB8fHx8fA%3D%3D"
+                        alt=""
+                        className="w-44 h-44 px-4 lg:w-60 lg:h-60 py-4"
+                     />
+                  </Slider>
                </div>
             </div>
 
