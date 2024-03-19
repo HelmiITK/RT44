@@ -1,30 +1,29 @@
 import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
 import GambarTentang from "../assets/GambarTentang.png"
 import pictureHome from "../assets/homePicture.png"
+import GambarLogoRT44 from "../assets/GambarLogoRT44.png"
+import gambar1 from "../assets/contoh.png";
+import gambar2 from "../assets/contoh2.png";
+import gambar3 from "../assets/helmi formal 0.png"
+
 import { FaCaretRight } from "react-icons/fa";
 import { FaCaretLeft } from "react-icons/fa";
-
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-
-import GambarLogoRT44 from "../assets/GambarLogoRT44.png"
 import { TbArrowBigRightLinesFilled } from "react-icons/tb";
 import { TbArrowBigLeftLinesFilled } from "react-icons/tb";
 
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
-
-import { EffectCoverflow, Pagination } from 'swiper/modules';
-
-import gambar1 from "../assets/contoh.png";
-import gambar2 from "../assets/contoh2.png";
-import gambar3 from "../assets/helmi formal 0.png"
+import 'swiper/css/effect-cards';
+import { EffectCoverflow, Pagination, EffectCards } from 'swiper/modules';
 
 const HomePage = () => {
    const settings = {
@@ -196,7 +195,7 @@ const HomePage = () => {
                </div>
             </div>
 
-            {/* inti pedngurus */}
+            {/* inti pedngurus mode website*/}
             <div className="hidden mt-24 mx-4 relative lg:flex justify-between items-center ">
                {/* heading */}
                <h1 className="text-5xl font-bold ml-14 leading-relaxed tracking-wider text-orange-800">Inti Pengurus <br /> RT 44 Gading City</h1>
@@ -261,7 +260,58 @@ const HomePage = () => {
                </Swiper>
                <svg className="absolute bottom-0 bg-gradient-to-t from-orange-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#FABA59" fillOpacity="1" d="M0,224L48,202.7C96,181,192,139,288,144C384,149,480,203,576,208C672,213,768,171,864,170.7C960,171,1056,213,1152,218.7C1248,224,1344,192,1392,176L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
             </div>
+
+            {/* inti pengurus mode hp dan tablet */}
+            <div className="mx-4 mt-14 flex flex-col gap-6 lg:hidden">
+               <div className="flex flex-col gap-8 justify-center items-center w-full shadow-lg rounded-3xl bg-secondary bg-opacity-40">
+                  <div className="flex justify-center items-center gap-8 px-8 py-2 border-2 mt-6 rounded-2xl shadow-md">
+                     <div>
+                        <h1 className="text-primary font-semibold text-2xl">Inti Pengurus</h1>
+                        <p className="font-light text-slate-600">RT 44 Gading City</p>
+                     </div>
+                     <div className="rounded-full shadow-lg w-28">
+                        <img src={GambarLogoRT44} alt="logo rt 44" className="" />
+                     </div>
+                  </div>
+                  {/* card slide */}
+                  <Swiper
+                     effect={'cards'}
+                     grabCursor={true}
+                     modules={[EffectCards]}
+                     className="mySwiper w-[60%] mt-4 mb-6"
+                  >
+                     <SwiperSlide className="flex flex-col justify-center items-center w-full">
+                        <div className="border-2 border-orange-700 bg-primary p-4 rounded-2xl w-60 text-center">
+                           <img src={gambar1} alt="gambar1" />
+                           <div className="mt-2">
+                              <h1 className="text-lg font-medium">Helmi</h1>
+                              <p className="text-sm font-light">Ketua RT 44</p>
+                           </div>
+                        </div>
+                     </SwiperSlide>
+                     <SwiperSlide className="flex flex-col justify-center items-center">
+                        <div className="border-2 border-orange-700 bg-primary p-4 rounded-2xl w-60 text-center">
+                           <img src={gambar2} alt="gambar1" />
+                           <div className="mt-2">
+                              <h1 className="text-lg font-medium">Helmi</h1>
+                              <p className="text-sm font-light">Ketua RT 44</p>
+                           </div>
+                        </div>
+                     </SwiperSlide>
+                     <SwiperSlide className="flex flex-col justify-center items-center">
+                        <div className="border-2 border-orange-700 bg-primary p-4 rounded-2xl w-60 text-center">
+                           <img src={gambar3} alt="gambar1" />
+                           <div className="mt-2">
+                              <h1 className="text-lg font-medium">Helmi</h1>
+                              <p className="text-sm font-light">Ketua RT 44</p>
+                           </div>
+                        </div>
+                     </SwiperSlide>
+                  </Swiper>
+               </div>
+            </div>
          </div>
+         <Footer />
       </>
    )
 }
