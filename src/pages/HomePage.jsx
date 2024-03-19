@@ -38,7 +38,10 @@ import 'swiper/css/effect-flip';
 import 'swiper/css/navigation';
 import { EffectCoverflow, Pagination, EffectCards, Navigation, EffectFlip } from 'swiper/modules';
 
+import { useEffect } from "react"
 import Wave from "react-wavify"
+import AOS from "aos"
+import "../../node_modules/aos/dist/aos.css"
 
 const HomePage = () => {
    const settingsWeb = {
@@ -54,6 +57,7 @@ const HomePage = () => {
       cssEase: "linear",
 
    };
+
    const settingsHp = {
       dots: true,
       infinite: true,
@@ -63,13 +67,12 @@ const HomePage = () => {
       speed: 2000,
       autoplaySpeed: 2000,
       cssEase: "linear",
-
    };
 
    const menuLayanan = [
       {
          nama: "Layanan Pembayaran",
-         sub: ["Iuran Wajib", "Iuran Sosial", "Iuran Sukarela"]
+         sub: ["Iuran Wajib", "Iuran Sosial", "Iuran Sukarela"],
       },
       {
          nama: "Layanan Permohonan Surat",
@@ -85,13 +88,18 @@ const HomePage = () => {
       }
    ]
 
+   useEffect(() => {
+      AOS.init({
+         once: false,
+      })
+   }, [])
+
    return (
       <>
          <Navbar />
          <div className="container mx-auto pt-28">
             {/* MainSaction */}
             <div className="relative h-[500px] lg:h-[550px]">
-
                <div className="flex flex-row">
                   {/* heading */}
                   <div className="z-20 flex flex-col justify-center items-center mt-28 ml-16 gap-4 lg:flex lg:flex-col lg:justify-start lg:items-start">
@@ -177,12 +185,16 @@ const HomePage = () => {
                </div>
             </div>
 
-
             {/* Tentang Kami */}
             <div className="pb-10 bg-gradient-to-r from-primary via-orange-200 to-orange-100 ">
                {/* deskripsi */}
                <div className="flex flex-col gap-4 pt-8">
-                  <div className="relative mb-2 lg:mt-10">
+                  <div
+                     className="relative mb-2 lg:mt-10"
+                     data-aos="fade-right"
+                     data-aos-offset="30"
+                     data-aos-duration="1000"
+                  >
                      <div className="h-[3px] w-14 bg-white absolute top-[16px] -left-2 lg:h-2"></div>
                      <h1 className="font-bold text-white text-2xl ml-7 flex items-center gap-2 lg:text-4xl">
                         <FaCaretLeft className="text-white" />
@@ -193,6 +205,8 @@ const HomePage = () => {
                   </div>
                   {/* mode hp */}
                   <div
+                     data-aos="zoom-in"
+                     data-aos-duration="900"
                      className="flex lg:hidden pt-52 text-sm text-justify leading-6 tracking-wide bg-no-repeat bg-bottom md:pt-10"
                      style={
                         {
@@ -219,11 +233,39 @@ const HomePage = () => {
                   {/* mode laptop */}
                   <div className="hidden lg:flex gap-8  mx-4 justify-between relative">
                      <div className="leading-6 w-1/2 text-justify flex flex-col gap-2 mt-5 p-4 z-10">
-                        <p className="indent-6 leading-relaxed tracking-wider">Perumahan Gading City RT 44 Sepinggan Baru , merupakan perumahan yang berada di Jln. Sepinggan Pratama Blok G dan H, Kel. Sepinggan Baru, Kec. Balikpapan Selatan, Balikpapan, Kalimantan Timur.</p><br />
-                        <p className="indent-6 leading-relaxed tracking-wider">Kecamatan Balikpapan Selatan memiliki luas wilayah 37,82 km² dan terdiri dari 7 kelurahan, yaitu Kelurahan Gunung Bahagia, Kelurahan Sepinggan, Kelurahan Damai Baru, Kelurahan Sepinggan Raya, Kelurahan Sepinggan Baru, dan Kelurahan Sungai Nangka. Kelurahan yang menjadi sasaran program KKN yang kami adakan adalah Kelurahan Sepinggan Baru, tepatnya di Jalan Sepinggan Pratama Blok G dan H yang tergabung menjadi sebuah RT yaitu RT 44 yang terdiri dari 21 Kepala Keluarga.</p><br />
-                        <p className="indent-6 leading-relaxed tracking-wider">RT 44 Sepinggan Baru memiliki 3 lahan taman, 1 pos penjaga. 4 UMKM, dan 1 praktek dokter. Masyarakat RT 44 rata - rata bekerja sebagai karyawan swasta.</p>
+                        <p
+                           className="indent-6 leading-relaxed tracking-wider"
+                           data-aos="fade-right"
+                           data-aos-duration="700"
+                           data-aos-delay="200"
+                        >
+                           Perumahan Gading City RT 44 Sepinggan Baru , merupakan perumahan yang berada di Jln. Sepinggan Pratama Blok G dan H, Kel. Sepinggan Baru, Kec. Balikpapan Selatan, Balikpapan, Kalimantan Timur.
+                        </p><br />
+                        <p
+                           className="indent-6 leading-relaxed tracking-wider"
+                           data-aos="fade-right"
+                           data-aos-duration="700"
+                           data-aos-delay="300"
+                        >
+                           Kecamatan Balikpapan Selatan memiliki luas wilayah 37,82 km² dan terdiri dari 7 kelurahan, yaitu Kelurahan Gunung Bahagia, Kelurahan Sepinggan, Kelurahan Damai Baru, Kelurahan Sepinggan Raya, Kelurahan Sepinggan Baru, dan Kelurahan Sungai Nangka. Kelurahan yang menjadi sasaran program KKN yang kami adakan adalah Kelurahan Sepinggan Baru, tepatnya di Jalan Sepinggan Pratama Blok G dan H yang tergabung menjadi sebuah RT yaitu RT 44 yang terdiri dari 21 Kepala Keluarga.
+                        </p><br />
+                        <p
+                           className="indent-6 leading-relaxed tracking-wider"
+                           data-aos="fade-right"
+                           data-aos-duration="700"
+                           data-aos-delay="400"
+                        >
+                           RT 44 Sepinggan Baru memiliki 3 lahan taman, 1 pos penjaga. 4 UMKM, dan 1 praktek dokter. Masyarakat RT 44 rata - rata bekerja sebagai karyawan swasta.
+                        </p>
                      </div>
-                     <img src={GambarTentang} alt="Gambar Tentang" className="lg:w-1/2" />
+                     <img
+                        src={GambarTentang}
+                        alt="Gambar Tentang"
+                        className="lg:w-1/2"
+                        data-aos="zoom-in"
+                        data-aos-duration="900"
+                        data-aos-offset="200"
+                     />
                   </div>
                </div>
             </div>
@@ -231,7 +273,13 @@ const HomePage = () => {
             {/* Kegiatan RT 44 mode web*/}
             <div className="hidden mt-10 mx-6 lg:flex lg:justify-between lg:gap-5">
                {/* slick card 1*/}
-               <div className="mt-12 w-1/3 border-2 border-gray-300 pb-10 shadow-2xl">
+               <div
+                  className="mt-12 w-1/3 border-2 border-gray-300 pb-10 shadow-2xl"
+                  data-aos="flip-left"
+                  data-aos-easing="ease-out-cubic"
+                  data-aos-duration="2000"
+                  data-aos-offset="300"
+               >
                   {/* card slick kegiatan */}
                   <Slider {...settingsWeb} className="mt-6">
                      <img
@@ -257,7 +305,12 @@ const HomePage = () => {
                   </Slider>
                </div>
                {/* heading */}
-               <div className="flex items-center gap-4 justify-center md:flex md:justify-evenly lg:justify-end lg:flex lg:flex-col lg:gap-10">
+               <div
+                  className="flex items-center gap-4 justify-center md:flex md:justify-evenly lg:justify-end lg:flex lg:flex-col lg:gap-10"
+                  data-aos="fade-down"
+                  data-aos-duration="1500"
+                  data-aos-offset="300"
+               >
                   <h1 className="text-2xl font-semibold text-black lg:text-4xl lg:font-extrabold lg:leading-relaxed text-center decoration-primary underline">Kegiatan RT 44 <br /> Gading City</h1>
                   <div>
                      <Swiper
@@ -279,7 +332,13 @@ const HomePage = () => {
                   </div>
                </div>
                {/* slick card 2*/}
-               <div className="mt-12 w-1/3 border-2 border-gray-300  pb-10 shadow-2xl">
+               <div
+                  className="mt-12 w-1/3 border-2 border-gray-300  pb-10 shadow-2xl"
+                  data-aos="flip-right"
+                  data-aos-easing="ease-out-cubic"
+                  data-aos-duration="2000"
+                  data-aos-offset="300"
+               >
                   {/* card slick kegiatan */}
                   <Slider {...settingsWeb} className="mt-6">
                      <img
@@ -313,9 +372,17 @@ const HomePage = () => {
             {/* kegiatan RT 44 mode hp dan tablet */}
             <div className="block lg:hidden mt-10 mx-4">
                <div className="flex flex-col gap-4">
-                  <h1 className="text-2xl font-bold text-black leading-relaxed text-center decoration-primary underline">Kegiatan RT 44 <br /> Gading City</h1>
-                  <div>
+                  <h1
+                     className="text-2xl font-bold text-black leading-relaxed text-center decoration-primary underline"
+                     data-aos="fade-down"
+                     data-aos-duration="900"
+                  >
+                     Kegiatan RT 44 <br /> Gading City
+                  </h1>
+                  <div >
                      <Swiper
+                        data-aos="flip-right"
+                        data-aos-duration="1500"
                         effect={'flip'}
                         grabCursor={true}
                         pagination={true}
@@ -332,7 +399,11 @@ const HomePage = () => {
                      </Swiper>
                   </div>
                </div>
-               <div className="mt-4 w-full border-2 border-gray-300  pb-10 shadow-2xl">
+               <div
+                  className="mt-4 w-full border-2 border-gray-300  pb-10 shadow-2xl"
+                  data-aos="fade-up"
+                  data-aos-duration="1000"
+               >
                   {/* card slick kegiatan */}
                   <Slider {...settingsHp} className="mt-6 mx-4">
                      <div className="flex flex-col text-center">
@@ -395,7 +466,11 @@ const HomePage = () => {
 
             {/* Layanan RT 44 */}
             <div className="mt-16 lg:mt-20 mx-4 mb-5">
-               <div className="relative">
+               <div
+                  className="relative"
+                  data-aos="fade-down"
+                  data-aos-duration="1000"
+               >
                   <div className="hidden lg:flex absolute h-1 w-[40%] top-[38px] bg-black"></div>
                   <h1 className="flex items-center justify-center gap-3 text-2xl font-semibold underline decoration-primary text-center mb-7 lg:text-3xl lg:font-bold lg:leading-10">
                      <TbArrowBigRightLinesFilled className="hidden lg:flex" />
@@ -404,9 +479,16 @@ const HomePage = () => {
                   </h1>
                   <div className="hidden lg:flex absolute h-1 w-[40%] top-[38px] right-0 bg-black"></div>
                </div>
-               <div className="grid grid-cols-2 gap-6 lg:gird lg:grid-cols-4">
+               <div
+                  className="grid grid-cols-2 gap-6 lg:gird lg:grid-cols-4">
                   {menuLayanan.map((item, index) => (
-                     <div key={index} className="relative cursor-pointer hover:scale-105 duration-300">
+                     <div
+                        key={index}
+                        className="relative cursor-pointer hover:scale-105 duration-300"
+                        data-aos="flip-right"
+                        data-aos-duration="500"
+                        data-aos-offset="300"
+                     >
                         <div className="h-[370px] bg-cover bg-center" style={{ backgroundImage: `url(${GambarLayanan})` }}>
                            <div className="bg-gradient-to-b from-black to-transparent w-full h-full lg:hover:bg-gradient-to-b lg:hover:from-orange-400 group">
                               <div className="absolute inset-2 flex flex-col gap-3 justify-start items-start px-3 pt-6 lg:group-hover:text-black lg:group-hover:inset-5 duration-300">
@@ -425,7 +507,12 @@ const HomePage = () => {
             </div>
 
             {/* inti pedngurus mode website*/}
-            <div className="hidden mt-24 mx-4 relative lg:flex justify-between items-center ">
+            <div
+               className="hidden mt-24 mx-4 relative lg:flex justify-between items-center "
+               data-aos="fade-up"
+               data-aos-duration="1000"
+               data-aos-offset="400"
+            >
                {/* heading */}
                <h1 className="text-5xl font-bold ml-14 leading-relaxed tracking-wider text-orange-600">Inti Pengurus <br /> RT 44 Gading City</h1>
                <svg
