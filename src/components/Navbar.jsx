@@ -29,14 +29,14 @@ const Navbar = () => {
          name: "Home",
          link: "/",
       },
-      {
-         name: "About",
-         link: "/about",
-      },
-      {
-         name: "Profile",
-         link: "/myprofile",
-      },
+      // {
+      //    name: "About",
+      //    link: "/about",
+      // },
+      // {
+      //    name: "Profile",
+      //    link: "/myprofile",
+      // },
       {
          name: "Pembayaran",
          link: "/payment"
@@ -108,9 +108,21 @@ const Navbar = () => {
                      {item.name}
                   </NavLink>
                ))}
+               {/* fitur admin */}
+               <div className="dropdown dropdown-end">
+                  <div tabIndex={0} role="button" className="font-medium text-lg hover:text-primary duration-300 hover:scale-105">Admin</div>
+                  <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                     <li><a>Dashboard</a></li>
+                     <li><a>Akun Warga</a></li>
+                     <li><a>Pembayaran</a></li>
+                     <li><a>Surat Pengantar</a></li>
+                  </ul>
+               </div>
                {/* jika belum login ini muncul */}
                <div className="mx-4">
-                  <button className="py-2 px-12 border-2 rounded-md bg-orange-400 text-white tracking-wider hover:text-orange-500 hover:bg-white hover:border-orange-500 hover:border-2 duration-300 hover:shadow-lg shadow-orange-500">Login</button>
+                  <button className="py-2 px-12 border-2 rounded-md bg-orange-400 text-white tracking-wider hover:text-orange-500 hover:bg-white hover:border-orange-500 hover:border-2 duration-300 hover:shadow-lg shadow-orange-500">
+                     Login
+                  </button>
                </div>
             </div>
          </nav>
