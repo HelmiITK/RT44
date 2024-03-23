@@ -5,6 +5,7 @@ import { FaUserTag } from "react-icons/fa6";
 import { TiInfoLargeOutline } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { useRef } from "react";
 
 const UmkmRt = () => {
    const umkm = [
@@ -33,10 +34,20 @@ const UmkmRt = () => {
          deskripsi: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem quaerat ab commodi odit laudantium ipsa eaque debitis? Sint, nemo nobis?"
       },
    ]
+
+   const linkRef = useRef(null);
+   // back to MainSection when on click text MovieList in Footer from homepage
+   const goto = (ref) => {
+      window.scrollTo({
+         top: ref.offsetTop,
+         left: 0,
+         behavior: "smooth",
+      });
+   };
    return (
       <div>
          <Navbar />
-         <div className="pt-28 container mx-auto lg:pt-32">
+         <div className="pt-28 container mx-auto lg:pt-32" ref={linkRef}>
             {/* button back to home */}
             <Link
                as={Link}
@@ -82,7 +93,10 @@ const UmkmRt = () => {
                ))}
             </div>
          </div>
-         <Footer />
+         <Footer
+            linkRef={linkRef}
+            goto={goto}
+         />
       </div>
    )
 }

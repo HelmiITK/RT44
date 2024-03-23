@@ -1,8 +1,46 @@
 import LogoRt from "../assets/Logo.svg"
 import { FaInstagram } from "react-icons/fa"
 import CopyRight from "./CopyRight"
+import { IoArrowUp } from "react-icons/io5";
+import { useEffect, useState } from "react";
+import { PropTypes } from "prop-types"
 
-const Footer = () => {
+const Footer = ({ linkRef, goto }) => {
+   const [showScrollToTop, setShowScrollToTop] = useState(false);
+
+   useEffect(() => {
+      const handleScroll = () => {
+         const scrollY = window.scrollY;
+         const windowHeight = window.innerHeight;
+         const documentHeight = Math.max(
+            document.body.scrollHeight,
+            document.body.offsetHeight,
+            document.documentElement.clientHeight,
+            document.documentElement.scrollHeight,
+            document.documentElement.offsetHeight
+         );
+
+         // Tentukan batasan scroll di mana button harus muncul
+         const threshold = documentHeight - windowHeight - 2600;
+
+         // Tampilkan atau sembunyikan button berdasarkan batasan scroll
+         setShowScrollToTop(scrollY > threshold);
+      };
+
+      // Tambahkan event listener untuk mendengarkan perubahan posisi scroll
+      window.addEventListener("scroll", handleScroll);
+
+      // Membersihkan event listener ketika komponen di-unmount
+      return () => {
+         window.removeEventListener("scroll", handleScroll);
+      };
+   }, []);
+
+   const handleScrollToTop = () => {
+      // Menggunakan ref dari Navbar untuk kembali ke atas
+      goto(linkRef.current);
+   };
+
    return (
       <div className="container mx-auto mt-16">
          <div className="bg-secondary">
@@ -19,7 +57,7 @@ const Footer = () => {
 
                <div className="flex gap-2 mx-4 justify-around mt-10 lg:flex lg:gap-24 lg:w-2/4">
                   <div className="flex flex-col gap-3">
-                     <h1 className="text-base font-medium">Tautana Langsung</h1>
+                     <h1 className="text-base font-medium">Tautan Langsung</h1>
                      <ul className="text-sm font-light flex flex-col gap-2">
                         <li className="cursor-pointer hover:text-orange-500">Halaman</li>
                         <li className="cursor-pointer hover:text-orange-500">Tentang Kami</li>
@@ -28,7 +66,7 @@ const Footer = () => {
                      </ul>
                   </div>
                   <div className="flex flex-col gap-3">
-                     <h1 className="text-base font-medium">Tautana Lainnya</h1>
+                     <h1 className="text-base font-medium">Tautan Lainnya</h1>
                      <a
                         href="https://www.instagram.com/rt44.gadingcity/"
                         target="_blank"
@@ -40,10 +78,24 @@ const Footer = () => {
                   </div>
                </div>
             </div>
-            <CopyRight/>
+            {/* Button Scroll to Top */}
+            {showScrollToTop && (
+               <button
+                  className="fixed bottom-5 right-10 md:right-32 lg:right-10 bg-primary text-white rounded-full p-2 cursor-pointer hover:bg-orange-600 animate-bounce"
+                  onClick={handleScrollToTop}
+               >
+                  <IoArrowUp className="w-6 h-6" />
+               </button>
+            )}
+            <CopyRight />
          </div>
       </div>
    )
 }
 
-export default Footer
+export default Footer;
+
+Footer.propTypes = {
+   linkRef: PropTypes.object,
+   goto: PropTypes.func
+}
