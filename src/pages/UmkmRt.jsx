@@ -6,7 +6,7 @@ import { TiInfoLargeOutline } from "react-icons/ti";
 import { Link } from "react-router-dom";
 import { IoIosArrowRoundBack } from "react-icons/io";
 
-const Umkm = () => {
+const UmkmRt = () => {
    const umkm = [
       {
          nama: "Nasi Kuning",
@@ -87,4 +87,4 @@ const Umkm = () => {
    )
 }
 
-export default Umkm;
+export default UmkmRt;

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import MyProfile from "./pages/MyProfile";
 import Payment from "./pages/Payment";
-import Umkm from "./pages/UMKM";
+import Umkm from "./pages/UmkmRt";
 
 function App() {
 
