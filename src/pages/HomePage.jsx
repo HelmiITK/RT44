@@ -38,7 +38,7 @@ import 'swiper/css/effect-flip';
 import 'swiper/css/navigation';
 import { EffectCoverflow, Pagination, EffectCards, Navigation, EffectFlip } from 'swiper/modules';
 
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import Wave from "react-wavify"
 import AOS from "aos"
 import "../../node_modules/aos/dist/aos.css"
@@ -99,12 +99,22 @@ const HomePage = () => {
       })
    }, [])
 
+   const linkRef = useRef(null);
+   // back to MainSection when on click text MovieList in Footer from homepage
+   const goto = (ref) => {
+      window.scrollTo({
+         top: ref.offsetTop,
+         left: 0,
+         behavior: "smooth",
+      });
+   };
+
    return (
       <>
          <Navbar />
          <div className="container mx-auto pt-28">
             {/* MainSaction */}
-            <div className="relative h-[500px] lg:h-[550px]">
+            <div className="relative h-[500px] lg:h-[550px]" ref={linkRef}>
                <div className="flex flex-row">
                   {/* heading */}
                   <div className="z-20 flex flex-col justify-center items-center mt-28 ml-16 gap-4 lg:flex lg:flex-col lg:justify-start lg:items-start">
@@ -645,7 +655,10 @@ const HomePage = () => {
                </div>
             </div>
          </div>
-         <Footer />
+         <Footer
+            linkRef={linkRef}
+            goto={goto}
+         />
       </>
    )
 }

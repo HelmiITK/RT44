@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import MyProfile from "./pages/MyProfile";
 import Payment from "./pages/Payment";
 import Umkm from "./pages/UmkmRt";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
 
@@ -14,6 +15,10 @@ function App() {
           <Route
             path="/"
             element={<HomePage />}
+          />
+          <Route
+            path="/login"
+            element={<LoginPage />}
           />
           <Route
             path="/umkm"
