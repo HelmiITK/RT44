@@ -3,6 +3,8 @@ import Footer from "../components/Footer";
 import { SiHomeassistantcommunitystore } from "react-icons/si";
 import { FaUserTag } from "react-icons/fa6";
 import { TiInfoLargeOutline } from "react-icons/ti";
+import { Link } from "react-router-dom";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 const Umkm = () => {
    const umkm = [
@@ -34,7 +36,18 @@ const Umkm = () => {
    return (
       <div>
          <Navbar />
-         <div className="pt-32 container mx-auto">
+         <div className="pt-28 container mx-auto lg:pt-32">
+            {/* button back to home */}
+            <Link
+               as={Link}
+               to={"/"}
+               className="mx-5 cursor-pointer flex gap-2 items-center hover:scale-105 duration-300 hover:text-primary md:w-1/6 md:mx-12 hover:underline"
+            >
+               <IoIosArrowRoundBack className="w-6 h-6 md:w-8 md:h-8" />
+               <p className="md:text-lg">
+                  Kembali
+               </p>
+            </Link>
             {/* heading */}
             <div className="mx-4 text-center flex flex-col gap-2">
                <h1 className="font-semibold text-2xl tracking-widest lg:font-bold lg:text-4xl decoration-primary underline">UMKM</h1>
