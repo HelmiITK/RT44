@@ -88,9 +88,9 @@ const Navbar = () => {
                   </ul>
                </div>
                {/* jika belum login ini muncul */}
-               <div>
+               <Link as={Link} to={"/login"}>
                   <button className="py-2 px-4 rounded-md bg-orange-300 text-white tracking-wide font-medium">Login</button>
-               </div>
+               </Link>
             </div>
 
             {/* Navmenu website */}
@@ -119,11 +119,11 @@ const Navbar = () => {
                   </ul>
                </div>
                {/* jika belum login ini muncul */}
-               <div className="mx-4">
+               <Link as={Link} to={"/login"} className="mx-4">
                   <button className="py-2 px-12 border-2 rounded-md bg-orange-400 text-white tracking-wider hover:text-orange-500 hover:bg-white hover:border-orange-500 hover:border-2 duration-300 hover:shadow-lg shadow-orange-500">
                      Login
                   </button>
-               </div>
+               </Link>
             </div>
          </nav>
       </>
