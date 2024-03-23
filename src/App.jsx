@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
-import UmkmMasyarakat from "./pages/UmkmMasyarakat";
 import MyProfile from "./pages/MyProfile";
 import Payment from "./pages/Payment";
+import Umkm from "./pages/UMKM";
 
 function App() {
 
@@ -17,7 +17,7 @@ function App() {
           />
           <Route
             path="/umkm"
-            element={<UmkmMasyarakat />}
+            element={<Umkm />}
           />
           <Route
             path="/myprofile"

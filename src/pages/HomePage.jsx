@@ -42,6 +42,7 @@ import { useEffect } from "react"
 import Wave from "react-wavify"
 import AOS from "aos"
 import "../../node_modules/aos/dist/aos.css"
+import { Link } from "react-router-dom"
 
 const HomePage = () => {
    const settingsWeb = {
@@ -73,18 +74,22 @@ const HomePage = () => {
       {
          nama: "Layanan Pembayaran",
          sub: ["Iuran Wajib", "Iuran Sosial", "Iuran Sukarela"],
+         link: "/",
       },
       {
          nama: "Layanan Permohonan Surat",
-         sub: ["Surat Pengantar", "Surat Keterangan"]
+         sub: ["Surat Pengantar", "Surat Keterangan"],
+         link: "/"
       },
       {
          nama: "UMKM",
-         sub: ["Nasi Kuning", "Gado-gado", "Pecel"]
+         sub: ["Nasi Kuning", "Gado-gado", "Pecel"],
+         link: "/umkm",
       },
       {
          nama: "Emergency Button",
-         sub: ["Sedang Dikembangkan"]
+         sub: ["Sedang Dikembangkan"],
+         link: "/",
       }
    ]
 
@@ -489,18 +494,22 @@ const HomePage = () => {
                         data-aos-duration="500"
                         data-aos-offset="300"
                      >
-                        <div className="h-[370px] bg-cover bg-center" style={{ backgroundImage: `url(${GambarLayanan})` }}>
-                           <div className="bg-gradient-to-b from-black to-transparent w-full h-full lg:hover:bg-gradient-to-b lg:hover:from-orange-400 group">
-                              <div className="absolute inset-2 flex flex-col gap-3 justify-start items-start px-3 pt-6 lg:group-hover:text-black lg:group-hover:inset-5 duration-300">
-                                 <h2 className="font-semibold text-lg text-primary lg:group-hover:text-3xl lg:group-hover:text-white lg:text-xl ">{item.nama}</h2>
-                                 <ul className="italic text-sm lg:text-base text-white lg:group-hover:text-lg lg:group-hover:font-semibold">
-                                    {item.sub.map((subItem, subIndex) => (
-                                       <li key={subIndex}>{subItem}</li>
-                                    ))}
-                                 </ul>
+                        <Link as={Link} to={item.link}>
+                           <div className="h-[370px] bg-cover bg-center" style={{ backgroundImage: `url(${GambarLayanan})` }}>
+                              <div className="bg-gradient-to-b from-black to-transparent w-full h-full lg:hover:bg-gradient-to-b lg:hover:from-orange-400 group">
+                                 <div className="absolute inset-2 flex flex-col gap-3 justify-start items-start px-3 pt-6 lg:group-hover:text-black lg:group-hover:inset-5 duration-300">
+                                    <h2 className="font-semibold text-lg text-primary lg:group-hover:text-3xl lg:group-hover:text-white lg:text-xl ">
+                                       {item.nama}
+                                    </h2>
+                                    <ul className="italic text-sm lg:text-base text-white lg:group-hover:text-lg lg:group-hover:font-semibold">
+                                       {item.sub.map((subItem, subIndex) => (
+                                          <li key={subIndex}>{subItem}</li>
+                                       ))}
+                                    </ul>
+                                 </div>
                               </div>
                            </div>
-                        </div>
+                        </Link>
                      </div>
                   ))}
                </div>
