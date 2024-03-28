@@ -5,6 +5,7 @@ import MyProfile from "./pages/MyProfile";
 import Payment from "./pages/Payment";
 import Umkm from "./pages/UmkmRt";
 import LoginPage from "./pages/LoginPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
 
@@ -32,6 +33,8 @@ function App() {
             path="/payment"
             element={<Payment />}
           />
+
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
     </>
