@@ -4,6 +4,8 @@ import { RxCross2 } from "react-icons/rx";
 import { useState, useEffect } from "react";
 import logo from "../assets/Logo.svg"
 import { FaPhoneVolume } from "react-icons/fa6";
+import { FaRegUser } from "react-icons/fa6";
+import { MdLogout } from "react-icons/md";
 
 const Navbar = () => {
    const [openHamburger, setOpenHamburger] = useState(false);
@@ -124,6 +126,20 @@ const Navbar = () => {
                      Login
                   </button>
                </Link>
+               {/* jika user sudah login ini yg muncul */}
+               <Link as={Link} to={"/myprofile"}>
+                  <div className="dropdown dropdown-end mr-4">
+                     <div className="flex items-center gap-2 border-none bg-orange-400 py-3 px-5 rounded-md text-white hover:bg-white duration-300 hover:shadow-lg hover:text-orange-400">
+                        <FaRegUser tabIndex={0} role="button" className="" />
+                        <h2>Hi Helmi</h2>
+                     </div>
+                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow-xl bg-base-100 rounded-box w-52">
+                        <li><a>User Setting</a></li>
+                        <li><a>Logout</a><MdLogout /></li>
+                     </ul>
+                  </div>
+               </Link>
+
             </div>
          </nav>
       </>
