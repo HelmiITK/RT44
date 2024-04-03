@@ -45,7 +45,7 @@ const Navbar = () => {
       },
       {
          name: "Permohonon Surat",
-         link: "/permohonanSurat"
+         link: "/letter_req"
       }
    ]
 
