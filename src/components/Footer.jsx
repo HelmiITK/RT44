@@ -42,7 +42,7 @@ const Footer = ({ linkRef, goto }) => {
    };
 
    return (
-      <div className="container mx-auto mt-16">
+      <div className="container mx-auto">
          <div className="bg-secondary">
             <div className="lg:flex lg:gap-10 lg:mx-16 lg:items-center">
                <div className="flex flex-row gap-4 mx-4 items-center pt-8 lg:gap-8 lg:flex lg:flex-col lg:items-start">

@@ -527,7 +527,7 @@ const HomePage = () => {
 
             {/* inti pedngurus mode website*/}
             <div
-               className="hidden mt-24 mx-4 relative lg:flex justify-between items-center "
+               className="hidden mt-24 mx-4 relative lg:flex justify-between items-center mb-16"
                data-aos="fade-up"
                data-aos-duration="1000"
                data-aos-offset="400"
