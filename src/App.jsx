@@ -6,6 +6,7 @@ import Payment from "./pages/Payment";
 import Umkm from "./pages/UmkmRt";
 import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import LetterRequest from "./pages/LetterRequest";
 
 function App() {
 
@@ -32,6 +33,10 @@ function App() {
           <Route
             path="/payment"
             element={<Payment />}
+          />
+          <Route
+            path="/letter_req"
+            element={<LetterRequest />}
           />
 
           <Route path="*" element={<NotFoundPage />} />
