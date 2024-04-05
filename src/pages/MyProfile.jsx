@@ -80,7 +80,7 @@ const MyProfile = () => {
             </div>
          </div>
          {/* mode hp */}
-         <div className="container mx-auto pt-32 mb-10">
+         <div className="container mx-auto pt-32 mb-10 lg:hidden">
             <div className="border-2 border-orange-500 rounded-2xl px-6 pt-4 pb-6 mx-4 shadow-orange-300 shadow-2xl bg-gradient-to-b from-orange-300 to-orange-100">
                {/* button back to home */}
                <Link as={Link} to={"/"} className="flex gap-2 items-center underline">
