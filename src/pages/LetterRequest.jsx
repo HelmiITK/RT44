@@ -6,13 +6,23 @@ import step3 from "../assets/3d-techny-email-marketing-and-newsletter-with-new-m
 import { TbCircleNumber1, TbCircleNumber2, TbCircleNumber3 } from "react-icons/tb";
 import jenisSurat from "../assets/morphis-reviewing-resumes-of-candidates.png"
 import { Link } from "react-router-dom";
+import { useRef } from "react";
 
 const LetterRequest = () => {
+   const linkRef = useRef(null);
+   // back to MainSection when on click text MovieList in Footer from homepage
+   const goto = (ref) => {
+      window.scrollTo({
+         top: ref.offsetTop,
+         left: 0,
+         behavior: "smooth",
+      });
+   };
    return (
       <>
          <Navbar />
          {/* background */}
-         <div className="container mx-auto bg-gradient-to-tr from-orange-500 via-orange-300 to-orange-700 w-full pb-10">
+         <div className="container mx-auto bg-gradient-to-tr from-orange-500 via-orange-300 to-orange-700 w-full pb-10" ref={linkRef}>
             <div className="pt-28 flex flex-col items-center gap-10 justify-center">
                {/* card step by step */}
                <div className="border-none bg-white drop-shadow-2xl bg-opacity-50 py-8 px-12  w-[80%] rounded-2xl flex justify-center gap-6 flex-col mx-10">
@@ -63,7 +73,10 @@ const LetterRequest = () => {
             </div>
          </div>
 
-         <Footer />
+         <Footer
+            linkRef={linkRef}
+            goto={goto}
+         />
       </>
    )
 }

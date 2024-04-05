@@ -30,7 +30,8 @@ const MyProfile = () => {
    return (
       <>
          <Navbar />
-         <div className="relative" ref={linkRef}>
+         {/* mode tablet dan web */}
+         <div className="hidden lg:block relative" ref={linkRef}>
             <img
                src="https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                alt=""
@@ -75,6 +76,47 @@ const MyProfile = () => {
                      </div>
                   </div>
 
+               </div>
+            </div>
+         </div>
+         {/* mode hp */}
+         <div className="container mx-auto pt-32 mb-10 lg:hidden">
+            <div className="border-2 border-orange-500 rounded-2xl px-6 pt-4 pb-6 mx-4 shadow-orange-300 shadow-2xl bg-gradient-to-b from-orange-300 to-orange-100">
+               {/* button back to home */}
+               <Link as={Link} to={"/"} className="flex gap-2 items-center underline">
+                  <IoMdArrowRoundBack className="w-6 h-6"/>
+                  <p>Kembali</p>
+               </Link>
+               <h1 className="text-center font-semibold text-3xl mt-4">Akun Saya</h1>
+               <div className="mt-5 text-center">
+                  {detail.map((item, i) => (
+                     <div className="flex flex-col gap-3" key={i}>
+                        <div className="">
+                           <h1 className="text-slate-600 font-light text-sm">NIK</h1>
+                           <p>{item.nik}</p>
+                        </div>
+                        <div className="">
+                           <h1 className="text-slate-600 font-light text-sm">Nama</h1>
+                           <p>{item.nama}</p>
+                        </div>
+                        <div className="">
+                           <h1 className="text-slate-600 font-light text-sm">Tenpat, tanggal lahir</h1>
+                           <p>{item.ttl}</p>
+                        </div>
+                        <div className="">
+                           <h1 className="text-slate-600 font-light text-sm">No hp</h1>
+                           <p>{item.hp}</p>
+                        </div>
+                        <div className="">
+                           <h1 className="text-slate-600 font-light text-sm">Email</h1>
+                           <p>{item.email}</p>
+                        </div>
+                        <div className="">
+                           <h1 className="text-slate-600 font-light text-sm">Alamat</h1>
+                           <p>{item.alamat}</p>
+                        </div>
+                     </div>
+                  ))}
                </div>
             </div>
          </div>
