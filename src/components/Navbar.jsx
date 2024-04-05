@@ -76,7 +76,7 @@ const Navbar = () => {
                </button>
                {/* jika dia login ini muncul */}
                <div
-                  className={`${openHamburger ? "translate-y-0" : "-translate-y-[350px]"
+                  className={`${openHamburger ? "translate-y-0" : "-translate-y-[360px]"
                      } transition-transform duration-300 ease-in-out absolute top-4 right-4 mt-24 bg-gradient-to-r from-orange-600 via-orange-400 to-orange-300 px-5 py-6 rounded-md shadow-lg`}
                >
                   <ul className="flex flex-col gap-2">
@@ -88,6 +88,21 @@ const Navbar = () => {
                         </li>
                      ))}
                   </ul>
+                  <div className="h-px w-full bg-white my-4"></div>
+                  {/* jika sudah login ini munucul (profile user) */}
+                  <div className="flex flex-col gap-4">
+                     <Link
+                        className="text-white font-medium"
+                        as={Link}
+                        to={"/myprofile"}
+                     >
+                        Profile Saya
+                     </Link>
+                     <button className="flex gap-2 items-center border-2 border-white rounded-lg px-4 py-[6px] text-orange-600 bg-white font-medium">
+                        <MdLogout />
+                        <p>Logout</p>
+                     </button>
+                  </div>
                </div>
                {/* jika belum login ini muncul */}
                <Link as={Link} to={"/login"}>
@@ -126,19 +141,19 @@ const Navbar = () => {
                      Login
                   </button>
                </Link>
-               {/* jika user sudah login ini yg muncul */}
-               <Link as={Link} to={"/myprofile"}>
-                  <div className="dropdown dropdown-end mr-4">
-                     <div className="flex items-center gap-2 border-none bg-orange-400 py-3 px-5 rounded-md text-white hover:bg-white duration-300 hover:shadow-lg hover:text-orange-400">
-                        <FaRegUser tabIndex={0} role="button" className="" />
-                        <h2>Hi Helmi</h2>
-                     </div>
-                     <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow-xl bg-base-100 rounded-box w-52">
-                        <li><a>User Setting</a></li>
-                        <li><a>Logout</a><MdLogout /></li>
-                     </ul>
+               {/* jika user sudah login ini yg muncul mode web*/}
+               <div className="dropdown dropdown-end mr-4" tabIndex={0} role="button">
+                  <div className="flex items-center gap-2 border-none bg-orange-400 py-3 px-5 rounded-md text-white hover:bg-white duration-300 hover:shadow-lg hover:text-orange-400">
+                     <FaRegUser className="" />
+                     <h2>Hi Helmi</h2>
                   </div>
-               </Link>
+                  <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow-xl bg-base-100 rounded-box w-52">
+                     <Link as={Link} to={"/myprofile"}>
+                        <li><a><FaRegUser className="" />Profil Saya</a></li>
+                     </Link>
+                     <li><a><MdLogout />Logout</a></li>
+                  </ul>
+               </div>
 
             </div>
          </nav>
