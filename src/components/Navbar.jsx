@@ -154,7 +154,6 @@ const Navbar = () => {
                      <li><a><MdLogout />Logout</a></li>
                   </ul>
                </div>
-
             </div>
          </nav>
       </>
