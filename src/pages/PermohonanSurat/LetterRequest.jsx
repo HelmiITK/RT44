@@ -1,10 +1,12 @@
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
-import step1 from "../assets/3d-techny-signed-health-insurance-policy-on-clipboard.gif";
-import step2 from "../assets/3d-techny-artificial-intelligence-on-tablet-screen.gif";
-import step3 from "../assets/3d-techny-email-marketing-and-newsletter-with-new-message.png"
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+
+
+import step1 from "../../assets/3d-techny-signed-health-insurance-policy-on-clipboard.gif";
+import step2 from "../../assets/3d-techny-artificial-intelligence-on-tablet-screen.gif";
+import step3 from "../../assets/3d-techny-email-marketing-and-newsletter-with-new-message.png"
 import { TbCircleNumber1, TbCircleNumber2, TbCircleNumber3 } from "react-icons/tb";
-import jenisSurat from "../assets/morphis-reviewing-resumes-of-candidates.png"
+import jenisSurat from "../../assets/morphis-reviewing-resumes-of-candidates.png"
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -60,7 +62,7 @@ const LetterRequest = () => {
                   <h1 className="text-4xl font-extrabold tracking-widest underline decoration-white text-white text-center">Jenis Surat</h1>
                   <div className="flex justify-center items-center gap-12">
                      {/* Surat 1 */}
-                     <Link as={Link} to={""} className="rounded-2xl bg-white shadow-2xl shadow-orange-700 p-6 flex flex-col justify-center items-center w-full hover:scale-105 hover:bg-orange-500 duration-300 hover:text-white hover:border-4 hover:border-white border-4 border-orange-500 hover:shadow-white">
+                     <Link as={Link} to={"/surat_pengantar"} className="rounded-2xl bg-white shadow-2xl shadow-orange-700 p-6 flex flex-col justify-center items-center w-full hover:scale-105 hover:bg-orange-500 duration-300 hover:text-white hover:border-4 hover:border-white border-4 border-orange-500 hover:shadow-white">
                         <img src={jenisSurat} alt="step1" />
                         <h2 className="text-lg font-medium w-[70%] text-center">Surat Pengantar</h2>
                      </Link>
@@ -113,7 +115,7 @@ const LetterRequest = () => {
                <h1 className="text-orange-400 font-semibold text-2xl text-center underline tracking-wider">Jenis Surat</h1>
                <div className=" grid grid-cols-2 gap-5 justify-center items-center text-center">
                   {/* surat 1 */}
-                  <Link as={Link} to={"/"} className="border-2 border-orange-400 rounded-xl p-4 shadow-lg shadow-orange-200">
+                  <Link as={Link} to={"/surat_pengantar"} className="border-2 border-orange-400 rounded-xl p-4 shadow-lg shadow-orange-200">
                      <img src={jenisSurat} alt="surat 1" />
                      <p>Surat Pengantar</p>
                   </Link>
