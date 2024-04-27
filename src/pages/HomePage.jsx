@@ -79,7 +79,7 @@ const HomePage = () => {
       {
          nama: "Layanan Permohonan Surat",
          sub: ["Surat Pengantar", "Surat Keterangan"],
-         link: "/"
+         link: "/letter_req"
       },
       {
          nama: "UMKM",
