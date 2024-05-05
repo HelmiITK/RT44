@@ -10,6 +10,7 @@ import jenisSurat from "../../assets/morphis-reviewing-resumes-of-candidates.png
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { MdOutlineKeyboardBackspace } from "react-icons/md";
 
 "use client";
 
@@ -31,7 +32,12 @@ const LetterRequest = () => {
          <Navbar />
          {/* background serta mode web dan tablet */}
          <div className="hidden md:block container mx-auto bg-gradient-to-tr from-orange-500 via-orange-300 to-orange-700 w-full pb-10" ref={linkRef}>
-            <div className="pt-28 flex flex-col items-center gap-10 justify-center">
+            {/* button back */}
+            <Link as={Link} to={'/'} className="pt-32 ml-8 flex flex-row items-center gap-2 hover:scale-105 duration-300 w-1/6 hover:underline ">
+               <MdOutlineKeyboardBackspace className="w-6 h-6" />
+               <p className="font-medium text-lg">Kembali</p>
+            </Link>
+            <div className=" flex flex-col items-center gap-10 justify-center mt-4">
                {/* card step by step */}
                <div className="border-none bg-white drop-shadow-2xl bg-opacity-50 py-8 px-12  w-[80%] rounded-2xl flex justify-center gap-6 flex-col mx-10">
                   <h1 className="text-3xl font-extrabold tracking-wider underline decoration-white text-center">Alur Pelayanan</h1>
@@ -112,23 +118,21 @@ const LetterRequest = () => {
             </div>
             {/* card pilih surat */}
             <div className="my-14 mx-4 flex flex-col gap-6">
-               <h1 className="text-orange-400 font-semibold text-2xl text-center underline tracking-wider">Jenis Surat</h1>
-               <div className=" grid grid-cols-2 gap-5 justify-center items-center text-center">
+               <h1 className="text-orange-400 font-semibold text-2xl text-center underline tracking-wider">Ajukan Permohonanan</h1>
+               <div className=" grid  gap-5 justify-center items-center text-center">
                   {/* surat 1 */}
-                  <Link as={Link} to={"/surat_pengantar"} className="border-2 border-orange-400 rounded-xl p-4 shadow-lg shadow-orange-200">
+                  <Link as={Link} to={"/dashboard_warga"} className="border-2 border-orange-400 rounded-xl p-4 shadow-lg shadow-orange-200">
                      <img src={jenisSurat} alt="surat 1" />
                      <p>Surat Pengantar</p>
                   </Link>
-                  {/* surat 2 */}
-                  <Link as={Link} to={"/"} className="border-2 border-orange-400 rounded-xl p-4 shadow-lg shadow-orange-200">
+                  {/* <Link as={Link} to={"/"} className="border-2 border-orange-400 rounded-xl p-4 shadow-lg shadow-orange-200">
                      <img src={jenisSurat} alt="surat 1" />
                      <p>Surat Keterangan</p>
                   </Link>
-                  {/* surat 3 */}
                   <Link as={Link} to={"/"} className="border-2 border-orange-400 rounded-xl p-4 shadow-lg shadow-orange-200">
                      <img src={jenisSurat} alt="surat 1" />
                      <p>Surat Permohonan</p>
-                  </Link>
+                  </Link> */}
                </div>
             </div>
          </div>

@@ -74,12 +74,12 @@ const HomePage = () => {
       {
          nama: "Layanan Pembayaran",
          sub: ["Iuran Wajib", "Iuran Sosial", "Iuran Sukarela"],
-         link: "/",
+         link: "/dashboard_warga",
       },
       {
          nama: "Layanan Permohonan Surat",
          sub: ["Surat Pengantar", "Surat Keterangan"],
-         link: "/"
+         link: "/letter_req"
       },
       {
          nama: "UMKM",
