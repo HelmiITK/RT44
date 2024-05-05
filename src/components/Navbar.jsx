@@ -31,22 +31,10 @@ const Navbar = () => {
          name: "Home",
          link: "/",
       },
-      // {
-      //    name: "About",
-      //    link: "/about",
-      // },
-      // {
-      //    name: "Profile",
-      //    link: "/myprofile",
-      // },
       {
-         name: "Pembayaran",
-         link: "/payment"
+         name: "Layanan Warga",
+         link: "/dashboard_warga"
       },
-      {
-         name: "Permohonon Surat",
-         link: "/letter_req"
-      }
    ]
 
    return (
@@ -112,28 +100,60 @@ const Navbar = () => {
 
             {/* Navmenu website */}
             <div className="hidden lg:flex lg:gap-16 lg:items-center">
-               {Menus.map((item, index) => (
-                  <NavLink
-                     key={index}
-                     to={item.link}
-                     className={({ isActive }) =>
-                        isActive
-                           ? "text-primary font-semibold text-lg"
-                           : "text-lg hover:scale-110 duration-300 hover:text-primary font-medium"
-                     }
-                  >
-                     {item.name}
-                  </NavLink>
-               ))}
-               {/* fitur admin */}
-               <div className="dropdown dropdown-end">
-                  <div tabIndex={0} role="button" className="font-medium text-lg hover:text-primary duration-300 hover:scale-105">Admin</div>
-                  <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                     <li><a>Dashboard</a></li>
-                     <li><a>Akun Warga</a></li>
-                     <li><a>Pembayaran</a></li>
-                     <li><a>Surat Pengantar</a></li>
-                  </ul>
+               <NavLink
+                  to={'/'}
+                  className={({ isActive }) =>
+                     isActive
+                        ? "text-primary font-semibold text-lg"
+                        : "text-lg hover:scale-110 duration-300 hover:text-primary font-medium"
+                  }
+               >
+                  Home
+               </NavLink>
+               <div className="flex flex-row items-center gap-6">
+                  {/* Layanan warga  dropdown by daisyUI*/}
+                  <div className="flex-none">
+                     <ul className="menu menu-horizontal px-1">
+                        <li>
+                           <details>
+                              <summary className="text-lg">
+                                 Layanan Warga
+                              </summary>
+                              <ul className="p-2 w-44 bg-base-100 rounded-t-none">
+                                 <Link as={Link} to={"/dashboard_warga"}>
+                                    <li><a>Pembayaran</a></li>
+                                 </Link>
+                                 <Link as={Link} to={"/dashboard_warga"}>
+                                    <li><a>Pengajuan Surat</a></li>
+                                 </Link>
+                              </ul>
+                           </details>
+                        </li>
+                     </ul>
+                  </div>
+                  {/* fitur admin */}
+                  <div className="flex-none">
+                     <ul className="menu menu-horizontal px-1">
+                        <li>
+                           <details>
+                              <summary className="text-lg">
+                                 Fitur Admin
+                              </summary>
+                              <ul className="p-2 w-44 bg-base-100 rounded-t-none">
+                                 <Link as={Link}>
+                                    <li><a>Ketua RT</a></li>
+                                 </Link>
+                                 <Link as={Link} to={"/dashboard"}>
+                                    <li><a>Sekretaris</a></li>
+                                 </Link>
+                                 <Link as={Link} to={"/dashboard"}>
+                                    <li><a>Bendahara</a></li>
+                                 </Link>
+                              </ul>
+                           </details>
+                        </li>
+                     </ul>
+                  </div>
                </div>
                {/* jika belum login ini muncul */}
                <Link as={Link} to={"/login"} className="mx-4">

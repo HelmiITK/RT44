@@ -118,23 +118,21 @@ const LetterRequest = () => {
             </div>
             {/* card pilih surat */}
             <div className="my-14 mx-4 flex flex-col gap-6">
-               <h1 className="text-orange-400 font-semibold text-2xl text-center underline tracking-wider">Jenis Surat</h1>
-               <div className=" grid grid-cols-2 gap-5 justify-center items-center text-center">
+               <h1 className="text-orange-400 font-semibold text-2xl text-center underline tracking-wider">Ajukan Permohonanan</h1>
+               <div className=" grid  gap-5 justify-center items-center text-center">
                   {/* surat 1 */}
                   <Link as={Link} to={"/surat_pengantar"} className="border-2 border-orange-400 rounded-xl p-4 shadow-lg shadow-orange-200">
                      <img src={jenisSurat} alt="surat 1" />
                      <p>Surat Pengantar</p>
                   </Link>
-                  {/* surat 2 */}
-                  <Link as={Link} to={"/"} className="border-2 border-orange-400 rounded-xl p-4 shadow-lg shadow-orange-200">
+                  {/* <Link as={Link} to={"/"} className="border-2 border-orange-400 rounded-xl p-4 shadow-lg shadow-orange-200">
                      <img src={jenisSurat} alt="surat 1" />
                      <p>Surat Keterangan</p>
                   </Link>
-                  {/* surat 3 */}
                   <Link as={Link} to={"/"} className="border-2 border-orange-400 rounded-xl p-4 shadow-lg shadow-orange-200">
                      <img src={jenisSurat} alt="surat 1" />
                      <p>Surat Permohonan</p>
-                  </Link>
+                  </Link> */}
                </div>
             </div>
          </div>

@@ -2,12 +2,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
 import MyProfile from "./pages/MyProfile";
-import Payment from "./pages/Payment";
 import Umkm from "./pages/UmkmRt";
 import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LetterRequest from "./pages/PermohonanSurat/LetterRequest";
-import SuratPengantarPage from "./pages/PermohonanSurat/SuratPengantar/SuratPengantarPage";
+// import SuratPengantarPage from "./pages/PermohonanSurat/SuratPengantar/SuratPengantarPage";
+import DashboardWargaPage from "./pages/DashboardWarga/DashboardWargaPage";
 
 function App() {
 
@@ -32,17 +32,18 @@ function App() {
             element={<MyProfile />}
           />
           <Route
-            path="/payment"
-            element={<Payment />}
-          />
-          <Route
             path="/letter_req"
             element={<LetterRequest />}
           />
+          {/* <Route
+            path="/surat_pengantar"
+            element={<SuratPengantarPage />}
+          /> */}
           <Route
-            path="surat_pengantar"
-            element={<SuratPengantarPage/>}
+            path="/dashboard_warga"
+            element={<DashboardWargaPage />}
           />
+
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

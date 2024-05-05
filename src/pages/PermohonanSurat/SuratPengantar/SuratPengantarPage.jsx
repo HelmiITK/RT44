@@ -1,18 +1,8 @@
-import Navbar from "../../../components/Navbar";
-import Footer from "../../../components/Footer";
-import { Link } from "react-router-dom";
-import { IoMdArrowRoundBack } from "react-icons/io";
 
 const SuratPengantarPage = () => {
    return (
       <>
-         <Navbar />
-         <div className="pt-28 w-full lg:bg-primary lg:pb-10">
-            {/* button back */}
-            <Link as={Link} to={"/letter_req"} className="flex items-center gap-2 ml-4 hover:scale-105 duration-300 hover:underline w-[20%]">
-               <IoMdArrowRoundBack />
-               <p>Kembali</p>
-            </Link>
+         <div className="w-full lg:pb-10">
             <div className="lg:flex lg:flex-col lg:justify-center lg:items-center">
                <div className="p-8 border-2 border-slate-200 shadow-lg rounded-2xl mx-4 mt-4 mb-8 lg:mb-0 lg:bg-white lg:w-[60%]">
                   <h1 className="text-center text-2xl font-semibold lg:font-bold lg:text-3xl">Formulir Surat Pengantar</h1>
@@ -430,7 +420,6 @@ const SuratPengantarPage = () => {
                </div >
             </div >
          </div >
-         <Footer />
       </>
    )
 }
