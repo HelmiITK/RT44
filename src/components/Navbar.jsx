@@ -126,6 +126,9 @@ const Navbar = () => {
                                  <Link as={Link} to={"/dashboard_warga"}>
                                     <li><a>Pengajuan Surat</a></li>
                                  </Link>
+                                 <Link as={Link} to={"/umkm"}>
+                                    <li><a>UMKM</a></li>
+                                 </Link>
                               </ul>
                            </details>
                         </li>

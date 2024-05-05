@@ -6,7 +6,6 @@ import Umkm from "./pages/UmkmRt";
 import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LetterRequest from "./pages/PermohonanSurat/LetterRequest";
-// import SuratPengantarPage from "./pages/PermohonanSurat/SuratPengantar/SuratPengantarPage";
 import DashboardWargaPage from "./pages/DashboardWarga/DashboardWargaPage";
 
 function App() {
@@ -35,15 +34,10 @@ function App() {
             path="/letter_req"
             element={<LetterRequest />}
           />
-          {/* <Route
-            path="/surat_pengantar"
-            element={<SuratPengantarPage />}
-          /> */}
           <Route
             path="/dashboard_warga"
             element={<DashboardWargaPage />}
           />
-
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

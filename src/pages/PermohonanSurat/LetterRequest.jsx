@@ -121,7 +121,7 @@ const LetterRequest = () => {
                <h1 className="text-orange-400 font-semibold text-2xl text-center underline tracking-wider">Ajukan Permohonanan</h1>
                <div className=" grid  gap-5 justify-center items-center text-center">
                   {/* surat 1 */}
-                  <Link as={Link} to={"/surat_pengantar"} className="border-2 border-orange-400 rounded-xl p-4 shadow-lg shadow-orange-200">
+                  <Link as={Link} to={"/dashboard_warga"} className="border-2 border-orange-400 rounded-xl p-4 shadow-lg shadow-orange-200">
                      <img src={jenisSurat} alt="surat 1" />
                      <p>Surat Pengantar</p>
                   </Link>

@@ -74,7 +74,7 @@ const HomePage = () => {
       {
          nama: "Layanan Pembayaran",
          sub: ["Iuran Wajib", "Iuran Sosial", "Iuran Sukarela"],
-         link: "/",
+         link: "/dashboard_warga",
       },
       {
          nama: "Layanan Permohonan Surat",
