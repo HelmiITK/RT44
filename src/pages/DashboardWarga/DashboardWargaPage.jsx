@@ -14,7 +14,13 @@ import { useState } from "react";
 import IuranWajibPage from "./Pembayaran/IuranWajibPage";
 import IuranSukarelaPage from "./Pembayaran/IuranSukarelaPage";
 import QrCodeComponent from "../../components/Pembayaran/QrCodeComponent";
+import ProfileWargaWeb from "../../components/ProfileWargaWeb";
 import { IoMdArrowBack } from "react-icons/io";
+
+import LiveClockComponent from "../../components/LiveClockComponent";
+import { PiMoneyDuotone } from "react-icons/pi";
+import { VscAccount } from "react-icons/vsc";
+import Navbar from "../../components/Navbar";
 
 const DashboardWargaPage = () => {
    const [step, setStep] = useState(1);
@@ -24,8 +30,12 @@ const DashboardWargaPage = () => {
    }
    return (
       <div className="container mx-auto">
-         {/* Navbar */}
-         <div className="bg-white px-2 py-2 shadow-lg">
+         {/* navbar mode laptop */}
+         <div className="hidden lg:block -mt-4">
+            <Navbar />
+         </div>
+         {/* Navbar mode hp*/}
+         <div className="bg-white px-2 py-2 shadow-lg block lg:hidden">
             {/* kiri */}
             <div className="flex flex-row items-center">
                <div className="flex items-center">
@@ -85,7 +95,7 @@ const DashboardWargaPage = () => {
                            <div className="mt-4 flex flex-col gap-2">
                               <h1 className="capitalize">Akun</h1>
                               {/* profile */}
-                              <Link to={'/myprofile'} className="flex items-center gap-2 hover:bg-gray-200 hover:rounded-lg hover:py-2 hover:px-4 duration-300 hover:text-blue-500">
+                              <Link className="flex items-center gap-2 hover:bg-gray-200 hover:rounded-lg hover:py-2 hover:px-4 duration-300 hover:text-blue-500" onClick={() => handleMenuClick(6)} >
                                  <FaUsers className="w-6 h-6" />
                                  <h1 className="capitalize font-medium">profile</h1>
                               </Link>
@@ -128,55 +138,119 @@ const DashboardWargaPage = () => {
             </div>
          </div>
          {/* button back to home */}
-         <Link as={Link} to={"/"} className="text-sm flex flex-row items-center gap-2 mt-4 ml-2 underline">
+         <Link as={Link} to={"/"} className="text-sm flex flex-row items-center gap-2 mt-4 ml-2 underline lg:hidden">
             <IoMdArrowBack className="w-6 h-5" />
             <h1>kembali ke halaman utama</h1>
          </Link>
          {/* Konten Data */}
-         <div className="mx-4 mt-4">
-            {/* parent konten */}
-            <div className="border-2 border-black p-4 rounded-lg bg-white shadow-md flex flex-row items-center gap-4">
-               <div>
-                  <img src={LogoRt44} alt="logo rt44" className="w-40" />
-               </div>
-               <div className="flex flex-col gap-2">
-                  {/* Nama kepala keluarga */}
-                  <div className="flex flex-row gap-2 items-start">
-                     <div className="capitalize w-full">nama kepala keluarga</div>
-                     <div>:</div>
-                     <div className="capitalize font-semibold w-full">Wilson</div>
+         <div className="mx-4 mt-4 flex flex-row gap-6 lg:pt-32">
+            {/* sidebar mode web (laptop) */}
+            <div className="hidden lg:flex lg:drawer-open ">
+               <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+               <div className="drawer-side">
+                  <div className="ml-4 mb-4">
+                     <LiveClockComponent />
                   </div>
-                  {/* Blok rumah */}
-                  <div className="flex flex-row gap-2 items-start">
-                     <div className="capitalize w-full">blok</div>
-                     <div>:</div>
-                     <div className="capitalize font-semibold w-full">g</div>
-                  </div>
-                  {/* Nomor rumah */}
-                  <div className="flex flex-row gap-2 items-start">
-                     <div className="capitalize w-full">nomor rumah</div>
-                     <div>:</div>
-                     <div className="capitalize font-semibold w-full">102</div>
-                  </div>
+                  <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
+                  <ul className="menu w-80 bg-white h-96 text-base-content border-2 shadow-lg ml-4 rounded-2xl flex flex-col gap-4">
+                     {/* heading */}
+                     <div className="flex items-center mt-4 ml-4 gap-2">
+                        <MdDashboard className="w-8 h-8 text-orange-400" />
+                        <h1 className="text-2xl font-semibold uppercase text-orange-400 cursor-pointer" onClick={() => handleMenuClick(1)}>dashboard</h1>
+                     </div>
+                     {/* menu */}
+                     <div className="flex flex-col">
+                        {/* Account settings dropdown */}
+                        <div className="flex-none">
+                           <ul className="menu px-1">
+                              <li>
+                                 <details>
+                                    <summary className="text-lg">
+                                       <PiMoneyDuotone className="w-6 h-6 text-gray-600" />
+                                       <p className="capitalize w-full">keuangan</p>
+                                    </summary>
+                                    <ul className="p-2 bg-base-100 rounded-t-none">
+                                       <li><a className="capitalize" onClick={() => handleMenuClick(2)}>iuran wajib</a></li>
+                                       <li><a className="capitalize" onClick={() => handleMenuClick(3)}>iuran sukarela</a></li>
+                                    </ul>
+                                 </details>
+                              </li>
+                           </ul>
+                        </div>
+
+                        {/* cdokumen */}
+                        <Link
+                           as={Link}
+                           // to={}
+                           className="flex items-center gap-3 pl-5 mt-2 mb-6 py-2 hover:bg-gray-200 duration-300 hover:rounded-lg"
+                        >
+                           <IoDocumentTextOutline className="w-6 h-6 text-gray-600" />
+                           <p className="capitalize text-lg" onClick={() => handleMenuClick(4)}>surat pengantar</p>
+                        </Link>
+
+                        <div className="h-px w-full bg-gray-300 px-6"></div>
+
+                        {/* profile akun */}
+                        <Link
+                           as={Link}
+                           // to={}
+                           className="flex items-center gap-3 pl-5 mt-6 py-2 hover:bg-gray-200 duration-300 hover:rounded-lg"
+                        >
+                           <VscAccount className="w-6 h-6" />
+                           <p className="capitalize text-lg" onClick={() => handleMenuClick(6)}>profile</p>
+                        </Link>
+                     </div>
+                  </ul>
                </div>
             </div>
-            {/* children konten */}
-            <div className="mt-6">
-               {step === 1 && (
-                  <HaloComponent />
-               )}
-               {step === 2 && (
-                  <IuranWajibPage handleMenuClick={handleMenuClick} />
-               )}
-               {step === 3 && (
-                  <IuranSukarelaPage handleMenuClick={handleMenuClick} />
-               )}
-               {step === 4 && (
-                  <SuratPengantarPage />
-               )}
-               {step === 5 && (
-                  <QrCodeComponent />
-               )}
+            <div className="w-full mr-5">
+               {/* parent konten */}
+               <div className="border-2 border-black p-4 rounded-lg bg-white shadow-md flex flex-row items-center gap-4">
+                  <div>
+                     <img src={LogoRt44} alt="logo rt44" className="w-40" />
+                  </div>
+                  <div className="flex flex-col gap-2">
+                     {/* Nama kepala keluarga */}
+                     <div className="flex flex-row gap-2 items-start">
+                        <div className="capitalize w-full">nama kepala keluarga</div>
+                        <div>:</div>
+                        <div className="capitalize font-semibold w-full">Wilson</div>
+                     </div>
+                     {/* Blok rumah */}
+                     <div className="flex flex-row gap-2 items-start">
+                        <div className="capitalize w-full">blok</div>
+                        <div>:</div>
+                        <div className="capitalize font-semibold w-full">g</div>
+                     </div>
+                     {/* Nomor rumah */}
+                     <div className="flex flex-row gap-2 items-start">
+                        <div className="capitalize w-full">nomor rumah</div>
+                        <div>:</div>
+                        <div className="capitalize font-semibold w-full">102</div>
+                     </div>
+                  </div>
+               </div>
+               {/* children konten */}
+               <div className="mt-6">
+                  {step === 1 && (
+                     <HaloComponent />
+                  )}
+                  {step === 2 && (
+                     <IuranWajibPage handleMenuClick={handleMenuClick} />
+                  )}
+                  {step === 3 && (
+                     <IuranSukarelaPage handleMenuClick={handleMenuClick} />
+                  )}
+                  {step === 4 && (
+                     <SuratPengantarPage />
+                  )}
+                  {step === 5 && (
+                     <QrCodeComponent />
+                  )}
+                  {step === 6 && (
+                     <ProfileWargaWeb />
+                  )}
+               </div>
             </div>
          </div>
       </div>
