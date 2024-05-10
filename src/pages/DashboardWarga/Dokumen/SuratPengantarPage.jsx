@@ -2,9 +2,9 @@
 const SuratPengantarPage = () => {
    return (
       <>
-         <div className="w-full lg:pb-10">
+         <div className="w-full  lg:pb-10">
             <div className="lg:flex lg:flex-col lg:justify-center lg:items-center">
-               <div className="p-8 border-2 border-slate-200 shadow-lg rounded-2xl mx-4 mt-4 mb-8 lg:mb-0 lg:bg-white lg:w-[60%]">
+               <div className="p-8 border-2 border-slate-200 shadow-lg rounded-2xl mx-4 mt-4 mb-8 lg:mb-0 lg:bg-white lg:w-full">
                   <h1 className="text-center text-2xl font-semibold lg:font-bold lg:text-3xl">Formulir Surat Pengantar</h1>
                   {/* form surat */}
                   <form action="" className="flex flex-col gap-4 mt-4">
