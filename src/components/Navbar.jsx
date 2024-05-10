@@ -35,6 +35,10 @@ const Navbar = () => {
          name: "Layanan Warga",
          link: "/dashboard_warga"
       },
+      {
+         name: "UMKM",
+         link: "/umkm"
+      }
    ]
 
    return (
