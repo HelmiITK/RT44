@@ -182,10 +182,11 @@ const DashboardWargaPage = () => {
                         <Link
                            as={Link}
                            // to={}
+                           onClick={() => handleMenuClick(4)}
                            className="flex items-center gap-3 pl-5 mt-2 mb-6 py-2 hover:bg-gray-200 duration-300 hover:rounded-lg"
                         >
                            <IoDocumentTextOutline className="w-6 h-6 text-gray-600" />
-                           <p className="capitalize text-lg" onClick={() => handleMenuClick(4)}>surat pengantar</p>
+                           <p className="capitalize text-lg">surat pengantar</p>
                         </Link>
 
                         <div className="h-px w-full bg-gray-300 px-6"></div>
@@ -194,10 +195,11 @@ const DashboardWargaPage = () => {
                         <Link
                            as={Link}
                            // to={}
+                           onClick={() => handleMenuClick(6)}
                            className="flex items-center gap-3 pl-5 mt-6 py-2 hover:bg-gray-200 duration-300 hover:rounded-lg"
                         >
                            <VscAccount className="w-6 h-6" />
-                           <p className="capitalize text-lg" onClick={() => handleMenuClick(6)}>profile</p>
+                           <p className="capitalize text-lg" >profile</p>
                         </Link>
                      </div>
                   </ul>
@@ -209,24 +211,24 @@ const DashboardWargaPage = () => {
                   <div>
                      <img src={LogoRt44} alt="logo rt44" className="w-40" />
                   </div>
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-2 w-full">
                      {/* Nama kepala keluarga */}
-                     <div className="flex flex-row gap-2 items-start">
-                        <div className="capitalize w-full">nama kepala keluarga</div>
+                     <div className="flex flex-row gap-2 w-full">
+                        <div className="capitalize w-1/4">nama kepala keluarga</div>
                         <div>:</div>
-                        <div className="capitalize font-semibold w-full">Wilson</div>
+                        <div className="capitalize font-semibold">Wilson</div>
                      </div>
                      {/* Blok rumah */}
-                     <div className="flex flex-row gap-2 items-start">
-                        <div className="capitalize w-full">blok</div>
+                     <div className="flex flex-row gap-2 w-full">
+                        <div className="capitalize w-1/4">blok</div>
                         <div>:</div>
-                        <div className="capitalize font-semibold w-full">g</div>
+                        <div className="capitalize font-semibold">g</div>
                      </div>
                      {/* Nomor rumah */}
-                     <div className="flex flex-row gap-2 items-start">
-                        <div className="capitalize w-full">nomor rumah</div>
+                     <div className="flex flex-row gap-2 w-full">
+                        <div className="capitalize w-1/4">nomor rumah</div>
                         <div>:</div>
-                        <div className="capitalize font-semibold w-full">102</div>
+                        <div className="capitalize font-semibold">102</div>
                      </div>
                   </div>
                </div>
