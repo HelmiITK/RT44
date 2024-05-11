@@ -147,7 +147,7 @@ const Navbar = () => {
                                  Fitur Admin
                               </summary>
                               <ul className="p-2 w-44 bg-base-100 rounded-t-none">
-                                 <Link as={Link}>
+                                 <Link as={Link} to={"/dashboard_rt"}>
                                     <li><a>Ketua RT</a></li>
                                  </Link>
                                  <Link as={Link} to={"/dashboard"}>
