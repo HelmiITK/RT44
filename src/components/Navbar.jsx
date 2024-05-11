@@ -150,7 +150,7 @@ const Navbar = () => {
                                  <Link as={Link} to={"/dashboard_rt"}>
                                     <li><a>Ketua RT</a></li>
                                  </Link>
-                                 <Link as={Link} to={"/dashboard"}>
+                                 <Link as={Link} to={"/dashboard_sekretaris"}>
                                     <li><a>Sekretaris</a></li>
                                  </Link>
                                  <Link as={Link} to={"/dashboard"}>

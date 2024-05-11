@@ -21,13 +21,25 @@ import LiveClockComponent from "../../components/LiveClockComponent";
 import { PiMoneyDuotone } from "react-icons/pi";
 import { VscAccount } from "react-icons/vsc";
 import Navbar from "../../components/Navbar";
+import { FaRegPaperPlane } from "react-icons/fa";
+import StatusSuratPage from "./Dokumen/StatusSuratPage";
+import { IoArrowBackOutline } from "react-icons/io5";
 
 const DashboardWargaPage = () => {
    const [step, setStep] = useState(1);
+   const [statusSurat, setStatusSurat] = useState(false);
    // Function to handle sidebar menu click
    const handleMenuClick = (stepNumber) => {
       setStep(stepNumber);
+      setStatusSurat(stepNumber === 7)
    }
+
+   // handle untuk kembali ke form surat pengantar dan button berubah
+   const handleBackButtonClick = () => {
+      setStep(4); // Set step back to 4 (form surat pengantar)
+      setStatusSurat(false); // Set statusSurat to false when going back
+   }
+
    return (
       <div className="container mx-auto">
          {/* navbar mode laptop */}
@@ -207,29 +219,55 @@ const DashboardWargaPage = () => {
             </div>
             <div className="w-full mr-5">
                {/* parent konten */}
-               <div className="border-2 border-black p-4 rounded-lg bg-white shadow-md flex flex-row items-center gap-4">
-                  <div>
-                     <img src={LogoRt44} alt="logo rt44" className="w-40" />
+               <div className="border-2 border-black rounded-lg bg-white shadow-md flex flex-row items-center">
+                  <div className="flex items-center w-[870px] py-4">
+                     {/* img */}
+                     <div className="ml-4">
+                        <img src={LogoRt44} alt="logo rt44" className="w-40" />
+                     </div>
+                     {/* data */}
+                     <div className="flex flex-col gap-2 w-full ml-4">
+                        {/* Nama kepala keluarga */}
+                        <div className="flex flex-row gap-2 w-full">
+                           <div className="capitalize w-1/3">nama kepala keluarga</div>
+                           <div>:</div>
+                           <div className="capitalize font-semibold">Wilson</div>
+                        </div>
+                        {/* Blok rumah */}
+                        <div className="flex flex-row gap-2 w-full">
+                           <div className="capitalize w-1/3">blok</div>
+                           <div>:</div>
+                           <div className="capitalize font-semibold">g</div>
+                        </div>
+                        {/* Nomor rumah */}
+                        <div className="flex flex-row gap-2 w-full">
+                           <div className="capitalize w-1/3">nomor rumah</div>
+                           <div>:</div>
+                           <div className="capitalize font-semibold">102</div>
+                        </div>
+                     </div>
                   </div>
-                  <div className="flex flex-col gap-2 w-full">
-                     {/* Nama kepala keluarga */}
-                     <div className="flex flex-row gap-2 w-full">
-                        <div className="capitalize w-1/4">nama kepala keluarga</div>
-                        <div>:</div>
-                        <div className="capitalize font-semibold">Wilson</div>
-                     </div>
-                     {/* Blok rumah */}
-                     <div className="flex flex-row gap-2 w-full">
-                        <div className="capitalize w-1/4">blok</div>
-                        <div>:</div>
-                        <div className="capitalize font-semibold">g</div>
-                     </div>
-                     {/* Nomor rumah */}
-                     <div className="flex flex-row gap-2 w-full">
-                        <div className="capitalize w-1/4">nomor rumah</div>
-                        <div>:</div>
-                        <div className="capitalize font-semibold">102</div>
-                     </div>
+                  {/* button cek surat */}
+                  <div>
+                     {statusSurat ? (
+                        // Jika statusSurat adalah true, tombol tidak ditampilkan
+                        <div
+                           onClick={handleBackButtonClick}
+                           className="flex items-center gap-2 border-none bg-primary rounded-lg py-2 px-4 cursor-pointer hover:bg-orange-400 duration-300 hover:drop-shadow-lg hover:text-white hover:scale-105"
+                        >
+                           <IoArrowBackOutline />
+                           <h2>Kembali</h2>
+                        </div>
+                     ) : (
+                        // Jika statusSurat adalah false, tampilkan tombol
+                        <div
+                           onClick={() => handleMenuClick(7)}
+                           className="flex items-center gap-2 border-none bg-primary rounded-lg py-2 px-4 cursor-pointer hover:bg-orange-400 duration-300 hover:drop-shadow-lg hover:text-white hover:scale-105"
+                        >
+                           <FaRegPaperPlane className="w-6 h-6" />
+                           <h2 className="capitalize">cek status surat</h2>
+                        </div>
+                     )}
                   </div>
                </div>
                {/* children konten */}
@@ -251,6 +289,9 @@ const DashboardWargaPage = () => {
                   )}
                   {step === 6 && (
                      <ProfileWargaWeb />
+                  )}
+                  {step === 7 && (
+                     <StatusSuratPage />
                   )}
                </div>
             </div>

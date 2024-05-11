@@ -4,22 +4,17 @@ import { Link } from "react-router-dom";
 import { MdDashboard } from "react-icons/md";
 import { VscAccount } from "react-icons/vsc";
 import { FaUsersGear } from "react-icons/fa6";
-import { AiOutlineShop } from "react-icons/ai";
 
 import LiveClockComponent from "../../components/LiveClockComponent";
-import UmkmRtPage from "./UmkmCrudRt/UmkmRtPage";
-import AnggotaRtPage from "./AnggotaCrudRt/AnggotaRtPage";
+import { IoNewspaperOutline } from "react-icons/io5";
+
 import ProfileWargaWeb from "../../components/ProfileWargaWeb";
+import PengajuanSuratPage from "./PengajuanSurat/PengajuanSuratPage";
+import DataMasyarakat from "./DataMasyarakat/DataMasyarakat";
+import EditMasyarakat from "../../components/Sekretaris/EditMasyarakat";
+import EditPengajuanSurat from "../../components/Sekretaris/EditPengajuanSurat";
 
-// children action Umkm
-import TambahUmkmComponent from "../../components/UmkmCrud/TambahUmkmComponent"
-import EditUmkmComponent from "../../components/UmkmCrud/EditUmkmComponent";
-
-// children action Anggota
-import TambahAnggotaComponent from "../../components/AnggotaCrud/TambahAnggotaComponent";
-import EditAnggotaComponent from "../../components/AnggotaCrud/EditAnggotaComponent";
-
-const DashboardRtPage = () => {
+const DashboardSekretarisPage = () => {
 
    const [step, setStep] = useState(1);
    // Function to handle sidebar menu click
@@ -47,26 +42,26 @@ const DashboardRtPage = () => {
                         </div>
                         {/* menu */}
                         <div className="flex flex-col">
-                           {/* umkm */}
+                           {/* Pengajuan surat */}
                            <Link
                               as={Link}
                               // to={}
                               onClick={() => handleMenuClick(1)}
                               className="flex items-center gap-3 pl-5 mt-2 py-2 hover:bg-gray-200 duration-300 hover:rounded-lg"
                            >
-                              <AiOutlineShop className="w-6 h-6 text-gray-600" />
-                              <p className="capitalize text-lg">umkm</p>
+                              <IoNewspaperOutline className="w-6 h-6 text-gray-600" />
+                              <p className="capitalize text-lg">Pengajuan surat</p>
                            </Link>
 
-                           {/* anggota */}
+                           {/* data masyrakat */}
                            <Link
                               as={Link}
                               // to={}
-                              onClick={() => handleMenuClick(2)}
+                              onClick={() => handleMenuClick(3)}
                               className="flex items-center gap-3 pl-5 mb-6 mt-2 py-2 hover:bg-gray-200 duration-300 hover:rounded-lg"
                            >
                               <FaUsersGear className="w-6 h-6 text-gray-600" />
-                              <p className="capitalize text-lg">anggota</p>
+                              <p className="capitalize text-lg">data masyarakat</p>
                            </Link>
 
                            <div className="h-px w-full bg-gray-300 px-6"></div>
@@ -75,7 +70,7 @@ const DashboardRtPage = () => {
                            <Link
                               as={Link}
                               // to={}
-                              onClick={() => handleMenuClick(3)}
+                              onClick={() => handleMenuClick(6)}
                               className="flex items-center gap-3 pl-5 mt-6 py-2 hover:bg-gray-200 duration-300 hover:rounded-lg"
                            >
                               <VscAccount className="w-6 h-6" />
@@ -85,40 +80,41 @@ const DashboardRtPage = () => {
                      </ul>
                   </div>
                </div>
-               {/* children konten */}
+
                <div className="w-full">
-                  {/* Dashboard UKKM, Anggota dan Profile */}
+                  {/* children konten */}
+
+                  {/* Dashboard pengajuan surat */}
                   {step === 1 && (
-                     <UmkmRtPage handleMenuClick={handleMenuClick} />
+                     <PengajuanSuratPage handleMenuClick={handleMenuClick} step={step} />
                   )}
                   {step === 2 && (
-                     <AnggotaRtPage handleMenuClick={handleMenuClick} />
+                     <PengajuanSuratPage handleMenuClick={handleMenuClick} step={step} />
                   )}
+
+                  {/* Dashboard data masyarakat */}
                   {step === 3 && (
+                     <DataMasyarakat handleMenuClick={handleMenuClick} />
+                  )}
+                  {/* edit data masyrakat */}
+                  {step === 4 && (
+                     <EditMasyarakat handleMenuClick={handleMenuClick} />
+                  )}
+
+                  {/* edit data pengajuan surat para warga tercinta */}
+                  {step === 5 && (
+                     <EditPengajuanSurat handleMenuClick={handleMenuClick} />
+                  )}
+
+                  {/* myprofile tiap role */}
+                  {step === 6 && (
                      <ProfileWargaWeb />
                   )}
-
-                  {/* Action UMKM */}
-                  {step === 4 && (
-                     <TambahUmkmComponent handleMenuClick={handleMenuClick} />
-                  )}
-                  {step === 5 && (
-                     <EditUmkmComponent handleMenuClick={handleMenuClick} />
-                  )}
-
-                  {/* Action Anggota */}
-                  {step === 6 && (
-                     <TambahAnggotaComponent handleMenuClick={handleMenuClick} />
-                  )}
-                  {step === 7 && (
-                     <EditAnggotaComponent handleMenuClick={handleMenuClick} />
-                  )}
-
-               </div>
+               </div >
             </div>
          </div>
       </>
    )
 }
 
-export default DashboardRtPage
+export default DashboardSekretarisPage

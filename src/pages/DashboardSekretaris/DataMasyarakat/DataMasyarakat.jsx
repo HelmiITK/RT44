@@ -2,23 +2,16 @@ import { CiEdit } from "react-icons/ci";
 import { AiOutlineDelete } from "react-icons/ai";
 import PropTypes from "prop-types"
 
-const AnggotaRtPage = ({ handleMenuClick }) => {
+const DataMasyarakat = ({ handleMenuClick }) => {
    return (
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col items-center gap-4">
          {/* heading */}
-         <div className="border-2 border-slate-300 rounded-lg shadow-lg p-8 flex flex-col gap-4 justify-center">
-            <div className="flex flex-col gap-2">
-               <h1 className="text-center text-2xl font-bold">Jumlah Anggota</h1>
-               <h2 className="text-center text-5xl font-bold">50</h2>
-            </div>
-            <button
-               onClick={() => handleMenuClick(6)}
-               className="cursor-pointer capitalize font-medium border-none bg-primary rounded-lg py-2 px-4 hover:bg-orange-500 duration-300 text-white">
-               tambah anggota
-            </button>
+         <div className="border-2 border-slate-300 rounded-lg py-6 flex flex-col gap-2 items-center w-full">
+            <h1 className="uppercase text-2xl font-bold">jumlah masyarakat</h1>
+            <h2 className="font-bold text-4xl">10</h2>
          </div>
          {/* konten data */}
-         <div className="border-2 border-slate-300 rounded-lg shadow-lg p-8">
+         <div className="border-2 border-slate-300 rounded-lg shadow-lg p-8 w-full">
             <div className="overflow-x-auto">
                <table className="table">
                   {/* head */}
@@ -62,7 +55,7 @@ const AnggotaRtPage = ({ handleMenuClick }) => {
                            <div className="flex gap-2 items-center">
                               {/* button edit */}
                               <button
-                                 onClick={() => handleMenuClick(7)}
+                                 onClick={() => handleMenuClick(4)}
                                  className="rounded-lg p-3 bg-slate-300 hover:bg-primary hover:text-white duration-300">
                                  <CiEdit className="w-6 h-6" />
                               </button>
@@ -81,8 +74,8 @@ const AnggotaRtPage = ({ handleMenuClick }) => {
    )
 }
 
-export default AnggotaRtPage
+export default DataMasyarakat
 
-AnggotaRtPage.propTypes = {
+DataMasyarakat.propTypes = {
    handleMenuClick: PropTypes.func
 }
