@@ -1,240 +1,259 @@
-import LogoRt from "../assets/GambarLogoRT44.png"
-import GambarLogin from "../assets/gambarLoginRt44.png"
-import { Link } from "react-router-dom"
+import LogoRt from "../assets/GambarLogoRT44.png";
+import GambarLogin from "../assets/gambarLoginRt44.png";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { IoEye } from "react-icons/io5";
 import { IoEyeOff } from "react-icons/io5";
+import { ToastContainer } from "react-toastify";
 import { useState } from "react";
 
+import { login } from "../redux/actions/authActions";
+
 const LoginPage = () => {
-   const [username, setUsername] = useState("");
-   const [password, setPassword] = useState("");
-   const [errorUsername, setErrorUsername] = useState("");
-   const [errorPassword, setErrorPassword] = useState("");
-   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-   const handleLogin = (event) => {
-      event.preventDefault();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-      if (!username) {
-         setErrorUsername("Silahkan isi nama anda");
-         return;
-      }
-      if (!password) {
-         setErrorPassword("Silahkan isi password anda!");
-         return;
-      }
+  const handleLogin = (event) => {
+    event.preventDefault();
 
-      // // fungsi redux jika sudah ada API
-      // dispatch(login(email, password, navigate));
-   }
+    if (!email) {
+      setErrorEmail("Silahkan isi nama anda");
+      return;
+    }
+    if (!password) {
+      setErrorPassword("Silahkan isi password anda!");
+      return;
+    }
 
-   const togglePassword = () => {
-      setShowPassword(!showPassword);
-   }
+    // // fungsi redux jika sudah ada API
+    dispatch(login(email, password, navigate));
+  };
 
-   return (
-      <div className="container mx-auto">
-         {/* heading mode mobile*/}
-         <div className="px-4 flex justify-center items-center gap-4 bg-primary py-4 lg:hidden">
-            <img
-               src={LogoRt}
-               alt="Logo RT"
-               className="w-40"
-            />
-            <q className="italic text-2xl font-semibold text-white">
-               Kami ada untuk memberikan pelayanan terbaik bagi masyarakat
-            </q>
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
 
-         </div>
+  return (
+    <div className="container mx-auto">
+      {/* heading mode mobile*/}
+      <div className="flex items-center justify-center gap-4 px-4 py-4 bg-primary lg:hidden">
+        <img src={LogoRt} alt="Logo RT" className="w-40" />
+        <q className="text-2xl italic font-semibold text-white">
+          Kami ada untuk memberikan pelayanan terbaik bagi masyarakat
+        </q>
+      </div>
 
-         {/* button back to home mode mobile*/}
-         <Link
+      {/* button back to home mode mobile*/}
+      <Link
+        as={Link}
+        to={"/"}
+        className="flex items-center gap-2 mx-6 mt-4 duration-300 cursor-pointer hover:scale-105 hover:text-primary md:w-1/6 md:mx-12 hover:underline lg:hidden"
+      >
+        <IoIosArrowRoundBack className="w-6 h-6 md:w-8 md:h-8" />
+        <p className="md:text-lg">Kembali</p>
+      </Link>
+
+      {/* card login mode mobile*/}
+      <div className="flex flex-col gap-6 p-6 mx-4 mt-6 border-2 shadow-md border-slate-100 rounded-xl lg:hidden">
+        <img
+          src={GambarLogin}
+          alt="Gambar Login"
+          className="shadow-sm rounded-2xl shadow-primary"
+        />
+        <form
+          action="submit"
+          onSubmit={handleLogin}
+          className="flex flex-col gap-5"
+        >
+          {/* username */}
+          <div className="flex flex-col gap-2">
+            <div className="flex items-center gap-4">
+              <label htmlFor="username">
+                <FaUser className="w-6 h-6 text-primary" />
+              </label>
+              <input
+                type="text"
+                id="username"
+                placeholder="Username"
+                className="w-full px-4 py-2 text-sm border-2 shadow-sm border-slate-100 rounded-xl placeholder:font-light placeholder:text-sm"
+                value={email}
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                  setErrorEmail("");
+                }}
+              />
+            </div>
+            {errorEmail && (
+              <p className="ml-12 text-xs text-red-500">{errorEmail}</p>
+            )}
+          </div>
+          {/* password */}
+          <div className="flex flex-col gap-2">
+            <div className="relative flex items-center gap-4">
+              <label htmlFor="password">
+                <RiLockPasswordFill className="w-6 h-6 text-primary" />
+              </label>
+              <input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                className="w-full px-4 py-2 text-sm border-2 shadow-sm border-slate-100 rounded-xl placeholder:font-light placeholder:text-sm"
+                value={password}
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                  setErrorPassword("");
+                }}
+              />
+              <button
+                className="absolute right-4"
+                type="button"
+                aria-label="toggle password visibility"
+                onClick={togglePassword}
+              >
+                {showPassword ? (
+                  <IoEye className="w-5 h-5 text-slate-400 lg:w-5 lg:h-5" />
+                ) : (
+                  <IoEyeOff className="w-5 h-5 text-slate-400 lg:w-5 lg:h-5" />
+                )}
+              </button>
+            </div>
+            {errorPassword && (
+              <p className="ml-12 text-xs text-red-500">{errorPassword}</p>
+            )}
+          </div>
+          {/* button submit */}
+          <button className="py-2 text-lg font-semibold tracking-widest text-white border-none bg-primary rounded-2xl">
+            Login
+          </button>
+        </form>
+      </div>
+
+      {/* mode web */}
+      <div className="items-center hidden gap-10 lg:flex">
+        {/* heading */}
+        <div className="flex items-center justify-center w-auto h-screen gap-4 px-10 bg-gradient-to-b from-orange-400 via-primary to-orange-100">
+          <img src={LogoRt} alt="Logo RT" className="w-72 h-72" />
+          <q className="mr-8 text-3xl italic font-bold leading-10 tracking-wider text-white capitalize">
+            Kami ada untuk memberikan pelayanan terbaik bagi masyarakat
+          </q>
+        </div>
+
+        <div className="flex flex-col w-full gap-4 mr-10">
+          {/* button back to home */}
+          <Link
             as={Link}
             to={"/"}
-            className="mx-6 mt-4 cursor-pointer flex gap-2 items-center hover:scale-105 duration-300 hover:text-primary md:w-1/6 md:mx-12 hover:underline lg:hidden"
-         >
+            className="flex items-center w-32 gap-2 duration-300 hover:text-primary hover:scale-105"
+          >
             <IoIosArrowRoundBack className="w-6 h-6 md:w-8 md:h-8" />
-            <p className="md:text-lg">
-               Kembali
-            </p>
-         </Link>
+            <p className="md:text-lg">Kembali</p>
+          </Link>
 
-         {/* card login mode mobile*/}
-         <div className="mx-4 border-2 border-slate-100 p-6 mt-6 rounded-xl shadow-md flex flex-col gap-6 lg:hidden">
-            <img
-               src={GambarLogin}
-               alt="Gambar Login"
-               className="rounded-2xl shadow-sm shadow-primary"
-            />
+          {/* card login */}
+          <div className="flex flex-col justify-center gap-6 px-10 py-6 border-2 shadow-2xl border-slate-100 rounded-2xl">
+            <div className="flex flex-col items-center justify-center gap-5">
+              <h1 className="text-3xl font-bold tracking-wide text-center">
+                Login
+              </h1>
+              <img
+                src={GambarLogin}
+                alt="Gambar Login"
+                className="object-cover object-center w-2/3 rounded-3xl h-72"
+              />
+            </div>
             <form
-               action="submit"
-               onSubmit={handleLogin}
-               className="flex flex-col gap-5"
+              action="submit"
+              onSubmit={handleLogin}
+              className="flex flex-col gap-5"
             >
-               {/* username */}
-               <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-4">
-                     <label htmlFor="username">
-                        <FaUser className="w-6 h-6 text-primary" />
-                     </label>
-                     <input
-                        type="text"
-                        id="username"
-                        placeholder="Username"
-                        className="border-2 border-slate-100 shadow-sm py-2 px-4 rounded-xl w-full placeholder:font-light placeholder:text-sm text-sm"
-                        value={username}
-                        onChange={(event) => {
-                           setUsername(event.target.value);
-                           setErrorUsername("");
-                        }}
-                     />
-                  </div>
-                  {errorUsername && <p className="text-xs text-red-500 ml-12">{errorUsername}</p>}
-               </div>
-               {/* password */}
-               <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-4 relative">
-                     <label htmlFor="password">
-                        <RiLockPasswordFill className="w-6 h-6 text-primary" />
-                     </label>
-                     <input
-                        id="password"
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Password"
-                        className="border-2 border-slate-100 shadow-sm py-2 px-4 rounded-xl w-full placeholder:font-light placeholder:text-sm text-sm"
-                        value={password}
-                        onChange={(event) => {
-                           setPassword(event.target.value);
-                           setErrorPassword("");
-                        }}
-                     />
-                     <button
-                        className="absolute right-4"
-                        type="button"
-                        aria-label="toggle password visibility"
-                        onClick={togglePassword}
-                     >
-                        {showPassword ? (
-                           < IoEye className="w-5 h-5 text-slate-400 lg:w-5 lg:h-5" />
-                        ) : (
-                           <IoEyeOff className="w-5 h-5 text-slate-400 lg:w-5 lg:h-5" />
-                        )}
-                     </button>
-                  </div>
-                  {errorPassword && <p className="text-xs text-red-500 ml-12">{errorPassword}</p>}
-               </div>
-               {/* button submit */}
-               <button className="border-none bg-primary rounded-2xl py-2 text-lg font-semibold text-white tracking-widest">
-                  Login
-               </button>
-            </form>
-         </div>
-
-         {/* mode web */}
-         <div className="hidden lg:flex gap-10 items-center">
-            {/* heading */}
-            <div className="bg-gradient-to-b from-orange-400 via-primary to-orange-100 w-auto h-screen flex justify-center items-center gap-4 px-10">
-               <img
-                  src={LogoRt}
-                  alt="Logo RT"
-                  className="w-72 h-72"
-               />
-               <q className="capitalize text-3xl italic font-bold tracking-wider leading-10 text-white mr-8">Kami ada untuk memberikan pelayanan terbaik bagi masyarakat</q>
-            </div>
-
-            <div className="flex flex-col gap-4 w-full mr-10">
-               {/* button back to home */}
-               <Link
-                  as={Link}
-                  to={"/"}
-                  className="flex gap-2 items-center hover:text-primary w-32 hover:scale-105 duration-300"
-               >
-                  <IoIosArrowRoundBack className="w-6 h-6 md:w-8 md:h-8" />
-                  <p className="md:text-lg">
-                     Kembali
-                  </p>
-               </Link>
-
-               {/* card login */}
-               <div className="border-2 border-slate-100 shadow-2xl px-10 py-6 rounded-2xl flex flex-col gap-6 justify-center">
-                  <div className="flex flex-col justify-center items-center gap-5">
-                     <h1 className="text-3xl tracking-wide font-bold text-center">Login</h1>
-                     <img
-                        src={GambarLogin}
-                        alt="Gambar Login"
-                        className="rounded-3xl object-cover object-center w-2/3 h-72"
-                     />
-                  </div>
-                  <form
-                     action="submit"
-                     onSubmit={handleLogin}
-                     className="flex flex-col gap-5"
+              {/* username */}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-4">
+                  <label htmlFor="username">
+                    <FaUser className="w-7 h-7 text-primary" />
+                  </label>
+                  <input
+                    type="text"
+                    id="username"
+                    placeholder="Username"
+                    className="w-full px-4 py-3 text-base border-2 shadow-sm border-slate-100 rounded-xl placeholder:font-light placeholder:text-base"
+                    value={email}
+                    onChange={(event) => {
+                      setEmail(event.target.value);
+                      setErrorEmail("");
+                    }}
+                  />
+                </div>
+                {errorEmail && (
+                  <p className="ml-12 text-sm text-red-500">{errorEmail}</p>
+                )}
+              </div>
+              {/* password */}
+              <div className="flex flex-col gap-2">
+                <div className="relative flex items-center gap-4">
+                  <label htmlFor="password">
+                    <RiLockPasswordFill className="w-7 h-7 text-primary" />
+                  </label>
+                  <input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Password"
+                    className="w-full px-4 py-3 text-base border-2 shadow-sm border-slate-100 rounded-xl placeholder:font-light placeholder:text-base"
+                    value={password}
+                    onChange={(event) => {
+                      setPassword(event.target.value);
+                      setErrorPassword("");
+                    }}
+                  />
+                  <button
+                    className="absolute right-4"
+                    type="button"
+                    aria-label="toggle password visibility"
+                    onClick={togglePassword}
                   >
-                     {/* username */}
-                     <div className="flex flex-col gap-2">
-                        <div className="flex items-center gap-4">
-                           <label htmlFor="username">
-                              <FaUser className="w-7 h-7 text-primary" />
-                           </label>
-                           <input
-                              type="text"
-                              id="username"
-                              placeholder="Username"
-                              className="border-2 border-slate-100 shadow-sm py-3 px-4 rounded-xl w-full placeholder:font-light placeholder:text-base text-base"
-                              value={username}
-                              onChange={(event) => {
-                                 setUsername(event.target.value);
-                                 setErrorUsername("");
-                              }}
-                           />
-                        </div>
-                        {errorUsername && <p className="text-sm text-red-500 ml-12">{errorUsername}</p>}
-                     </div>
-                     {/* password */}
-                     <div className="flex flex-col gap-2">
-                        <div className="flex items-center gap-4 relative">
-                           <label htmlFor="password">
-                              <RiLockPasswordFill className="w-7 h-7 text-primary" />
-                           </label>
-                           <input
-                              id="password"
-                              type={showPassword ? "text" : "password"}
-                              placeholder="Password"
-                              className="border-2 border-slate-100 shadow-sm py-3 px-4 rounded-xl w-full placeholder:font-light placeholder:text-base text-base"
-                              value={password}
-                              onChange={(event) => {
-                                 setPassword(event.target.value);
-                                 setErrorPassword("");
-                              }}
-                           />
-                           <button
-                              className="absolute right-4"
-                              type="button"
-                              aria-label="toggle password visibility"
-                              onClick={togglePassword}
-                           >
-                              {showPassword ? (
-                                 < IoEye className="w-6 h-6 text-slate-400 lg:w-5 lg:h-5" />
-                              ) : (
-                                 <IoEyeOff className="w-6 h-6 text-slate-400 lg:w-5 lg:h-5" />
-                              )}
-                           </button>
-                        </div>
-                        {errorPassword && <p className="text-sm text-red-500 ml-12">{errorPassword}</p>}
-                     </div>
-                     {/* button submit */}
-                     <button className="border-none bg-primary rounded-2xl py-3 text-xl font-semibold text-white tracking-widest hover:bg-orange-400 duration-300">
-                        Login
-                     </button>
-                  </form>
-               </div>
-            </div>
-         </div>
+                    {showPassword ? (
+                      <IoEye className="w-6 h-6 text-slate-400 lg:w-5 lg:h-5" />
+                    ) : (
+                      <IoEyeOff className="w-6 h-6 text-slate-400 lg:w-5 lg:h-5" />
+                    )}
+                  </button>
+                </div>
+                {errorPassword && (
+                  <p className="ml-12 text-sm text-red-500">{errorPassword}</p>
+                )}
+              </div>
+              {/* button submit */}
+              <button className="py-3 text-xl font-semibold tracking-widest text-white duration-300 border-none bg-primary rounded-2xl hover:bg-orange-400">
+                Login
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
-   )
-}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        style={{ fontSize: "13px" }} // Atur ukuran teks di sini
+      />
+    </div>
+  );
+};
 
-export default LoginPage
+export default LoginPage;
