@@ -9,7 +9,10 @@ const UmkmRtPage = ({ handleMenuClick }) => {
       <div className="flex flex-col gap-4">
          {/* heading */}
          <div className="border-2 border-slate-300 rounded-lg shadow-lg p-8 flex flex-col gap-4 justify-center">
-            <h1 className="text-center text-3xl font-bold">Jumlah UMKM 10</h1>
+            <div className="flex flex-col gap-2">
+               <h1 className="text-center text-2xl font-bold">Jumlah UMKM</h1>
+               <h2 className="text-center text-5xl font-bold">10</h2>
+            </div>
             <button
                onClick={() => handleMenuClick(4)}
                className="cursor-pointer capitalize font-medium border-none bg-primary rounded-lg py-2 px-4 hover:bg-orange-500 duration-300 text-white">

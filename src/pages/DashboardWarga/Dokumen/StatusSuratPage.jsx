@@ -45,7 +45,7 @@ const StatusSuratPage = () => {
          </div>
 
          {/* status suarat web */}
-         <div className="border-2 border-slate-300 rounded-lg shadow-lg p-8">
+         <div className="border-2 border-slate-300 rounded-lg shadow-lg p-8 hidden lg:block">
             <div className="overflow-x-auto">
                <table className="table">
                   {/* head */}
