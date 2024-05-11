@@ -412,10 +412,17 @@ const SuratPengantarPage = () => {
                         <input type="text" name="" id="" placeholder="Admin yang mengisi data ini" disabled className="border-2 border-slate-200 shadow-md rounded-xl py-2 px-4 cursor-not-allowed" />
                      </label>
 
-                     {/* button submit surat */}
-                     <button className="border-none bg-blue-600 rounded-2xl py-2 px-4 text-lg font-medium text-white mt-6 lg:hover:bg-blue-700 duration-300 hover:shadow-xl">
-                        Submit
-                     </button>
+                     {/* button aksi */}
+                     <div className="flex items-center gap-8 justify-center">
+                        {/* sumbit */}
+                        <button className="capitalize border-none py-3 px-8 bg-primary rounded-lg font-semibold mt-4 hover:text-white text-lg hover:bg-green-500 duration-300 hover:shadow-lg hover:drop-shadow-md">
+                           submit
+                        </button>
+                        {/* cancel */}
+                        <button className="capitalize border-none py-3 px-8 bg-red-500 rounded-lg font-semibold mt-4 hover:text-white text-lg hover:bg-red-700 duration-300 hover:shadow-lg hover:drop-shadow-md">
+                           cancel
+                        </button>
+                     </div>
                   </form>
                </div >
             </div >
