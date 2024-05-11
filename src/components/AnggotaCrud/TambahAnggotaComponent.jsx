@@ -1,12 +1,23 @@
-import FormatFoto from "../../assets/formatfoto.png"
+import { Link } from "react-router-dom";
+import { IoArrowBackOutline } from "react-icons/io5";
+import PropTypes from "prop-types"
 
-const TambahAnggotaComponent = () => {
+const TambahAnggotaComponent = ({ handleMenuClick }) => {
    return (
-      <div className="border-2 border-slate-300 p-8 rounded-lg shadow-lg flex flex-col gap-6 mb-8">
+      <div className="border-2 border-slate-300 p-8 rounded-lg shadow-lg flex flex-col mb-8">
+         {/* button back to main dashboard Anggota  */}
+         <Link
+            onClick={() => handleMenuClick(2)}
+            className="flex flex-row items-center gap-2 w-1/6 hover:underline hover:scale-105 duration-100">
+            <IoArrowBackOutline className="w-6 h-6" />
+            <button className="font-medium">
+               kembali
+            </button>
+         </Link>
          {/* heading */}
-         <h1 className="text-3xl font-semibold text-primary">Tambah Anggota</h1>
+         <h1 className="text-3xl font-semibold text-primary text-center">Tambah Anggota</h1>
          {/* Form data tambah umkm */}
-         <form action="" className="flex flex-col gap-6">
+         <form action="" className="flex flex-col gap-6 mt-4">
             {/* nama */}
             <label
                htmlFor="namaAnggota"
@@ -85,13 +96,24 @@ const TambahAnggotaComponent = () => {
                   <option>Sewa</option>
                </select>
             </label>
-            {/* sumbit */}
-            <button className="capitalize border-none py-3 px-4 bg-primary rounded-lg font-semibold mt-4 hover:text-white text-lg hover:bg-green-500 duration-300">
-               submit
-            </button>
+            {/* button aksi */}
+            <div className="flex items-center gap-8 justify-center">
+               {/* sumbit */}
+               <button className="capitalize border-none py-3 px-8 bg-primary rounded-lg font-semibold mt-4 hover:text-white text-lg hover:bg-green-500 duration-300 hover:shadow-lg hover:drop-shadow-md">
+                  submit
+               </button>
+               {/* cancel */}
+               <button className="capitalize border-none py-3 px-8 bg-red-500 rounded-lg font-semibold mt-4 hover:text-white text-lg hover:bg-red-700 duration-300 hover:shadow-lg hover:drop-shadow-md">
+                  cancel
+               </button>
+            </div>
          </form>
       </div>
    )
 }
 
 export default TambahAnggotaComponent
+
+TambahAnggotaComponent.propTypes = {
+   handleMenuClick: PropTypes.func
+}

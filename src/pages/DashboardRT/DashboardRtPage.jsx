@@ -87,6 +87,7 @@ const DashboardRtPage = () => {
                </div>
                {/* children konten */}
                <div className="w-full">
+                  {/* Dashboard UKKM, Anggota dan Profile */}
                   {step === 1 && (
                      <UmkmRtPage handleMenuClick={handleMenuClick} />
                   )}
@@ -99,18 +100,18 @@ const DashboardRtPage = () => {
 
                   {/* Action UMKM */}
                   {step === 4 && (
-                     <TambahUmkmComponent />
+                     <TambahUmkmComponent handleMenuClick={handleMenuClick} />
                   )}
                   {step === 5 && (
-                     <EditUmkmComponent />
+                     <EditUmkmComponent handleMenuClick={handleMenuClick} />
                   )}
 
                   {/* Action Anggota */}
                   {step === 6 && (
-                     <TambahAnggotaComponent />
+                     <TambahAnggotaComponent handleMenuClick={handleMenuClick} />
                   )}
                   {step === 7 && (
-                     <EditAnggotaComponent/>
+                     <EditAnggotaComponent handleMenuClick={handleMenuClick} />
                   )}
 
                </div>
