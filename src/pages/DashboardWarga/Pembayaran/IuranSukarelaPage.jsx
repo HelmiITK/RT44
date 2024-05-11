@@ -34,13 +34,19 @@ const IuranSukarelaPage = ({ handleMenuClick }) => {
                <span className="font-semibold capitalize">deskripsi iuran</span>
                <textarea id="donasi" className="textarea textarea-bordered textarea-sm w-full border-[1px] border-black py-2 px-4 shadow-lg" ></textarea>
             </label>
-            {/* submit */}
-            <button
-               className="capitalize bg-blue-500 text-white rounded-lg font-medium py-2 mt-4"
-               onClick={() => handleMenuClick(5)}
-            >
-               submit
-            </button>
+            {/* button aksi */}
+            <div className="flex items-center gap-8 justify-center">
+               {/* sumbit */}
+               <button
+                  onClick={() => handleMenuClick(5)}
+                  className="capitalize border-none py-3 px-8 bg-primary rounded-lg font-semibold mt-4 hover:text-white text-lg hover:bg-green-500 duration-300 hover:shadow-lg hover:drop-shadow-md">
+                  submit
+               </button>
+               {/* cancel */}
+               <button className="capitalize border-none py-3 px-8 bg-red-500 rounded-lg font-semibold mt-4 hover:text-white text-lg hover:bg-red-700 duration-300 hover:shadow-lg hover:drop-shadow-md">
+                  cancel
+               </button>
+            </div>
          </form>
       </div>
    )

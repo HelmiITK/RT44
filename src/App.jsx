@@ -6,8 +6,10 @@ import Umkm from "./pages/UmkmRt";
 import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LetterRequest from "./pages/PermohonanSurat/LetterRequest";
+
 import DashboardWargaPage from "./pages/DashboardWarga/DashboardWargaPage";
 import DashboardRtPage from "./pages/DashboardRT/DashboardRtPage";
+import DashboardSekretarisPage from "./pages/DashboardSekretaris/DashboardSekretarisPage";
 
 function App() {
 
@@ -43,6 +45,11 @@ function App() {
             path="/dashboard_rt"
             element={<DashboardRtPage />}
           />
+          <Route
+            path="/dashboard_sekretaris"
+            element={<DashboardSekretarisPage />}
+          />
+          
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

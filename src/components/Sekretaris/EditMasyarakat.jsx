@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import { IoArrowBackOutline } from "react-icons/io5";
 import PropTypes from "prop-types"
 
-const TambahAnggotaComponent = ({ handleMenuClick }) => {
+const EditMasyarakat = ({ handleMenuClick }) => {
    return (
       <div className="border-2 border-slate-300 p-8 rounded-lg shadow-lg flex flex-col mb-8">
          {/* button back to main dashboard Anggota  */}
          <Link
-            onClick={() => handleMenuClick(2)}
+            onClick={() => handleMenuClick(3)}
             className="flex flex-row items-center gap-2 w-1/6 hover:underline hover:scale-105 duration-100">
             <IoArrowBackOutline className="w-6 h-6" />
             <button className="font-medium">
@@ -15,7 +15,7 @@ const TambahAnggotaComponent = ({ handleMenuClick }) => {
             </button>
          </Link>
          {/* heading */}
-         <h1 className="text-3xl font-semibold text-primary text-center">Tambah Anggota</h1>
+         <h1 className="text-3xl font-semibold text-primary text-center">Edit Data Masyarakat</h1>
          {/* Form data tambah umkm */}
          <form action="" className="flex flex-col gap-6 mt-4">
             {/* nama */}
@@ -83,6 +83,7 @@ const TambahAnggotaComponent = ({ handleMenuClick }) => {
                   className="border-[1px] border-black rounded-md py-2 px-4 shadow-md"
                />
             </label>
+
             {/* status rumah */}
             <label
                htmlFor="status"
@@ -95,7 +96,6 @@ const TambahAnggotaComponent = ({ handleMenuClick }) => {
                   <option>Sewa</option>
                </select>
             </label>
-
             {/* button aksi */}
             <div className="flex items-center gap-8 justify-center">
                {/* sumbit */}
@@ -112,8 +112,8 @@ const TambahAnggotaComponent = ({ handleMenuClick }) => {
    )
 }
 
-export default TambahAnggotaComponent
+export default EditMasyarakat
 
-TambahAnggotaComponent.propTypes = {
+EditMasyarakat.propTypes = {
    handleMenuClick: PropTypes.func
 }
