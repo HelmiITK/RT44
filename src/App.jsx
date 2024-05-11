@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LetterRequest from "./pages/PermohonanSurat/LetterRequest";
 import DashboardWargaPage from "./pages/DashboardWarga/DashboardWargaPage";
+import DashboardRtPage from "./pages/DashboardRT/DashboardRtPage";
 
 function App() {
 
@@ -37,6 +38,10 @@ function App() {
           <Route
             path="/dashboard_warga"
             element={<DashboardWargaPage />}
+          />
+          <Route
+            path="/dashboard_rt"
+            element={<DashboardRtPage />}
           />
 
           <Route path="*" element={<NotFoundPage />} />
