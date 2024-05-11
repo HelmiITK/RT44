@@ -1,10 +1,10 @@
 import FormatFoto from "../../assets/formatfoto.png"
 
-const TambahUmkmComponent = () => {
+const EditUmkmComponent = () => {
    return (
       <div className="border-2 border-slate-300 p-8 rounded-lg shadow-lg flex flex-col gap-6 mb-8">
          {/* heading */}
-         <h1 className="text-3xl font-semibold text-primary">Tambah UMKM</h1>
+         <h1 className="text-3xl font-semibold text-primary">Edit UMKM</h1>
          {/* Form data tambah umkm */}
          <form action="" className="flex flex-col gap-6">
             {/* nama umkm */}
@@ -56,4 +56,4 @@ const TambahUmkmComponent = () => {
    )
 }
 
-export default TambahUmkmComponent
+export default EditUmkmComponent

@@ -1,17 +1,17 @@
 import { FaWhatsapp } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 import { AiOutlineDelete } from "react-icons/ai";
-
 import PropTypes from "prop-types"
 
-const UmkmRtPage = ({ step }) => {
+
+const UmkmRtPage = ({ handleMenuClick }) => {
    return (
       <div className="flex flex-col gap-4">
          {/* heading */}
          <div className="border-2 border-slate-300 rounded-lg shadow-lg p-8 flex flex-col gap-4 justify-center">
             <h1 className="text-center text-3xl font-bold">Jumlah UMKM 10</h1>
             <button
-               onClick={() => step(4)}
+               onClick={() => handleMenuClick(4)}
                className="cursor-pointer capitalize font-medium border-none bg-primary rounded-lg py-2 px-4 hover:bg-orange-500 duration-300 text-white">
                tambah umkm
             </button>
@@ -49,11 +49,14 @@ const UmkmRtPage = ({ step }) => {
                         <th>
                            <div className="flex gap-2 items-center">
                               {/* button edit */}
-                              <button className="rounded-lg p-3 bg-slate-300 hover:bg-primary hover:text-white duration-300">
+                              <button
+                                 onClick={() => handleMenuClick(5)}
+                                 className="rounded-lg p-3 bg-slate-300 hover:bg-primary hover:text-white duration-300"
+                              >
                                  <CiEdit className="w-6 h-6" />
                               </button>
                               {/* button hapus */}
-                              <button className="rounded-lg p-3 bg-slate-300 hover:bg-primary hover:text-white duration-300">
+                              <button className="rounded-lg p-3 bg-slate-300 hover:bg-red-500 hover:text-white duration-300">
                                  <AiOutlineDelete className="w-6 h-6" />
                               </button>
                            </div>
@@ -70,5 +73,6 @@ const UmkmRtPage = ({ step }) => {
 export default UmkmRtPage
 
 UmkmRtPage.propTypes = {
-   step: PropTypes.number
+   step: PropTypes.number,
+   handleMenuClick: PropTypes.func
 }

@@ -12,9 +12,15 @@ import AnggotaRtPage from "./AnggotaCrudRt/AnggotaRtPage";
 import ProfileWargaWeb from "../../components/ProfileWargaWeb";
 
 // children action Umkm
-import TambahUmkmComponent from "../../components/UmkmCrud/TambahUmkmComponent";
+import TambahUmkmComponent from "../../components/UmkmCrud/TambahUmkmComponent"
+import EditUmkmComponent from "../../components/UmkmCrud/EditUmkmComponent";
+
+// children action Anggota
+import TambahAnggotaComponent from "../../components/AnggotaCrud/TambahAnggotaComponent";
+import EditAnggotaComponent from "../../components/AnggotaCrud/EditUmkmComponent";
 
 const DashboardRtPage = () => {
+
    const [step, setStep] = useState(1);
    // Function to handle sidebar menu click
    const handleMenuClick = (stepNumber) => {
@@ -25,8 +31,8 @@ const DashboardRtPage = () => {
          <Navbar />
          <div className="pt-28 container mx-auto">
             <div className="mx-4 mt-4 flex flex-row gap-6">
-               {/* sidebar mode web (laptop) */}
-               <div className="hidden lg:flex lg:drawer-open ">
+               {/* sidebar */}
+               <div className="hidden lg:flex lg:drawer-open">
                   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                   <div className="drawer-side">
                      <div className="ml-4 mb-4">
@@ -82,17 +88,31 @@ const DashboardRtPage = () => {
                {/* children konten */}
                <div className="w-full">
                   {step === 1 && (
-                     <UmkmRtPage step={step} />
+                     <UmkmRtPage handleMenuClick={handleMenuClick} />
                   )}
                   {step === 2 && (
-                     <AnggotaRtPage />
+                     <AnggotaRtPage handleMenuClick={handleMenuClick} />
                   )}
                   {step === 3 && (
                      <ProfileWargaWeb />
                   )}
+
+                  {/* Action UMKM */}
                   {step === 4 && (
                      <TambahUmkmComponent />
                   )}
+                  {step === 5 && (
+                     <EditUmkmComponent />
+                  )}
+
+                  {/* Action Anggota */}
+                  {step === 6 && (
+                     <TambahAnggotaComponent />
+                  )}
+                  {step === 7 && (
+                     <EditAnggotaComponent/>
+                  )}
+
                </div>
             </div>
          </div>
