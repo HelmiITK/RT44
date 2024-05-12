@@ -25,6 +25,8 @@ import { FaRegPaperPlane } from "react-icons/fa";
 import StatusSuratPage from "./Dokumen/StatusSuratPage";
 import { IoArrowBackOutline } from "react-icons/io5";
 
+import CardIuranSukarela from "../../components/Pembayaran/CardIuranSukarela";
+
 const DashboardWargaPage = () => {
    const [step, setStep] = useState(1);
    const [statusSurat, setStatusSurat] = useState(false);
@@ -279,7 +281,7 @@ const DashboardWargaPage = () => {
                      <IuranWajibPage handleMenuClick={handleMenuClick} />
                   )}
                   {step === 3 && (
-                     <IuranSukarelaPage handleMenuClick={handleMenuClick} />
+                     <CardIuranSukarela handleMenuClick={handleMenuClick} step={step} />
                   )}
                   {step === 4 && (
                      <SuratPengantarPage />
@@ -292,6 +294,9 @@ const DashboardWargaPage = () => {
                   )}
                   {step === 7 && (
                      <StatusSuratPage />
+                  )}
+                  {step === 8 && (
+                     <IuranSukarelaPage handleMenuClick={handleMenuClick} />
                   )}
                </div>
             </div>
