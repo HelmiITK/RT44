@@ -153,7 +153,7 @@ const Navbar = () => {
                                  <Link as={Link} to={"/dashboard_sekretaris"}>
                                     <li><a>Sekretaris</a></li>
                                  </Link>
-                                 <Link as={Link} to={"/dashboard"}>
+                                 <Link as={Link} to={"/dashboard_bendahara"}>
                                     <li><a>Bendahara</a></li>
                                  </Link>
                               </ul>
