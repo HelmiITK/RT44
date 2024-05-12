@@ -1,21 +1,14 @@
-import { useState } from "react";
+import { Link } from "react-router-dom"
 import Navbar from "../../components/Navbar"
-import { Link } from "react-router-dom";
 import { MdDashboard } from "react-icons/md";
-import { VscAccount } from "react-icons/vsc";
-import { FaUsersGear } from "react-icons/fa6";
-
 import LiveClockComponent from "../../components/LiveClockComponent";
-import { IoNewspaperOutline } from "react-icons/io5";
-
+import { VscAccount } from "react-icons/vsc";
+import { IoCashOutline } from "react-icons/io5";
 import ProfileWargaWeb from "../../components/ProfileWargaWeb";
-import PengajuanSuratPage from "./PengajuanSurat/PengajuanSuratPage";
-import DataMasyarakat from "./DataMasyarakat/DataMasyarakat";
-import EditMasyarakat from "../../components/Sekretaris/EditMasyarakat";
-import EditPengajuanSurat from "../../components/Sekretaris/EditPengajuanSurat";
+import { useState } from "react";
+import ValidasiPembayaranPage from "./ValidasiPembayaran/ValidasiPembayaranPage";
 
-const DashboardSekretarisPage = () => {
-
+const DashboardBendaharaPage = () => {
    const [step, setStep] = useState(1);
    // Function to handle sidebar menu click
    const handleMenuClick = (stepNumber) => {
@@ -26,7 +19,7 @@ const DashboardSekretarisPage = () => {
          <Navbar />
          <div className="pt-28 container mx-auto">
             <div className="mx-4 mt-4 flex flex-row gap-6">
-               {/* sidebar */}
+               {/* Sidebar */}
                <div className="hidden lg:flex lg:drawer-open">
                   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                   <div className="drawer-side">
@@ -42,35 +35,24 @@ const DashboardSekretarisPage = () => {
                         </div>
                         {/* menu */}
                         <div className="flex flex-col">
-                           {/* Pengajuan surat */}
+                           {/* Validasi pembayaran */}
                            <Link
                               as={Link}
                               // to={}
                               onClick={() => handleMenuClick(1)}
                               className="flex items-center gap-3 pl-5 mt-2 py-2 hover:bg-gray-200 duration-300 hover:rounded-lg"
                            >
-                              <IoNewspaperOutline className="w-6 h-6 text-gray-600" />
+                              <IoCashOutline className="w-6 h-6 text-gray-600" />
                               <p className="capitalize text-lg">Pengajuan surat</p>
                            </Link>
 
-                           {/* data masyrakat */}
-                           <Link
-                              as={Link}
-                              // to={}
-                              onClick={() => handleMenuClick(3)}
-                              className="flex items-center gap-3 pl-5 mb-6 mt-2 py-2 hover:bg-gray-200 duration-300 hover:rounded-lg"
-                           >
-                              <FaUsersGear className="w-6 h-6 text-gray-600" />
-                              <p className="capitalize text-lg">data masyarakat</p>
-                           </Link>
-
-                           <div className="h-px w-full bg-gray-300 px-6"></div>
+                           <div className="h-px w-full bg-gray-300 px-6 mt-4"></div>
 
                            {/* profile akun */}
                            <Link
                               as={Link}
                               // to={}
-                              onClick={() => handleMenuClick(6)}
+                              onClick={() => handleMenuClick(5)}
                               className="flex items-center gap-3 pl-5 mt-6 py-2 hover:bg-gray-200 duration-300 hover:rounded-lg"
                            >
                               <VscAccount className="w-6 h-6" />
@@ -80,41 +62,28 @@ const DashboardSekretarisPage = () => {
                      </ul>
                   </div>
                </div>
-
-               {/* children konten */}
+               {/* chidren konten */}
                <div className="w-full">
-
-                  {/* Dashboard pengajuan surat */}
+                  {/* Dashboard pengajuan pembayaran */}
                   {step === 1 && (
-                     <PengajuanSuratPage handleMenuClick={handleMenuClick} step={step} />
+                     <ValidasiPembayaranPage handleMenuClick={handleMenuClick} step={step} />
                   )}
                   {step === 2 && (
-                     <PengajuanSuratPage handleMenuClick={handleMenuClick} step={step} />
+                     <ValidasiPembayaranPage handleMenuClick={handleMenuClick} step={step} />
                   )}
-
-                  {/* Dashboard data masyarakat */}
                   {step === 3 && (
-                     <DataMasyarakat handleMenuClick={handleMenuClick} />
-                  )}
-                  {/* edit data masyrakat */}
-                  {step === 4 && (
-                     <EditMasyarakat handleMenuClick={handleMenuClick} />
+                     <ValidasiPembayaranPage handleMenuClick={handleMenuClick} step={step} />
                   )}
 
-                  {/* edit data pengajuan surat para warga tercinta */}
+                  {/* my profile  */}
                   {step === 5 && (
-                     <EditPengajuanSurat handleMenuClick={handleMenuClick} />
-                  )}
-
-                  {/* myprofile tiap role */}
-                  {step === 6 && (
                      <ProfileWargaWeb />
                   )}
-               </div >
+               </div>
             </div>
          </div>
       </>
    )
 }
 
-export default DashboardSekretarisPage
+export default DashboardBendaharaPage

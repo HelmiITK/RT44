@@ -10,6 +10,7 @@ import LetterRequest from "./pages/PermohonanSurat/LetterRequest";
 import DashboardWargaPage from "./pages/DashboardWarga/DashboardWargaPage";
 import DashboardRtPage from "./pages/DashboardRT/DashboardRtPage";
 import DashboardSekretarisPage from "./pages/DashboardSekretaris/DashboardSekretarisPage";
+import DashboardBendaharaPage from "./pages/DashboardBendahara/DashboardBendaharaPage";
 
 function App() {
 
@@ -48,6 +49,10 @@ function App() {
           <Route
             path="/dashboard_sekretaris"
             element={<DashboardSekretarisPage />}
+          />
+          <Route
+            path="/dashboard_bendahara"
+            element={<DashboardBendaharaPage />}
           />
           
 
