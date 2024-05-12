@@ -2,12 +2,18 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 import PropTypes from "prop-types";
+import { IoChevronBackOutline } from "react-icons/io5";
 
 const IuranSukarelaPage = ({ handleMenuClick }) => {
    const [startDate, setStartDate] = useState(new Date());
 
    return (
       <div className="mx-4 border-2 border-black px-4 pt-4 pb-8 rounded-lg">
+         {/* button back to list iuran sukarela */}
+         <button onClick={() => handleMenuClick(3)} className="flex items-center ga-2 mb-4">
+            <IoChevronBackOutline className="w-6 h-6"/>
+            <h2 className="font-medium italic underline">Back</h2>
+         </button>
          <form action="" className="flex flex-col gap-4">
             {/* tanggal */}
             <div className="flex flex-col gap-2">
