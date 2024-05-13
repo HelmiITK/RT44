@@ -19,6 +19,26 @@ export const transactionObligate =
   (duesId, linkProofpayment) => async (dispatch) => {
     try {
       const token = localStorage.getItem("token");
+
+      const responseDues = await axios.get(
+        `${api_url}/duesuser/by-user-dues/${duesId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const { duesStatus } = responseDues.data.userDues;
+      if (duesStatus === true) {
+        swal(
+          "warning",
+          "TAGIHAN SUDAH TERBAYAR",
+          "Anda sudah membayar tagihan ini."
+        );
+        return;
+      }
+
       const response = await axios.post(
         `${api_url}/transaction/obligat/${duesId}`,
         linkProofpayment,

@@ -53,6 +53,7 @@ export const getMe =
         },
       });
       const data = response.data.data;
+      console.log(data);
       dispatch(setUser(data));
       if (navigatePathSuccess) navigate(navigatePathSuccess);
     } catch (error) {
