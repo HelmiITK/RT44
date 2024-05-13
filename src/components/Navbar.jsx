@@ -146,17 +146,17 @@ const Navbar = ({ onLogout }) => {
                   <details>
                     <summary className="text-lg">Fitur Admin</summary>
                     <ul className="p-2 rounded-t-none w-44 bg-base-100">
-                      <Link as={Link}>
+                      <Link as={Link} to={"/dashboard_rt"}>
                         <li>
                           <a>Ketua RT</a>
                         </li>
                       </Link>
-                      <Link as={Link} to={"/dashboard"}>
+                      <Link as={Link} to={"/dashboard_sekretaris"}>
                         <li>
                           <a>Sekretaris</a>
                         </li>
                       </Link>
-                      <Link as={Link} to={"/dashboard"}>
+                      <Link as={Link} to={"/dashboard_bendahara"}>
                         <li>
                           <a>Bendahara</a>
                         </li>

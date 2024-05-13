@@ -6,7 +6,11 @@ import Umkm from "./pages/UmkmRt";
 import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LetterRequest from "./pages/PermohonanSurat/LetterRequest";
+
 import DashboardWargaPage from "./pages/DashboardWarga/DashboardWargaPage";
+import DashboardRtPage from "./pages/DashboardRT/DashboardRtPage";
+import DashboardSekretarisPage from "./pages/DashboardSekretaris/DashboardSekretarisPage";
+import DashboardBendaharaPage from "./pages/DashboardBendahara/DashboardBendaharaPage";
 
 function App() {
 
@@ -38,6 +42,19 @@ function App() {
             path="/dashboard_warga"
             element={<DashboardWargaPage />}
           />
+          <Route
+            path="/dashboard_rt"
+            element={<DashboardRtPage />}
+          />
+          <Route
+            path="/dashboard_sekretaris"
+            element={<DashboardSekretarisPage />}
+          />
+          <Route
+            path="/dashboard_bendahara"
+            element={<DashboardBendaharaPage />}
+          />
+          
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

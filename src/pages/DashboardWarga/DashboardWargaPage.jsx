@@ -24,6 +24,11 @@ import QrCodeComponent from "../../components/Pembayaran/QrCodeComponent";
 import ProfileWargaWeb from "../../components/ProfileWargaWeb";
 import LiveClockComponent from "../../components/LiveClockComponent";
 import Navbar from "../../components/Navbar";
+import { FaRegPaperPlane } from "react-icons/fa";
+import StatusSuratPage from "./Dokumen/StatusSuratPage";
+import { IoArrowBackOutline } from "react-icons/io5";
+
+import CardIuranSukarela from "../../components/Pembayaran/CardIuranSukarela";
 
 import { getMe, logout } from "../../redux/actions/authActions";
 
@@ -32,6 +37,7 @@ const DashboardWargaPage = ({ duesId }) => {
   const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
+  const [statusSurat, setStatusSurat] = useState(false);
   const [idDues, setIdDues] = useState(duesId);
   const [profile, setProfile] = useState({
     name: "",
@@ -44,6 +50,12 @@ const DashboardWargaPage = ({ duesId }) => {
   const handleMenuClick = (stepNumber, duesId) => {
     setIdDues(duesId);
     setStep(stepNumber);
+    setStatusSurat(stepNumber === 7);
+  };
+
+  const handleBackButtonClick = () => {
+    setStep(4); // Set step back to 4 (form surat pengantar)
+    setStatusSurat(false); // Set statusSurat to false when going back
   };
 
   useEffect(() => {
@@ -330,17 +342,43 @@ const DashboardWargaPage = ({ duesId }) => {
               </div>
             </div>
           </div>
-          {/* children konten */}
-          <div className="mt-6">
-            {step === 1 && <HaloComponent />}
-            {step === 2 && <IuranWajibPage handleMenuClick={handleMenuClick} />}
-            {step === 3 && (
-              <IuranSukarelaPage handleMenuClick={handleMenuClick} />
+          {/* button cek surat */}
+          <div>
+            {statusSurat ? (
+              // Jika statusSurat adalah true, tombol tidak ditampilkan
+              <div
+                onClick={handleBackButtonClick}
+                className="flex items-center gap-2 px-4 py-2 duration-300 border-none rounded-lg cursor-pointer bg-primary hover:bg-orange-400 hover:drop-shadow-lg hover:text-white hover:scale-105"
+              >
+                <IoArrowBackOutline />
+                <h2>Kembali</h2>
+              </div>
+            ) : (
+              // Jika statusSurat adalah false, tampilkan tombol
+              <div
+                onClick={() => handleMenuClick(7)}
+                className="flex items-center gap-2 px-4 py-2 duration-300 border-none rounded-lg cursor-pointer bg-primary hover:bg-orange-400 hover:drop-shadow-lg hover:text-white hover:scale-105"
+              >
+                <FaRegPaperPlane className="w-6 h-6" />
+                <h2 className="capitalize">cek status surat</h2>
+              </div>
             )}
-            {step === 4 && <SuratPengantarPage />}
-            {step === 5 && <QrCodeComponent duesId={idDues} />}
-            {step === 6 && <ProfileWargaWeb />}
           </div>
+        </div>
+        {/* children konten */}
+        <div className="mt-6">
+          {step === 1 && <HaloComponent />}
+          {step === 2 && <IuranWajibPage handleMenuClick={handleMenuClick} />}
+          {step === 3 && (
+            <CardIuranSukarela handleMenuClick={handleMenuClick} step={step} />
+          )}
+          {step === 4 && <SuratPengantarPage />}
+          {step === 5 && <QrCodeComponent duesId={idDues} />}
+          {step === 6 && <ProfileWargaWeb />}
+          {step === 7 && <StatusSuratPage />}
+          {step === 8 && (
+            <IuranSukarelaPage handleMenuClick={handleMenuClick} />
+          )}
         </div>
       </div>
     </div>
