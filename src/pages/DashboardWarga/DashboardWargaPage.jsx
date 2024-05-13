@@ -21,6 +21,13 @@ import IuranSukarelaPage from "./Pembayaran/IuranSukarelaPage";
 import QrCodeComponent from "../../components/Pembayaran/QrCodeComponent";
 
 import { getMe, logout } from "../../redux/actions/authActions";
+import ProfileWargaWeb from "../../components/ProfileWargaWeb";
+import { IoMdArrowBack } from "react-icons/io";
+
+import LiveClockComponent from "../../components/LiveClockComponent";
+import { PiMoneyDuotone } from "react-icons/pi";
+import { VscAccount } from "react-icons/vsc";
+import Navbar from "../../components/Navbar";
 
 const DashboardWargaPage = ({ duesId }) => {
   const dispatch = useDispatch();
@@ -257,6 +264,272 @@ const DashboardWargaPage = ({ duesId }) => {
 
 DashboardWargaPage.propTypes = {
   duesId: PropTypes.number,
+};
+const DashboardWargaPage = () => {
+  const [step, setStep] = useState(1);
+  // Function to handle sidebar menu click
+  const handleMenuClick = (stepNumber) => {
+    setStep(stepNumber);
+  };
+  return (
+    <div className="container mx-auto">
+      {/* navbar mode laptop */}
+      <div className="hidden -mt-4 lg:block">
+        <Navbar />
+      </div>
+      {/* Navbar mode hp*/}
+      <div className="block px-2 py-2 bg-white shadow-lg lg:hidden">
+        {/* kiri */}
+        <div className="flex flex-row items-center">
+          <div className="flex items-center">
+            {/* sidebar */}
+            <div className="z-50 drawer">
+              <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+              <div className="drawer-content">
+                {/* Page content here */}
+                <label htmlFor="my-drawer" className="btn drawer-button">
+                  <TfiMenu className="w-6 h-6" />
+                </label>
+              </div>
+              <div className="drawer-side">
+                <label
+                  htmlFor="my-drawer"
+                  aria-label="close sidebar"
+                  className="drawer-overlay"
+                ></label>
+                <ul className="min-h-full p-8 menu w-80 bg-base-200 text-base-content">
+                  {/* Sidebar content here */}
+                  <div
+                    className="flex items-center gap-2 mb-4 cursor-pointer"
+                    onClick={() => handleMenuClick(1)}
+                  >
+                    <MdDashboard className="w-8 h-8 text-blue-700" />
+                    <h1 className="text-xl font-medium text-blue-700 capitalize">
+                      dashboard
+                    </h1>
+                  </div>
+                  {/* Keuangan */}
+                  <div className="flex flex-col gap-2 mt-4 mb-4">
+                    <h1 className="capitalize">keuangan</h1>
+                    {/* Iuran wajib */}
+                    <Link
+                      className="flex items-center gap-2 duration-300 hover:bg-gray-200 hover:rounded-lg hover:py-2 hover:px-4 hover:text-blue-500"
+                      onClick={() => handleMenuClick(2)}
+                    >
+                      <FaMoneyBillWave className="w-6 h-6" />
+                      <h1 className="font-medium capitalize">iuran wajib</h1>
+                    </Link>
+                    {/* iuran sukarela */}
+                    <Link
+                      className="flex items-center gap-2 duration-300 hover:bg-gray-200 hover:rounded-lg hover:py-2 hover:px-4 hover:text-blue-500"
+                      onClick={() => handleMenuClick(3)}
+                    >
+                      <FaMoneyBillWave className="w-6 h-6" />
+                      <h1 className="font-medium capitalize">iuran sukarela</h1>
+                    </Link>
+                  </div>
+                  {/* Dokumen */}
+                  <div className="flex flex-col gap-2 mt-4 mb-4">
+                    <h1 className="capitalize">dokumen</h1>
+                    {/* surat */}
+                    <Link
+                      className="flex items-center gap-2 duration-300 hover:bg-gray-200 hover:rounded-lg hover:py-2 hover:px-4 hover:text-blue-500"
+                      onClick={() => handleMenuClick(4)}
+                    >
+                      <IoDocumentTextOutline className="w-6 h-6" />
+                      <h1 className="font-medium capitalize">
+                        surat pengantar
+                      </h1>
+                    </Link>
+                  </div>
+                  {/* Akun */}
+                  <div className="flex flex-col gap-2 mt-4">
+                    <h1 className="capitalize">Akun</h1>
+                    {/* profile */}
+                    <Link
+                      className="flex items-center gap-2 duration-300 hover:bg-gray-200 hover:rounded-lg hover:py-2 hover:px-4 hover:text-blue-500"
+                      onClick={() => handleMenuClick(6)}
+                    >
+                      <FaUsers className="w-6 h-6" />
+                      <h1 className="font-medium capitalize">profile</h1>
+                    </Link>
+                  </div>
+                </ul>
+              </div>
+            </div>
+            {/* dropdown  */}
+            <div className="flex-none">
+              <ul className="px-1 menu menu-horizontal">
+                <li>
+                  <details>
+                    <summary className="text-base font-medium">
+                      Welcome, Helmi
+                    </summary>
+                    <ul className="p-2 rounded-t-none w-44 bg-base-100">
+                      <Link as={Link} to={"/dashboard_warga"}>
+                        <li>
+                          <a className="font-medium">
+                            <MdLogout className="w-6 h-6" />
+                            Logout
+                          </a>
+                        </li>
+                      </Link>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </div>
+            {/* searching */}
+            <label htmlFor="search" className="flex items-center">
+              <CgSearch className="w-6 h-6 text-blue-400" />
+              <input
+                type="text"
+                id="search"
+                name="search"
+                placeholder="search"
+                className="w-20 px-2 py-2 border-none rounded-md"
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+      {/* button back to home */}
+      <Link
+        as={Link}
+        to={"/"}
+        className="flex flex-row items-center gap-2 mt-4 ml-2 text-sm underline lg:hidden"
+      >
+        <IoMdArrowBack className="w-6 h-5" />
+        <h1>kembali ke halaman utama</h1>
+      </Link>
+      {/* Konten Data */}
+      <div className="flex flex-row gap-6 mx-4 mt-4 lg:pt-32">
+        {/* sidebar mode web (laptop) */}
+        <div className="hidden lg:flex lg:drawer-open ">
+          <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+          <div className="drawer-side">
+            <div className="mb-4 ml-4">
+              <LiveClockComponent />
+            </div>
+            <label
+              htmlFor="my-drawer-2"
+              aria-label="close sidebar"
+              className="drawer-overlay"
+            ></label>
+            <ul className="flex flex-col gap-4 ml-4 bg-white border-2 shadow-lg menu w-80 h-96 text-base-content rounded-2xl">
+              {/* heading */}
+              <div className="flex items-center gap-2 mt-4 ml-4">
+                <MdDashboard className="w-8 h-8 text-orange-400" />
+                <h1
+                  className="text-2xl font-semibold text-orange-400 uppercase cursor-pointer"
+                  onClick={() => handleMenuClick(1)}
+                >
+                  dashboard
+                </h1>
+              </div>
+              {/* menu */}
+              <div className="flex flex-col">
+                {/* Account settings dropdown */}
+                <div className="flex-none">
+                  <ul className="px-1 menu">
+                    <li>
+                      <details>
+                        <summary className="text-lg">
+                          <PiMoneyDuotone className="w-6 h-6 text-gray-600" />
+                          <p className="w-full capitalize">keuangan</p>
+                        </summary>
+                        <ul className="p-2 rounded-t-none bg-base-100">
+                          <li>
+                            <a
+                              className="capitalize"
+                              onClick={() => handleMenuClick(2)}
+                            >
+                              iuran wajib
+                            </a>
+                          </li>
+                          <li>
+                            <a
+                              className="capitalize"
+                              onClick={() => handleMenuClick(3)}
+                            >
+                              iuran sukarela
+                            </a>
+                          </li>
+                        </ul>
+                      </details>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* cdokumen */}
+                <Link
+                  as={Link}
+                  // to={}
+                  onClick={() => handleMenuClick(4)}
+                  className="flex items-center gap-3 py-2 pl-5 mt-2 mb-6 duration-300 hover:bg-gray-200 hover:rounded-lg"
+                >
+                  <IoDocumentTextOutline className="w-6 h-6 text-gray-600" />
+                  <p className="text-lg capitalize">surat pengantar</p>
+                </Link>
+
+                <div className="w-full h-px px-6 bg-gray-300"></div>
+
+                {/* profile akun */}
+                <Link
+                  as={Link}
+                  // to={}
+                  onClick={() => handleMenuClick(6)}
+                  className="flex items-center gap-3 py-2 pl-5 mt-6 duration-300 hover:bg-gray-200 hover:rounded-lg"
+                >
+                  <VscAccount className="w-6 h-6" />
+                  <p className="text-lg capitalize">profile</p>
+                </Link>
+              </div>
+            </ul>
+          </div>
+        </div>
+        <div className="w-full mr-5">
+          {/* parent konten */}
+          <div className="flex flex-row items-center gap-4 p-4 bg-white border-2 border-black rounded-lg shadow-md">
+            <div>
+              <img src={LogoRt44} alt="logo rt44" className="w-40" />
+            </div>
+            <div className="flex flex-col w-full gap-2">
+              {/* Nama kepala keluarga */}
+              <div className="flex flex-row w-full gap-2">
+                <div className="w-1/4 capitalize">nama kepala keluarga</div>
+                <div>:</div>
+                <div className="font-semibold capitalize">Wilson</div>
+              </div>
+              {/* Blok rumah */}
+              <div className="flex flex-row w-full gap-2">
+                <div className="w-1/4 capitalize">blok</div>
+                <div>:</div>
+                <div className="font-semibold capitalize">g</div>
+              </div>
+              {/* Nomor rumah */}
+              <div className="flex flex-row w-full gap-2">
+                <div className="w-1/4 capitalize">nomor rumah</div>
+                <div>:</div>
+                <div className="font-semibold capitalize">102</div>
+              </div>
+            </div>
+          </div>
+          {/* children konten */}
+          <div className="mt-6">
+            {step === 1 && <HaloComponent />}
+            {step === 2 && <IuranWajibPage handleMenuClick={handleMenuClick} />}
+            {step === 3 && (
+              <IuranSukarelaPage handleMenuClick={handleMenuClick} />
+            )}
+            {step === 4 && <SuratPengantarPage />}
+            {step === 5 && <QrCodeComponent />}
+            {step === 6 && <ProfileWargaWeb />}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default DashboardWargaPage;
