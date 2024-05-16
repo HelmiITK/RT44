@@ -27,31 +27,33 @@ import Navbar from "../../components/Navbar";
 import { FaRegPaperPlane } from "react-icons/fa";
 import StatusSuratPage from "./Dokumen/StatusSuratPage";
 import { IoArrowBackOutline } from "react-icons/io5";
-
 import CardIuranSukarela from "../../components/Pembayaran/CardIuranSukarela";
 
 import { getMe, logout } from "../../redux/actions/authActions";
 
-const DashboardWargaPage = ({ duesId }) => {
+const DashboardWargaPage = ({ duesId, id }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
   const [statusSurat, setStatusSurat] = useState(false);
   const [idDues, setIdDues] = useState(duesId);
+  const [idSukarela, setIdSukarela] = useState(id);
   const [profile, setProfile] = useState({
     name: "",
     blockHome: "",
     noHome: "",
   });
 
-  const { user } = useSelector((state) => state.auth);
   // Function to handle sidebar menu click
-  const handleMenuClick = (stepNumber, duesId) => {
+  const handleMenuClick = (stepNumber, duesId, id) => {
     setIdDues(duesId);
+    setIdSukarela(id);
     setStep(stepNumber);
     setStatusSurat(stepNumber === 7);
   };
+
+  const { user } = useSelector((state) => state.auth);
 
   const handleBackButtonClick = () => {
     setStep(4); // Set step back to 4 (form surat pengantar)
@@ -61,6 +63,7 @@ const DashboardWargaPage = ({ duesId }) => {
   useEffect(() => {
     if (user) {
       setProfile({
+        idUser: user.id,
         name: user.name,
         blockHome: user.blockHome,
         noHome: user.noHome,
@@ -290,7 +293,7 @@ const DashboardWargaPage = ({ duesId }) => {
                 <Link
                   as={Link}
                   // to={}
-                  onClick={() => handleMenuClick(4)}
+                  onClick={() => handleMenuClick(4, profile.id)}
                   className="flex items-center gap-3 py-2 pl-5 mt-2 mb-6 duration-300 hover:bg-gray-200 hover:rounded-lg"
                 >
                   <IoDocumentTextOutline className="w-6 h-6 text-gray-600" />
@@ -315,70 +318,80 @@ const DashboardWargaPage = ({ duesId }) => {
         </div>
         <div className="w-full mr-5">
           {/* parent konten */}
-          <div className="flex flex-row items-center gap-4 p-4 bg-white border-2 border-black rounded-lg shadow-md">
-            <div>
-              <img src={LogoRt44} alt="logo rt44" className="w-40" />
-            </div>
-            <div className="flex flex-col w-full gap-2">
-              {/* Nama kepala keluarga */}
-              <div className="flex flex-row w-full gap-2">
-                <div className="w-1/4 capitalize">nama kepala keluarga</div>
-                <div>:</div>
-                <div className="font-semibold capitalize">{profile.name}</div>
+          <div className="flex flex-row items-center bg-white border-2 border-black rounded-lg shadow-md">
+            <div className="flex items-center w-[870px] py-4">
+              {/* img */}
+              <div className="ml-4">
+                <img src={LogoRt44} alt="logo rt44" className="w-40" />
               </div>
-              {/* Blok rumah */}
-              <div className="flex flex-row w-full gap-2">
-                <div className="w-1/4 capitalize">blok</div>
-                <div>:</div>
-                <div className="font-semibold capitalize">
-                  {profile.blockHome}
+              {/* data */}
+              <div className="flex flex-col w-full gap-2 ml-4">
+                {/* Nama kepala keluarga */}
+                <div className="flex flex-row w-full gap-2">
+                  <div className="w-1/3 capitalize">nama kepala keluarga</div>
+                  <div>:</div>
+                  <div className="font-semibold capitalize">{profile.name}</div>
+                </div>
+                {/* Blok rumah */}
+                <div className="flex flex-row w-full gap-2">
+                  <div className="w-1/3 capitalize">{profile.blockHome}</div>
+                  <div>:</div>
+                  <div className="font-semibold capitalize">g</div>
+                </div>
+                {/* Nomor rumah */}
+                <div className="flex flex-row w-full gap-2">
+                  <div className="w-1/3 capitalize">nomor rumah</div>
+                  <div>:</div>
+                  <div className="font-semibold capitalize">
+                    {profile.noHome}
+                  </div>
                 </div>
               </div>
-              {/* Nomor rumah */}
-              <div className="flex flex-row w-full gap-2">
-                <div className="w-1/4 capitalize">nomor rumah</div>
-                <div>:</div>
-                <div className="font-semibold capitalize">{profile.noHome}</div>
-              </div>
+            </div>
+            {/* button cek surat */}
+            <div>
+              {statusSurat ? (
+                // Jika statusSurat adalah true, tombol tidak ditampilkan
+                <div
+                  onClick={handleBackButtonClick}
+                  className="flex items-center gap-2 px-4 py-2 duration-300 border-none rounded-lg cursor-pointer bg-primary hover:bg-orange-400 hover:drop-shadow-lg hover:text-white hover:scale-105"
+                >
+                  <IoArrowBackOutline />
+                  <h2>Kembali</h2>
+                </div>
+              ) : (
+                // Jika statusSurat adalah false, tampilkan tombol
+                <div
+                  onClick={() => handleMenuClick(7)}
+                  className="flex items-center gap-2 px-4 py-2 duration-300 border-none rounded-lg cursor-pointer bg-primary hover:bg-orange-400 hover:drop-shadow-lg hover:text-white hover:scale-105"
+                >
+                  <FaRegPaperPlane className="w-6 h-6" />
+                  <h2 className="capitalize">cek status surat</h2>
+                </div>
+              )}
             </div>
           </div>
-          {/* button cek surat */}
-          <div>
-            {statusSurat ? (
-              // Jika statusSurat adalah true, tombol tidak ditampilkan
-              <div
-                onClick={handleBackButtonClick}
-                className="flex items-center gap-2 px-4 py-2 duration-300 border-none rounded-lg cursor-pointer bg-primary hover:bg-orange-400 hover:drop-shadow-lg hover:text-white hover:scale-105"
-              >
-                <IoArrowBackOutline />
-                <h2>Kembali</h2>
-              </div>
-            ) : (
-              // Jika statusSurat adalah false, tampilkan tombol
-              <div
-                onClick={() => handleMenuClick(7)}
-                className="flex items-center gap-2 px-4 py-2 duration-300 border-none rounded-lg cursor-pointer bg-primary hover:bg-orange-400 hover:drop-shadow-lg hover:text-white hover:scale-105"
-              >
-                <FaRegPaperPlane className="w-6 h-6" />
-                <h2 className="capitalize">cek status surat</h2>
-              </div>
+          {/* children konten */}
+          <div className="mt-6">
+            {step === 1 && <HaloComponent />}
+            {step === 2 && <IuranWajibPage handleMenuClick={handleMenuClick} />}
+            {step === 3 && (
+              <CardIuranSukarela
+                handleMenuClick={handleMenuClick}
+                step={step}
+              />
+            )}
+            {step === 4 && <SuratPengantarPage id={profile.idUser} />}
+            {step === 5 && <QrCodeComponent duesId={idDues} />}
+            {step === 6 && <ProfileWargaWeb />}
+            {step === 7 && <StatusSuratPage id={profile.idUser} />}
+            {step === 8 && (
+              <IuranSukarelaPage
+                handleMenuClick={handleMenuClick}
+                duesId={idSukarela}
+              />
             )}
           </div>
-        </div>
-        {/* children konten */}
-        <div className="mt-6">
-          {step === 1 && <HaloComponent />}
-          {step === 2 && <IuranWajibPage handleMenuClick={handleMenuClick} />}
-          {step === 3 && (
-            <CardIuranSukarela handleMenuClick={handleMenuClick} step={step} />
-          )}
-          {step === 4 && <SuratPengantarPage />}
-          {step === 5 && <QrCodeComponent duesId={idDues} />}
-          {step === 6 && <ProfileWargaWeb />}
-          {step === 7 && <StatusSuratPage />}
-          {step === 8 && (
-            <IuranSukarelaPage handleMenuClick={handleMenuClick} />
-          )}
         </div>
       </div>
     </div>
@@ -387,6 +400,7 @@ const DashboardWargaPage = ({ duesId }) => {
 
 DashboardWargaPage.propTypes = {
   duesId: PropTypes.number,
+  id: PropTypes.number,
 };
 
 export default DashboardWargaPage;

@@ -19,7 +19,7 @@ export const login = (email, password, navigate) => async (dispatch) => {
     dispatch(setToken(token));
     toast.success("Login berhasil");
     if (role === "superAdmin") {
-      setTimeout(() => navigate("/dashboard_admin"), 1000);
+      setTimeout(() => navigate("/dashboard_rt"), 1000);
     } else if (role === "sekretaris") {
       setTimeout(() => navigate("/dashboard_sekretaris"), 1000);
     } else if (role === "bendahara") {
@@ -53,7 +53,6 @@ export const getMe =
         },
       });
       const data = response.data.data;
-      console.log(data);
       dispatch(setUser(data));
       if (navigatePathSuccess) navigate(navigatePathSuccess);
     } catch (error) {

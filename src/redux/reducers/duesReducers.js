@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   dues: [],
+  sukarela: [],
 };
 
 const duesSlice = createSlice({
@@ -11,9 +12,12 @@ const duesSlice = createSlice({
     setDues: (state, action) => {
       state.dues = action.payload;
     },
+    setSukarela: (state, action) => {
+      state.sukarela = action.payload;
+    },
   },
 });
 
-export const { setDues } = duesSlice.actions;
+export const { setDues, setSukarela } = duesSlice.actions;
 
 export default duesSlice.reducer;

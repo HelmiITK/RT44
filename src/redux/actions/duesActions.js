@@ -1,7 +1,7 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
-import { setDues } from "../reducers/duesReducers";
+import { setDues, setSukarela } from "../reducers/duesReducers";
 
 const swal = (icon, title, text) =>
   Swal.fire({
@@ -25,6 +25,16 @@ export const getDues = () => async (dispatch) => {
 
     const dues = response.data.allDuesUser;
     dispatch(setDues(dues));
+  } catch (error) {
+    swal("error", "ERROR", error.message);
+  }
+};
+
+export const getDuesSukarela = () => async (dispatch) => {
+  try {
+    const response = await axios.get(`${api_url}/dues/by-type`);
+    const sukarela = response.data.duesSukarela;
+    dispatch(setSukarela(sukarela));
   } catch (error) {
     swal("error", "ERROR", error.message);
   }
