@@ -55,23 +55,23 @@ const LupaPassword = () => {
    };
 
    return (
-      <div className="container mx-auto">
+      <div className="container mx-auto lg:flex lg:flex-col lg:items-center">
          {/* button back to login */}
          <Link
             as={Link}
             to={'/login'}
-            className="flex items-center gap-2 pt-4 ml-4"
+            className="flex items-center gap-2 pt-4 ml-4 hover:underline duration-300 hover:scale-105"
          >
             <IoMdArrowBack />
             <h2 className="capitalize">kembali ke login</h2>
          </Link>
-         <div className="border border-primary mx-4 rounded-md mt-4 p-4 flex flex-col gap-2 mb-6">
+         <div className="border border-primary mx-4 rounded-md mt-4 p-4 flex flex-col gap-2 mb-6 lg:w-[25%] lg:flex lg:flex-col lg:justify-center">
             <div className="flex flex-col items-center">
                <h1 className="capitalize text-2xl font-semibold">perbarui kata sandi</h1>
                <img
                   src="https://cdni.iconscout.com/illustration/premium/thumb/forgot-password-2814113-2368063.png"
                   alt="gambar lupa kata sandi"
-                  className="w-[70%]"
+                  className="w-[70%] lg:w-[75%]"
                />
             </div>
             <p className="text-center mb-4">Email: {email}</p>
@@ -120,9 +120,9 @@ const LupaPassword = () => {
                {/* {success && <p className="text-green-500">Kata sandi berhasil diperbarui! Anda akan diarahkan ke halaman login.</p>} */}
                <button
                   type="submit"
-                  className="font-medium border-none bg-primary rounded-lg py-2 px-4 mt-4 text-white capitalize"
+                  className="font-medium border-none bg-primary rounded-lg py-2 px-4 mt-4 text-white capitalize hover:scale-105 hover:drop-shadow-lg duration-300"
                >
-                  update kata sandi
+                  perbarui kata sandi
                </button>
             </form>
          </div>

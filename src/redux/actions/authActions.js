@@ -86,8 +86,8 @@ export const resetPassword = (password, confirmPassword, navigate, email) => asy
     if (error.response) {
       if (error.response.status === 404) {
         toast.error("Kunci reset tidak valid atau kedaluwarsa");
-      } else {
-        toast.error("Gagal mereset password. Silakan coba lagi nanti.");
+      } if (error.response.status === 400) {
+        toast.error("Password atau ulangi password tidak sesuai.");
       }
     } else {
       toast.error("Terjadi kesalahan pada server. Silakan coba lagi nanti.");
