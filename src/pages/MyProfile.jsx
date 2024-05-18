@@ -22,17 +22,6 @@ const MyProfile = () => {
 
   const { user } = useSelector((state) => state.auth);
 
-  //   const detail = [
-  //     {
-  //       nik: "21212121212",
-  //       nama: "Helmi Superman",
-  //       ttl: "Muara Badak, 22 Juni 2002",
-  //       hp: "097871728172",
-  //       email: "helmi22@gmail.com",
-  //       alamat: "-",
-  //     },
-  //   ];
-
   useEffect(() => {
     if (user) {
       setProfile({

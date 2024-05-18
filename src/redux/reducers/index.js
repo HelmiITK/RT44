@@ -5,6 +5,7 @@ import duesReducers from "./duesReducers";
 import transactionReducers from "./transactionReducers";
 import latterReducers from "./latterReducers";
 import userReducers from "./userReducers";
+import umkmReducers from "./umkmReducers";
 
 export default combineReducers({
   auth: authReducers,
@@ -12,4 +13,5 @@ export default combineReducers({
   transaction: transactionReducers,
   latter: latterReducers,
   user: userReducers,
+  umkm: umkmReducers,
 });

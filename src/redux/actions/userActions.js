@@ -27,7 +27,6 @@ export const getUser = () => async (dispatch) => {
     const user = response.data.allUsers;
     const filteredUser = user.slice(3);
     const userCount = filteredUser.length;
-    console.log(filteredUser);
     dispatch(setUser(filteredUser, userCount));
   } catch (error) {
     swal("error", "ERROR", error.message);

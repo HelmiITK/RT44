@@ -1,7 +1,11 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
-import { setLetter } from "../reducers/latterReducers";
+import {
+  setLetter,
+  setLetterById,
+  updateStatus,
+} from "../reducers/latterReducers";
 
 const swal = (icon, title, text) =>
   Swal.fire({
@@ -14,6 +18,17 @@ const swal = (icon, title, text) =>
   });
 
 const api_url = import.meta.env.VITE_REACT_API_ADDRESS;
+
+export const getLetter = () => async (dispatch) => {
+  try {
+    const response = await axios.get(`${api_url}/latter/userlatter`);
+    const letter = response.data;
+
+    dispatch(setLetter(letter));
+  } catch (error) {
+    swal("error", "ERROR", error.message);
+  }
+};
 
 export const postSurat =
   (
@@ -58,11 +73,22 @@ export const postSurat =
     }
   };
 
-export const getLetter = (id) => async (dispatch) => {
+export const getLetterById = (id) => async (dispatch) => {
   try {
     const response = await axios.get(`${api_url}/latter/${id}`);
     const letter = response.data.userLatter;
-    dispatch(setLetter(letter));
+    dispatch(setLetterById(letter));
+  } catch (error) {
+    swal("error", "ERROR", error.message);
+  }
+};
+
+export const updateStatusLetter = (latterId, status) => async (dispatch) => {
+  try {
+    await axios.patch(`${api_url}/latter/update/status/${latterId}`, {
+      status,
+    });
+    dispatch(updateStatus(updateStatus));
   } catch (error) {
     swal("error", "ERROR", error.message);
   }

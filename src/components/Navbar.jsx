@@ -8,8 +8,18 @@ import { FaRegUser } from "react-icons/fa6";
 import { MdLogout } from "react-icons/md";
 import PropTypes from "prop-types";
 
-const Navbar = ({ onLogout }) => {
+const Navbar = ({ onLogout, user }) => {
   const [openHamburger, setOpenHamburger] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
+  }, []);
 
   const handleHamburgerClick = (e) => {
     e.stopPropagation();
@@ -85,18 +95,23 @@ const Navbar = ({ onLogout }) => {
               >
                 Profile Saya
               </Link>
-              <button className="flex gap-2 items-center border-2 border-white rounded-lg px-4 py-[6px] text-orange-600 bg-white font-medium">
+              <button
+                onClick={onLogout}
+                className="flex gap-2 items-center border-2 border-white rounded-lg px-4 py-[6px] text-orange-600 bg-white font-medium"
+              >
                 <MdLogout />
                 <p>Logout</p>
               </button>
             </div>
           </div>
           {/* jika belum login ini muncul */}
-          <Link as={Link} to={"/login"}>
-            <button className="px-4 py-2 font-medium tracking-wide text-white bg-orange-300 rounded-md">
-              Login
-            </button>
-          </Link>
+          {!loggedIn && (
+            <Link as={Link} to={"/login"}>
+              <button className="px-4 py-2 font-medium tracking-wide text-white bg-orange-300 rounded-md">
+                Login
+              </button>
+            </Link>
+          )}
         </div>
 
         {/* Navmenu website */}
@@ -168,43 +183,47 @@ const Navbar = ({ onLogout }) => {
             </div>
           </div>
           {/* jika belum login ini muncul */}
-          <Link as={Link} to={"/login"} className="mx-4">
-            <button className="px-12 py-2 tracking-wider text-white duration-300 bg-orange-400 border-2 rounded-md hover:text-orange-500 hover:bg-white hover:border-orange-500 hover:border-2 hover:shadow-lg shadow-orange-500">
-              Login
-            </button>
-          </Link>
+          {!loggedIn && (
+            <Link as={Link} to={"/login"} className="mx-4">
+              <button className="px-12 py-2 tracking-wider text-white duration-300 bg-orange-400 border-2 rounded-md hover:text-orange-500 hover:bg-white hover:border-orange-500 hover:border-2 hover:shadow-lg shadow-orange-500">
+                Login
+              </button>
+            </Link>
+          )}
           {/* jika user sudah login ini yg muncul mode web*/}
-          <div
-            className="mr-4 dropdown dropdown-end"
-            tabIndex={0}
-            role="button"
-          >
-            <div className="flex items-center gap-2 px-5 py-3 text-white duration-300 bg-orange-400 border-none rounded-md hover:bg-white hover:shadow-lg hover:text-orange-400">
-              <FaRegUser className="" />
-              <h2>Hi Helmi</h2>
-            </div>
-            <ul
+          {loggedIn && (
+            <div
+              className="mr-4 dropdown dropdown-end"
               tabIndex={0}
-              className="dropdown-content z-[1] menu p-2 shadow-xl bg-base-100 rounded-box w-52"
+              role="button"
             >
-              <Link as={Link} to={"/myprofile"}>
-                <li>
-                  <a>
-                    <FaRegUser className="" />
-                    Profil Saya
-                  </a>
-                </li>
-              </Link>
-              <Link onClick={onLogout}>
-                <li>
-                  <a>
-                    <MdLogout />
-                    Logout
-                  </a>
-                </li>
-              </Link>
-            </ul>
-          </div>
+              <div className="flex items-center gap-2 px-5 py-3 text-white duration-300 bg-orange-400 border-none rounded-md hover:bg-white hover:shadow-lg hover:text-orange-400">
+                <FaRegUser className="" />
+                <h2>Hi {user}</h2>
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content z-[1] menu p-2 shadow-xl bg-base-100 rounded-box w-52"
+              >
+                <Link as={Link} to={"/myprofile"}>
+                  <li>
+                    <a>
+                      <FaRegUser className="" />
+                      Profil Saya
+                    </a>
+                  </li>
+                </Link>
+                <Link onClick={onLogout}>
+                  <li>
+                    <a>
+                      <MdLogout />
+                      Logout
+                    </a>
+                  </li>
+                </Link>
+              </ul>
+            </div>
+          )}
         </div>
       </nav>
     </>
@@ -213,6 +232,7 @@ const Navbar = ({ onLogout }) => {
 
 Navbar.propTypes = {
   onLogout: PropTypes.func,
+  user: PropTypes.string,
 };
 
 export default Navbar;

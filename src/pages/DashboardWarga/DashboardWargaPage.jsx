@@ -103,7 +103,7 @@ const DashboardWargaPage = ({ duesId, id }) => {
     <div className="container mx-auto">
       {/* navbar mode laptop */}
       <div className="hidden -mt-4 lg:block">
-        <Navbar onLogout={onLogout} />
+        <Navbar onLogout={onLogout} user={profile.name} />
       </div>
       {/* Navbar mode hp*/}
       <div className="block px-2 py-2 bg-white shadow-lg lg:hidden">

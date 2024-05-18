@@ -3,21 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 
 import PropTypes from "prop-types";
 
-import { getLetter } from "../../../redux/actions/latterActions";
+import { getLetterById } from "../../../redux/actions/latterActions";
 
 const StatusSuratPage = ({ id }) => {
   const dispatch = useDispatch();
-  const { letter } = useSelector((state) => state.latter);
+  const { letterById } = useSelector((state) => state.latter);
 
   useEffect(() => {
-    dispatch(getLetter(id));
+    dispatch(getLetterById(id));
   }, [dispatch, id]);
-  console.log(letter);
+  console.log(letterById);
 
   return (
     <div>
       {/* status suerat mobile */}
-      {letter.map((item, i) => (
+      {letterById.map((item, i) => (
         <div key={i}>
           <div className="flex flex-col gap-2 p-4 border border-black rounded-md lg:hidden">
             {/* status */}

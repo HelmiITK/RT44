@@ -13,39 +13,17 @@ import DashboardSekretarisPage from "./pages/DashboardSekretaris/DashboardSekret
 import DashboardBendaharaPage from "./pages/DashboardBendahara/DashboardBendaharaPage";
 
 function App() {
-
   return (
     <>
       <Router>
         <Routes>
-          <Route
-            path="/"
-            element={<HomePage />}
-          />
-          <Route
-            path="/login"
-            element={<LoginPage />}
-          />
-          <Route
-            path="/umkm"
-            element={<Umkm />}
-          />
-          <Route
-            path="/myprofile"
-            element={<MyProfile />}
-          />
-          <Route
-            path="/letter_req"
-            element={<LetterRequest />}
-          />
-          <Route
-            path="/dashboard_warga"
-            element={<DashboardWargaPage />}
-          />
-          <Route
-            path="/dashboard_rt"
-            element={<DashboardRtPage />}
-          />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/umkm" element={<Umkm />} />
+          <Route path="/myprofile" element={<MyProfile />} />
+          <Route path="/letter_req" element={<LetterRequest />} />
+          <Route path="/dashboard_warga" element={<DashboardWargaPage />} />
+          <Route path="/dashboard_rt" element={<DashboardRtPage />} />
           <Route
             path="/dashboard_sekretaris"
             element={<DashboardSekretarisPage />}
@@ -54,13 +32,12 @@ function App() {
             path="/dashboard_bendahara"
             element={<DashboardBendaharaPage />}
           />
-          
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
     </>
-  )
+  );
 }
 
 export default App;

@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { MdDashboard } from "react-icons/md";
 import { VscAccount } from "react-icons/vsc";
 import { FaUsersGear } from "react-icons/fa6";
 import { AiOutlineShop } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.css";
 
 import LiveClockComponent from "../../components/LiveClockComponent";
 import UmkmRtPage from "./UmkmCrudRt/UmkmRtPage";
@@ -19,17 +22,68 @@ import EditUmkmComponent from "../../components/UmkmCrud/EditUmkmComponent";
 import TambahAnggotaComponent from "../../components/AnggotaCrud/TambahAnggotaComponent";
 import EditAnggotaComponent from "../../components/AnggotaCrud/EditAnggotaComponent";
 
-const DashboardRtPage = ({ id }) => {
+import { getMe, logout } from "../../redux/actions/authActions";
+
+const DashboardRtPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [step, setStep] = useState(1);
   const [idUser, setIdUser] = useState();
+  const [idUmkm, setIdUmkm] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  const { user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (user) {
+      const userRole = user.role;
+
+      if (userRole === "superAdmin") {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    }
+  }, [user]);
+
+  useEffect(() => {
+    dispatch(getMe(null));
+  }, [dispatch]);
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" />;
+  }
+
   // Function to handle sidebar menu click
   const handleMenuClick = (stepNumber, id) => {
     setIdUser(id);
+    setIdUmkm(id);
     setStep(stepNumber);
   };
+
+  const onLogout = () => {
+    Swal.fire({
+      title: "Konfirmasi Logout",
+      text: "Apakah Anda yakin ingin keluar?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Ya, Keluar!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(logout());
+        navigate("/");
+      } else {
+        navigate("/dashboard_warga");
+      }
+    });
+  };
+
   return (
     <>
-      <Navbar />
+      <Navbar onLogout={onLogout} user={user.name} />
       <div className="container mx-auto pt-28">
         <div className="flex flex-row gap-6 mx-4 mt-4">
           {/* sidebar */}
@@ -104,7 +158,10 @@ const DashboardRtPage = ({ id }) => {
               <TambahUmkmComponent handleMenuClick={handleMenuClick} />
             )}
             {step === 5 && (
-              <EditUmkmComponent handleMenuClick={handleMenuClick} />
+              <EditUmkmComponent
+                handleMenuClick={handleMenuClick}
+                id={idUmkm}
+              />
             )}
 
             {/* Action Anggota */}
