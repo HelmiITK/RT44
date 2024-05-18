@@ -6,6 +6,7 @@ import {
   setUmkmById,
   updateUmkm,
   deleteUmkm,
+  setError,
 } from "../reducers/umkmReducers";
 
 const swal = (icon, title, text) =>
@@ -29,6 +30,7 @@ export const getUmkm = () => async (dispatch) => {
     dispatch(setUmkm(umkm, umkmCount));
   } catch (error) {
     swal("error", "ERROR", error.message);
+    dispatch(setError(error.message))
   }
 };
 

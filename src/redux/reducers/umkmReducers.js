@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   umkm: [],
   umkmbyId: [],
+  error: null,
 };
 
 const umkmSlice = createSlice({
@@ -24,10 +25,13 @@ const umkmSlice = createSlice({
     deleteUmkm: (state, action) => {
       state.umkm = state.umkm.filter((umkm) => umkm.id !== action.payload);
     },
+    setError: (state, action) => {
+      state.error = action.payload;
+    },
   },
 });
 
-export const { setUmkm, setUmkmById, updateUmkm, deleteUmkm } =
+export const { setUmkm, setUmkmById, updateUmkm, deleteUmkm, setError } =
   umkmSlice.actions;
 
 export default umkmSlice.reducer;

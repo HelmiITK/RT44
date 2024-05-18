@@ -5,6 +5,7 @@ import {
   setLetter,
   setLetterById,
   updateStatus,
+  setError
 } from "../reducers/latterReducers";
 
 const swal = (icon, title, text) =>
@@ -91,5 +92,6 @@ export const updateStatusLetter = (latterId, status) => async (dispatch) => {
     dispatch(updateStatus(updateStatus));
   } catch (error) {
     swal("error", "ERROR", error.message);
+    dispatch(setError(error.message))
   }
 };

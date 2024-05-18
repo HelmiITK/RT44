@@ -12,28 +12,62 @@ import DashboardRtPage from "./pages/DashboardRT/DashboardRtPage";
 import DashboardSekretarisPage from "./pages/DashboardSekretaris/DashboardSekretarisPage";
 import DashboardBendaharaPage from "./pages/DashboardBendahara/DashboardBendaharaPage";
 
+import NoAccessToken from "./security/NoAccessToken";
+import Protected from "./security/Protected";
+import UnauthorizedPage from "./pages/UnauthorizedPage";
+
 function App() {
   return (
     <>
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/login"
+            element={
+              <NoAccessToken>
+                <LoginPage />
+              </NoAccessToken>
+            }
+          />
           <Route path="/umkm" element={<Umkm />} />
           <Route path="/myprofile" element={<MyProfile />} />
           <Route path="/letter_req" element={<LetterRequest />} />
-          <Route path="/dashboard_warga" element={<DashboardWargaPage />} />
-          <Route path="/dashboard_rt" element={<DashboardRtPage />} />
+          <Route
+            path="/dashboard_warga"
+            element={
+              <Protected role={"member"}>
+                <DashboardWargaPage />
+              </Protected>
+            }
+          />
+          <Route
+            path="/dashboard_rt"
+            element={
+              <Protected role={"superAdmin"}>
+                <DashboardRtPage />
+              </Protected>
+            }
+          />
           <Route
             path="/dashboard_sekretaris"
-            element={<DashboardSekretarisPage />}
+            element={
+              <Protected role={["sekretaris", "superAdmin"]}>
+                <DashboardSekretarisPage />
+              </Protected>
+            }
           />
           <Route
             path="/dashboard_bendahara"
-            element={<DashboardBendaharaPage />}
+            element={
+              <Protected role={"bendahara"}>
+                <DashboardBendaharaPage />
+              </Protected>
+            }
           />
 
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="/unauthorized" element={<UnauthorizedPage />} />
         </Routes>
       </Router>
     </>

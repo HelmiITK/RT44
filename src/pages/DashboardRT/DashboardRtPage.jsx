@@ -33,8 +33,8 @@ const DashboardRtPage = () => {
   const [idUmkm, setIdUmkm] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-  const { user } = useSelector((state) => state.auth);
-
+  const { user, token } = useSelector((state) => state.auth);
+  console.log(user)
   useEffect(() => {
     if (user) {
       const userRole = user.role;
@@ -46,6 +46,11 @@ const DashboardRtPage = () => {
       }
     }
   }, [user]);
+  useEffect(() => {
+    if (token) {
+      dispatch(getMe(navigate, null, "/login"));
+    }
+  }, [dispatch, navigate, token]);
 
   useEffect(() => {
     dispatch(getMe(null));
@@ -83,7 +88,7 @@ const DashboardRtPage = () => {
 
   return (
     <>
-      <Navbar onLogout={onLogout} user={user.name} />
+      <Navbar onLogout={onLogout} user={user?.name} />
       <div className="container mx-auto pt-28">
         <div className="flex flex-row gap-6 mx-4 mt-4">
           {/* sidebar */}

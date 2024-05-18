@@ -1,22 +1,55 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Navbar from "../../components/Navbar"
 import { MdDashboard } from "react-icons/md";
 import LiveClockComponent from "../../components/LiveClockComponent";
 import { VscAccount } from "react-icons/vsc";
 import { IoCashOutline } from "react-icons/io5";
 import ProfileWargaWeb from "../../components/ProfileWargaWeb";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ValidasiPembayaranPage from "./ValidasiPembayaran/ValidasiPembayaranPage";
+import { getMe, logout } from "../../redux/actions/authActions";
+import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.css";
 
 const DashboardBendaharaPage = () => {
    const [step, setStep] = useState(1);
+   const dispatch = useDispatch();
+   const navigate = useNavigate();
    // Function to handle sidebar menu click
    const handleMenuClick = (stepNumber) => {
       setStep(stepNumber);
    }
+   const { user } = useSelector((state) => state.auth);
+
+   const onLogout = () => {
+      Swal.fire({
+         title: "Konfirmasi Logout",
+         text: "Apakah Anda yakin ingin keluar?",
+         icon: "question",
+         showCancelButton: true,
+         confirmButtonColor: "#3085d6",
+         cancelButtonColor: "#d33",
+         confirmButtonText: "Ya, Keluar!",
+      }).then((result) => {
+         if (result.isConfirmed) {
+            dispatch(logout());
+            navigate("/");
+         } else {
+            navigate("/dashboard_sekretaris");
+         }
+      });
+   };
+
+   useEffect(() => {
+      dispatch(getMe(null));
+   }, [dispatch]);
+   
+
+
    return (
       <>
-         <Navbar />
+         <Navbar user={user?.name} onLogout={onLogout} />
          <div className="pt-28 container mx-auto">
             <div className="mx-4 mt-4 flex flex-row gap-6">
                {/* Sidebar */}

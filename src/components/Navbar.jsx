@@ -52,6 +52,8 @@ const Navbar = ({ onLogout, user }) => {
     },
   ];
 
+  
+
   return (
     <>
       <nav className="fixed z-30 flex items-center justify-between w-full py-2 bg-white shadow-md bg-opacity-70">
@@ -74,9 +76,8 @@ const Navbar = ({ onLogout, user }) => {
           </button>
           {/* jika dia login ini muncul */}
           <div
-            className={`${
-              openHamburger ? "translate-y-0" : "-translate-y-[360px]"
-            } transition-transform duration-300 ease-in-out absolute top-4 right-4 mt-24 bg-gradient-to-r from-orange-600 via-orange-400 to-orange-300 px-5 py-6 rounded-md shadow-lg`}
+            className={`${openHamburger ? "translate-y-0" : "-translate-y-[360px]"
+              } transition-transform duration-300 ease-in-out absolute top-4 right-4 mt-24 bg-gradient-to-r from-orange-600 via-orange-400 to-orange-300 px-5 py-6 rounded-md shadow-lg`}
           >
             <ul className="flex flex-col gap-2">
               {Menus.map((item, index) => (
@@ -160,18 +161,18 @@ const Navbar = ({ onLogout, user }) => {
                 <li>
                   <details>
                     <summary className="text-lg">Fitur Admin</summary>
-                    <ul className="p-2 rounded-t-none w-44 bg-base-100">
-                      <Link as={Link} to={"/dashboard_rt"}>
+                    <ul className="p-2 rounded-t-none w-44  bg-base-100">
+                      <Link as={Link} to={"/dashboard_rt"} role="superAdmin">
                         <li>
                           <a>Ketua RT</a>
                         </li>
                       </Link>
-                      <Link as={Link} to={"/dashboard_sekretaris"}>
+                      <Link as={Link} to={"/dashboard_sekretaris"} role="sekretaris">
                         <li>
                           <a>Sekretaris</a>
                         </li>
                       </Link>
-                      <Link as={Link} to={"/dashboard_bendahara"}>
+                      <Link as={Link} to={"/dashboard_bendahara"} role="bendahara">
                         <li>
                           <a>Bendahara</a>
                         </li>
@@ -233,6 +234,7 @@ const Navbar = ({ onLogout, user }) => {
 Navbar.propTypes = {
   onLogout: PropTypes.func,
   user: PropTypes.string,
+  role: PropTypes.string
 };
 
 export default Navbar;

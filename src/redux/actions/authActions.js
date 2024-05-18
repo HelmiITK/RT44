@@ -70,4 +70,5 @@ export const getMe =
 export const logout = () => (dispatch) => {
   dispatch(setToken(null));
   dispatch(setUser(null));
+  window.location.reload();
 };
