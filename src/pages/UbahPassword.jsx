@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { IoMdArrowRoundBack } from "react-icons/io";
 import GambarPerbaruiPass from "../assets/perbaruiPass.jpg"
 import { useState } from "react";
@@ -13,6 +13,7 @@ const UbahPassword = () => {
    const dispatch = useDispatch();
    const { id } = useParams();
    const [error, setError] = useState("");
+   const navigate = useNavigate();
 
    const [passwordLama, setPasswordLama] = useState("");
    const [passwordBaru, setPasswordBaru] = useState("");
@@ -47,15 +48,17 @@ const UbahPassword = () => {
       e.preventDefault();
       if (passwordLama === "") {
          setError("Masukkan kata sandi lama");
+         return;
       } else if (passwordBaru.length < 8) {
          setError("kata sandi minimal 8 karakter.");
+         return;
       } else if (passwordBaru !== confirmPassword) {
-         setError("kata sandi tidak sama dengan sandi baru")
+         setError("kata sandi tidak sama dengan sandi baru");
+         return;
       } else {
          setError("");
       }
-
-      const success = dispatch(updatePassword(passwordLama, passwordBaru, confirmPassword, id));
+      const success = dispatch(updatePassword(passwordLama, passwordBaru, confirmPassword, id, navigate));
       if (success) {
          setPasswordLama("");
          setPasswordBaru("");

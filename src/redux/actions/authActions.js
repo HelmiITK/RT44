@@ -95,7 +95,7 @@ export const resetPassword = (password, confirmPassword, navigate, email) => asy
   }
 };
 
-export const updatePassword = (oldPassword, newPassword, confirmPassword, id) => async (dispatch, getState) => {
+export const updatePassword = (oldPassword, newPassword, confirmPassword, id, navigate) => async (dispatch, getState) => {
   try {
     let { token } = getState().auth;
     const response = await axios.patch(`${api_url}/auth/update/${id}`, {
@@ -110,6 +110,10 @@ export const updatePassword = (oldPassword, newPassword, confirmPassword, id) =>
     })
     if (response.status === 200) {
       toast.success("Password berhasil diperbarui");
+      setTimeout(() => {
+        navigate("/myprofile");
+      }, 6000);
+      dispatch(setUser(setUser))
     }
 
   } catch (error) {
