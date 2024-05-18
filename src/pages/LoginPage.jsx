@@ -10,6 +10,7 @@ import { IoEyeOff } from "react-icons/io5";
 import { ToastContainer } from "react-toastify";
 import { useState } from "react";
 
+import { MdOutlineKeyOff } from "react-icons/md";
 import { login } from "../redux/actions/authActions";
 
 const LoginPage = () => {
@@ -21,6 +22,8 @@ const LoginPage = () => {
   const [errorEmail, setErrorEmail] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  const allowedEmails = ["pakrt@mail.com", "member@mail.com", "bendahara@mail.com", "sekretaris@mail.com"];
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -42,6 +45,14 @@ const LoginPage = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleForgotPassword = (e) => {
+    if (!allowedEmails.includes(email)) {
+      setErrorEmail("Email tidak valid atau tidak terdaftar!");
+      e.preventDefault(); // Prevent navigation to forgot password page
+    } else {
+      localStorage.setItem('validatedEmail', email); // Simpan email di localStorage
+    }
+  };
   return (
     <div className="container mx-auto">
       {/* heading mode mobile*/}
@@ -130,6 +141,21 @@ const LoginPage = () => {
               <p className="ml-12 text-xs text-red-500">{errorPassword}</p>
             )}
           </div>
+          {/* lupa password  */}
+          <Link
+            as={Link}
+            // to={`/lupa_password`}
+            onClick={handleForgotPassword}
+            to={allowedEmails.includes(email) ? "/lupa_password" : "#"}
+            title="Klik aku bila lupa password yh"
+            className="text-red-500 font-light text-sm flex items-center gap-4 "
+          >
+            <MdOutlineKeyOff className="w-6 h-6" />
+            <h1>
+              Lupa kata sandi?
+            </h1>
+          </Link>
+
           {/* button submit */}
           <button className="py-2 text-lg font-semibold tracking-widest text-white border-none bg-primary rounded-2xl">
             Login
@@ -137,7 +163,7 @@ const LoginPage = () => {
         </form>
       </div>
 
-      {/* mode web */}
+      {/* login mode web */}
       <div className="items-center hidden gap-10 lg:flex">
         {/* heading */}
         <div className="flex items-center justify-center w-auto h-screen gap-4 px-10 bg-gradient-to-b from-orange-400 via-primary to-orange-100">
@@ -231,6 +257,19 @@ const LoginPage = () => {
                   <p className="ml-12 text-sm text-red-500">{errorPassword}</p>
                 )}
               </div>
+              {/* lupa password */}
+              <Link
+                as={Link}
+                to={allowedEmails.includes(email) ? "/lupa_password" : "#"}
+                title="Klik aku bila lupa password yh"
+                onClick={handleForgotPassword}
+                className="text-red-500 font-light text-sm flex items-center gap-4 hover:scale-105 hover:underline hover:text-red-600 duration-300 w-[30%]"
+              >
+                <MdOutlineKeyOff className="w-6 h-6" />
+                <h1>
+                  Lupa kata sandi?
+                </h1>
+              </Link>
               {/* button submit */}
               <button className="py-3 text-xl font-semibold tracking-widest text-white duration-300 border-none bg-primary rounded-2xl hover:bg-orange-400">
                 Login

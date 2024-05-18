@@ -16,6 +16,8 @@ import NoAccessToken from "./security/NoAccessToken";
 import Protected from "./security/Protected";
 import UnauthorizedPage from "./pages/UnauthorizedPage";
 
+import LupaPassword from "./pages/LupaPassword";
+
 function App() {
   return (
     <>
@@ -63,6 +65,13 @@ function App() {
               <Protected role={"bendahara"}>
                 <DashboardBendaharaPage />
               </Protected>
+            }
+          />
+
+          <Route
+            path={`/lupa_password`}
+            element={
+              <LupaPassword />
             }
           />
 

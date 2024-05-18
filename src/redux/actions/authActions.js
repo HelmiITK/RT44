@@ -42,33 +42,55 @@ export const login = (email, password, navigate) => async (dispatch) => {
   }
 };
 
-export const getMe =
-  (navigate, navigatePathSuccess, navigatePathError) =>
-  async (dispatch, getState) => {
-    try {
-      let { token } = getState().auth;
-      const response = await axios.get(`${api_url}/auth/authme`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = response.data.data;
-      dispatch(setUser(data));
-      if (navigatePathSuccess) navigate(navigatePathSuccess);
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        if (error.response.status === 401) {
-          dispatch(logout());
-        }
-      }
-
-      if (navigatePathError) navigate(navigatePathError);
-      return;
+export const getMe = (navigate, navigatePathSuccess, navigatePathError) => async (dispatch, getState) => {
+  try {
+    let { token } = getState().auth;
+    const response = await axios.get(`${api_url}/auth/authme`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = response.data.data;
+    dispatch(setUser(data));
+    if (navigatePathSuccess) navigate(navigatePathSuccess);
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response?.status === 401) {
+      dispatch(logout());
     }
-  };
+    if (navigatePathError) navigate(navigatePathError);
+  }
+};
 
 export const logout = () => (dispatch) => {
   dispatch(setToken(null));
   dispatch(setUser(null));
   window.location.reload();
+};
+
+export const resetPassword = (password, confirmPassword, navigate, email) => async () => {
+  try {
+    const response = await axios.patch(`${api_url}/auth/forgot?email=${email}`, {
+      password,
+      confirmPassword,
+    }, {
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    if (response.status === 200) {
+      toast.success("Password berhasil diganti");
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    }
+  } catch (error) {
+    if (error.response) {
+      if (error.response.status === 404) {
+        toast.error("Kunci reset tidak valid atau kedaluwarsa");
+      } else {
+        toast.error("Gagal mereset password. Silakan coba lagi nanti.");
+      }
+    } else {
+      toast.error("Terjadi kesalahan pada server. Silakan coba lagi nanti.");
+    }
+  }
 };

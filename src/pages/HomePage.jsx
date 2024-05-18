@@ -112,6 +112,23 @@ const HomePage = () => {
     dispatch(getMe());
   }, [dispatch]);
 
+  // useEffect(() => {
+  //   if (!user) {
+  //     localStorage.removeItem('token');
+  //     navigate("/");
+  //   }
+  // }, [user, navigate]);
+  useEffect(() => {
+    const hasReloadedBefore = localStorage.getItem("hasReloaded");
+
+    if (!user && !hasReloadedBefore) {
+      localStorage.removeItem('token');
+      navigate("/");
+      localStorage.setItem("hasReloaded", "true");
+      window.location.reload();
+    }
+  }, [user, navigate]);
+
   useEffect(() => {
     AOS.init({
       once: false,
