@@ -1,13 +1,10 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+// import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { CiEdit } from "react-icons/ci";
-import { AiOutlineDelete } from "react-icons/ai";
+// import { AiOutlineDelete } from "react-icons/ai";
 import PropTypes from "prop-types";
 
-import {
-  updateStatusLetter,
-  getLetter,
-} from "../../redux/actions/latterActions";
+import { updateStatusLetter } from "../../redux/actions/latterActions";
 
 const DataPengajuanSurat = ({ handleMenuClick, letter }) => {
   const dispatch = useDispatch();
@@ -15,13 +12,8 @@ const DataPengajuanSurat = ({ handleMenuClick, letter }) => {
   const handleStatusChange = (latterId, event) => {
     const status = event.target.value;
     dispatch(updateStatusLetter(latterId, status));
+    window.location.reload();
   };
-
-  useEffect(() => {
-    dispatch(getLetter());
-  }, [dispatch]);
-
-  console.log(letter);
 
   return (
     <div className="p-8 mt-4 border-2 rounded-lg shadow-lg border-slate-300">
@@ -57,15 +49,15 @@ const DataPengajuanSurat = ({ handleMenuClick, letter }) => {
                   <div className="flex items-center gap-2">
                     {/* button edit */}
                     <button
-                      onClick={() => handleMenuClick(5)}
+                      onClick={() => handleMenuClick(5, item.Latter.id)}
                       className="p-3 duration-300 rounded-lg bg-slate-300 hover:bg-primary hover:text-white"
                     >
                       <CiEdit className="w-6 h-6" />
                     </button>
-                    {/* button hapus */}
+                    {/* button hapus
                     <button className="p-3 duration-300 rounded-lg bg-slate-300 hover:bg-red-500 hover:text-white">
                       <AiOutlineDelete className="w-6 h-6" />
-                    </button>
+                    </button> */}
                   </div>
                 </td>
                 <th>

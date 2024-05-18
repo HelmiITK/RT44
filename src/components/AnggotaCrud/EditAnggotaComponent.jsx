@@ -43,8 +43,6 @@ const EditAnggotaComponent = ({ handleMenuClick, id }) => {
     }
   }, [userbyId]);
 
-  console.log(userbyId);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(

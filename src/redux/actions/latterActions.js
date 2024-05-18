@@ -4,7 +4,10 @@ import Swal from "sweetalert2";
 import {
   setLetter,
   setLetterById,
+  setLetterById2,
   updateStatus,
+  updateLatter,
+  setError,
 } from "../reducers/latterReducers";
 
 const swal = (icon, title, text) =>
@@ -82,6 +85,15 @@ export const getLetterById = (id) => async (dispatch) => {
     swal("error", "ERROR", error.message);
   }
 };
+export const getLetterById2 = (id) => async (dispatch) => {
+  try {
+    const response = await axios.get(`${api_url}/latter/getLetter/${id}`);
+    const letter = response.data.latter;
+    dispatch(setLetterById2(letter));
+  } catch (error) {
+    swal("error", "ERROR", error.message);
+  }
+};
 
 export const updateStatusLetter = (latterId, status) => async (dispatch) => {
   try {
@@ -93,3 +105,50 @@ export const updateStatusLetter = (latterId, status) => async (dispatch) => {
     swal("error", "ERROR", error.message);
   }
 };
+
+export const updadte =
+  (
+    id,
+    latterType,
+    fullName,
+    gender,
+    placeDateBday,
+    status,
+    religion,
+    work,
+    blood,
+    citizenship,
+    address,
+    nik,
+    nkk,
+    perpous,
+    destinationAddress,
+    numberFollower
+  ) =>
+  async (dispatch) => {
+    try {
+      await axios.patch(`${api_url}/latter/update/${id}`, {
+        latterType,
+        fullName,
+        gender,
+        placeDateBday,
+        status,
+        religion,
+        work,
+        blood,
+        citizenship,
+        address,
+        nik,
+        nkk,
+        perpous,
+        destinationAddress,
+        numberFollower,
+      });
+      dispatch(updateLatter(updateLatter));
+      swal("success", "Surat berhasil diperbaharui", "success");
+    } catch (error) {
+      swal("error", "ERROR", error.message);
+      dispatch(setError(error.message));
+      console.log(error);
+    }
+  };

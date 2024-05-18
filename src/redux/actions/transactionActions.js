@@ -1,7 +1,10 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
-import { setTransaction } from "../reducers/transactionReducers";
+import {
+  setTransaction,
+  setUpdateVerify,
+} from "../reducers/transactionReducers";
 
 const swal = (icon, title, text) =>
   Swal.fire({
@@ -16,7 +19,7 @@ const swal = (icon, title, text) =>
 const api_url = import.meta.env.VITE_REACT_API_ADDRESS;
 
 export const transactionObligate =
-  (duesId, linkProofpayment) => async (dispatch) => {
+  (duesId, userId, linkProofpayment) => async (dispatch) => {
     try {
       const token = localStorage.getItem("token");
 
@@ -40,7 +43,7 @@ export const transactionObligate =
       }
 
       const response = await axios.post(
-        `${api_url}/transaction/obligat/${duesId}`,
+        `${api_url}/transaction/obligat/${duesId}/${userId}`,
         linkProofpayment,
         {
           headers: {
@@ -58,3 +61,28 @@ export const transactionObligate =
       }
     }
   };
+
+export const getTransaction = () => async (dispatch) => {
+  try {
+    const response = await axios.get(`${api_url}/transaction/`);
+    const transaction = response.data;
+    dispatch(setTransaction(transaction));
+  } catch (error) {
+    swal("error", "ERROR", error.message);
+  }
+};
+
+export const updateVerify = (id) => async (dispatch, getState) => {
+  try {
+    await axios.patch(`${api_url}/transaction/update-verify/${id}`);
+    const { transaction } = getState().transaction;
+
+    const updatedTransaction = transaction.map((item) =>
+      item.id === id ? { ...item, verified: true } : item
+    );
+    dispatch(setUpdateVerify(updatedTransaction));
+    swal("success", "BERHASIL", "Verifikasi Berhasil");
+  } catch (error) {
+    swal("error", "ERROR", error.message);
+  }
+};

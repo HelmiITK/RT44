@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdDashboard } from "react-icons/md";
 import { VscAccount } from "react-icons/vsc";
 import { FaUsersGear } from "react-icons/fa6";
@@ -31,29 +31,12 @@ const DashboardRtPage = () => {
   const [step, setStep] = useState(1);
   const [idUser, setIdUser] = useState();
   const [idUmkm, setIdUmkm] = useState();
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const { user } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    if (user) {
-      const userRole = user.role;
-
-      if (userRole === "superAdmin") {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
-      }
-    }
-  }, [user]);
-
-  useEffect(() => {
     dispatch(getMe(null));
   }, [dispatch]);
-
-  if (!isLoggedIn) {
-    return <Navigate to="/login" />;
-  }
 
   // Function to handle sidebar menu click
   const handleMenuClick = (stepNumber, id) => {
@@ -83,7 +66,7 @@ const DashboardRtPage = () => {
 
   return (
     <>
-      <Navbar onLogout={onLogout} user={user.name} />
+      <Navbar onLogout={onLogout} user={user?.name} />
       <div className="container mx-auto pt-28">
         <div className="flex flex-row gap-6 mx-4 mt-4">
           {/* sidebar */}

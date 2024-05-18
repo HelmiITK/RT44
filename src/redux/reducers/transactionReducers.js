@@ -11,9 +11,12 @@ const transactionSlice = createSlice({
     setTransaction: (state, action) => {
       state.transaction = action.payload;
     },
+    setUpdateVerify: (state, action) => {
+      state.transaction = action.payload;
+    },
   },
 });
 
-export const { setTransaction } = transactionSlice.actions;
+export const { setTransaction, setUpdateVerify } = transactionSlice.actions;
 
 export default transactionSlice.reducer;
