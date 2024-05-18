@@ -67,18 +67,28 @@ const UbahPassword = () => {
    }
 
    return (
-      <div className="container mx-auto flex flex-col gap-2 justify-center items-center relative pt-10">
-         <img src={GambarPerbaruiPass} alt="" className="absolute -z-10 top-0" />
-         {/* button back to profile */}
+      <div className="container mx-auto lg:flex lg:flex-col lg:gap-2 lg:justify-center lg:items-center lg:relative lg:pt-10">
+         <img src={GambarPerbaruiPass} alt="" className="lg:absolute -z-10 top-0" />
+         {/* button back to profile web*/}
          <Link
             as={Link}
             to={'/myprofile'}
-            className="capitalize hover:underline hover:scale-105 duration-300 flex gap-2 items-center   "
+            className="hidden lg:flex capitalize hover:underline hover:scale-105 duration-300  gap-2 items-center"
          >
-            <IoMdArrowRoundBack />
-            <h1>kembali ke profile</h1>
+            <IoMdArrowRoundBack className=""/>
+            <h1 className="">kembali ke profile</h1>
          </Link>
-         <div className="rounded-lg p-8 flex flex-col gap-4 justify-center items-center w-[40%] mt-2 shadow-xl drop-shadow-xl bg-white bg-opacity-45">
+         {/* button back to profile hp*/}
+         <Link
+            as={Link}
+            to={'/myprofile'}
+            className="absolute top-0 flex items-center gap-2 ml-4 mt-4 lg:hidden"
+         >
+            <IoMdArrowRoundBack className=""/>
+            <h1 className="">kembali ke profile</h1>
+         </Link>
+         {/* mode web */}
+         <div className="hidden lg:flex rounded-lg p-8 flex-col gap-4 justify-center items-center w-[40%] mt-2 shadow-xl drop-shadow-xl bg-white bg-opacity-45">
             <h1 className="capitalize text-4xl font-semibold">ubah password</h1>
             <form onSubmit={handleUpdatePassword} className="flex flex-col gap-5">
                <label htmlFor="lama" className="flex flex-row gap-6 items-center">
@@ -129,6 +139,79 @@ const UbahPassword = () => {
                         value={confirmPassword}
                         onChange={handleChangeConfirmPassword}
                         className="bg-white bg-opacity-70 py-2 px-4 rounded-lg"
+                     />
+                     <span
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                        onClick={toggleConfirmPasswordVisibility}
+                     >
+                        {showConfirmPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+                     </span>
+                  </div>
+               </label>
+               {/* error message */}
+               {error && <p className="text-red-500">{error}</p>}
+               {/* update password */}
+               <button
+                  type="submit"
+                  className="capitalize rounded-lg border-none bg-white py-2 mt-4 font-medium text-green-700 hover:scale-105 duration-300 hover:drop-shadow-xl"
+               >
+                  perbarui kata sandi
+               </button>
+            </form>
+         </div>
+
+         {/* mode hp */}
+         <div className="flex rounded-lg p-8 flex-col gap-6 justify-center shadow-xl drop-shadow-xl bg-white bg-opacity-45 lg:hidden">
+            <h1 className="capitalize text-2xl font-semibold">ubah password</h1>
+            <form onSubmit={handleUpdatePassword} className="flex flex-col gap-4">
+               <label htmlFor="lama" className="flex flex-col gap-2">
+                  <h1 className="capitalize font-medium w-full">kata sandi lama</h1>
+                  <div className="relative">
+                     <input
+                        type={showPasswordLama ? "text" : "password"}
+                        name="lama"
+                        id="lama"
+                        value={passwordLama}
+                        onChange={handleChangePasswordLama}
+                        className="bg-white bg-opacity-70 py-2 px-4 rounded-lg w-full border border-green-300 shadow-sm"
+                     />
+                     <span
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                        onClick={togglePasswordLamaVisibility}
+                     >
+                        {showPasswordLama ? <FaRegEyeSlash /> : <FaRegEye />}
+                     </span>
+                  </div>
+               </label>
+               <label htmlFor="baru" className="flex flex-col gap-2">
+                  <h1 className="capitalize font-medium w-full">kata sandi baru</h1>
+                  <div className="relative">
+                     <input
+                        type={showPasswordBaru ? "text" : "password"}
+                        name="baru"
+                        id="baru"
+                        value={passwordBaru}
+                        onChange={handleChangePasswordBaru}
+                        className="bg-white bg-opacity-70 py-2 px-4 rounded-lg w-full border border-green-300 shadow-sm"
+                     />
+                     <span
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                        onClick={togglePasswordBaruVisibility}
+                     >
+                        {showPasswordBaru ? <FaRegEyeSlash /> : <FaRegEye />}
+                     </span>
+                  </div>
+               </label>
+               <label htmlFor="konfirmasi" className="flex flex-col gap-2">
+                  <h1 className="capitalize font-medium w-full">konfirmasi kata sandi baru</h1>
+                  <div className="relative">
+                     <input
+                        type={showConfirmPassword ? "text" : "password"}
+                        name="konfirmasi"
+                        id="konfirmasi"
+                        value={confirmPassword}
+                        onChange={handleChangeConfirmPassword}
+                        className="bg-white bg-opacity-70 py-2 px-4 rounded-lg w-full border border-green-300 shadow-sm"
                      />
                      <span
                         className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer"

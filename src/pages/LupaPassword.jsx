@@ -117,7 +117,6 @@ const LupaPassword = () => {
                   </div>
                </label>
                {error && <p className="text-red-500">{error}</p>}
-               {/* {success && <p className="text-green-500">Kata sandi berhasil diperbarui! Anda akan diarahkan ke halaman login.</p>} */}
                <button
                   type="submit"
                   className="font-medium border-none bg-primary rounded-lg py-2 px-4 mt-4 text-white capitalize hover:scale-105 hover:drop-shadow-lg duration-300"

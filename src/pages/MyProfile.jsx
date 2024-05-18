@@ -179,6 +179,13 @@ const MyProfile = () => {
                 <h1 className="text-sm font-light text-slate-600">Alamat</h1>
                 <p>{profile.address}</p>
               </div>
+              <Link
+                as={Link}
+                to={`/ubah_password/${user?.id}`}
+                className="text-black capitalize border border-black bg-primary rounded-lg mt-4 py-2"
+              >
+                ubah kata sandi
+              </Link>
             </div>
           </div>
         </div>
