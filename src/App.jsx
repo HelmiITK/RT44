@@ -5,7 +5,6 @@ import MyProfile from "./pages/MyProfile";
 import Umkm from "./pages/UmkmRt";
 import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import LetterRequest from "./pages/PermohonanSurat/LetterRequest";
 
 import DashboardWargaPage from "./pages/DashboardWarga/DashboardWargaPage";
 import DashboardRtPage from "./pages/DashboardRT/DashboardRtPage";
@@ -33,8 +32,14 @@ function App() {
             }
           />
           <Route path="/umkm" element={<Umkm />} />
-          <Route path="/myprofile" element={<MyProfile />} />
-          <Route path="/letter_req" element={<LetterRequest />} />
+          <Route
+            path="/myprofile"
+            element={
+              <Protected>
+                <MyProfile />
+              </Protected>
+            }
+          />
           <Route
             path="/dashboard_warga"
             element={
@@ -67,16 +72,16 @@ function App() {
               </Protected>
             }
           />
-
           <Route
             path={`/lupa_password`}
             element={
-              <LupaPassword />
+              <NoAccessToken>
+                <LupaPassword />
+              </NoAccessToken>
             }
           />
-
-          <Route path="*" element={<NotFoundPage />} />
           <Route path="/unauthorized" element={<UnauthorizedPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
     </>

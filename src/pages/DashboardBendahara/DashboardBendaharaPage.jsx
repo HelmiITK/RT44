@@ -36,7 +36,7 @@ const DashboardBendaharaPage = () => {
             dispatch(logout());
             navigate("/");
          } else {
-            navigate("/dashboard_sekretaris");
+            navigate("/dashboard_bendahara");
          }
       });
    };

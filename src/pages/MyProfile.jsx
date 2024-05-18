@@ -1,15 +1,18 @@
 import { FaHouseUser } from "react-icons/fa";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { getMe } from "../redux/actions/authActions";
+import { getMe, logout } from "../redux/actions/authActions";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.css";
 
 const MyProfile = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [profile, setProfile] = useState({
     image: "",
     nik: "",
@@ -36,6 +39,25 @@ const MyProfile = () => {
     }
   }, [user]);
 
+  const onLogout = () => {
+    Swal.fire({
+      title: "Konfirmasi Logout",
+      text: "Apakah Anda yakin ingin keluar?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Ya, Keluar!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(logout());
+        navigate("/");
+      } else {
+        navigate("/myprofile");
+      }
+    });
+  };
+
   useEffect(() => {
     dispatch(getMe(null));
   }, [dispatch]);
@@ -52,7 +74,7 @@ const MyProfile = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar user={user?.name} onLogout={onLogout} />
       {/* mode tablet dan web */}
       <div className="relative hidden lg:block" ref={linkRef}>
         <img
