@@ -16,6 +16,7 @@ import Protected from "./security/Protected";
 import UnauthorizedPage from "./pages/UnauthorizedPage";
 
 import LupaPassword from "./pages/LupaPassword";
+import UbahPassword from "./pages/UbahPassword";
 
 function App() {
   return (
@@ -78,6 +79,14 @@ function App() {
               <NoAccessToken>
                 <LupaPassword />
               </NoAccessToken>
+            }
+          />
+          <Route
+            path={'/ubah_password/:id'}
+            element={
+              <Protected>
+                <UbahPassword />
+              </Protected>
             }
           />
           <Route path="/unauthorized" element={<UnauthorizedPage />} />

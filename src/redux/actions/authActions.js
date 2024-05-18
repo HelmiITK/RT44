@@ -94,3 +94,33 @@ export const resetPassword = (password, confirmPassword, navigate, email) => asy
     }
   }
 };
+
+export const updatePassword = (oldPassword, newPassword, confirmPassword, id) => async (dispatch, getState) => {
+  try {
+    let { token } = getState().auth;
+    const response = await axios.patch(`${api_url}/auth/update/${id}`, {
+      oldPassword,
+      newPassword,
+      confirmPassword
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    if (response.status === 200) {
+      toast.success("Password berhasil diperbarui");
+    }
+
+  } catch (error) {
+    if (error.response) {
+      if (error.response.status === 404) {
+        toast.error("Kunci reset tidak valid atau kedaluwarsa");
+      } if (error.response.status === 400) {
+        toast.error("Password atau ulangi password tidak sesuai.");
+      }
+    } else {
+      toast.error("Terjadi kesalahan pada server. Silakan coba lagi nanti.");
+    }
+  }
+}

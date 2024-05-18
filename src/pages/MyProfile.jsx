@@ -24,6 +24,7 @@ const MyProfile = () => {
   });
 
   const { user } = useSelector((state) => state.auth);
+  console.log(user)
 
   useEffect(() => {
     if (user) {
@@ -124,8 +125,17 @@ const MyProfile = () => {
                   <p>{profile.address}</p>
                 </div>
               </div>
+              {/* update password */}
+              <Link
+                as={Link}
+                to={`/ubah_password/${user?.id}`}
+                className="text-white border-2 border-white rounded-lg py-2 px-4 hover:text-black hover:bg-white duration-300 hover:scale-105 hover:shadow-md hover:shadow-white capitalize"
+              >
+                ubah kata sandi
+              </Link>
             </div>
           </div>
+          
         </div>
       </div>
       {/* mode hp */}
