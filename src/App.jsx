@@ -17,6 +17,7 @@ import UnauthorizedPage from "./pages/UnauthorizedPage";
 
 import LupaPassword from "./pages/LupaPassword";
 import UbahPassword from "./pages/UbahPassword";
+import OurTeam from "./pages/OurTeam";
 
 function App() {
   return (
@@ -88,6 +89,10 @@ function App() {
                 <UbahPassword />
               </Protected>
             }
+          />
+          <Route
+            path={'/our_team'}
+            element={<OurTeam/>}
           />
           <Route path="/unauthorized" element={<UnauthorizedPage />} />
           <Route path="*" element={<NotFoundPage />} />

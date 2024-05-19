@@ -4,6 +4,7 @@ import CopyRight from "./CopyRight"
 import { IoArrowUp } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import { PropTypes } from "prop-types"
+import { Link } from "react-router-dom";
 
 const Footer = ({ linkRef, goto }) => {
    const [showScrollToTop, setShowScrollToTop] = useState(false);
@@ -59,10 +60,27 @@ const Footer = ({ linkRef, goto }) => {
                   <div className="flex flex-col gap-3">
                      <h1 className="text-base font-medium">Tautan Langsung</h1>
                      <ul className="text-sm font-light flex flex-col gap-2">
-                        <li className="cursor-pointer hover:text-orange-500">Halaman</li>
-                        <li className="cursor-pointer hover:text-orange-500">Tentang Kami</li>
-                        <li className="cursor-pointer hover:text-orange-500">Pembayaran</li>
-                        <li className="cursor-pointer hover:text-orange-500">Permohonan Surat</li>
+                        <Link
+                           as={Link}
+                           to={'our_team'}
+                           className="cursor-pointer hover:text-orange-500 hover:underline"
+                        >
+                           Tentang Kami
+                        </Link>
+                        <Link
+                           as={Link}
+                           to={'/dashboard_warga'}
+                           className="cursor-pointer hover:text-orange-500 hover:underline"
+                        >
+                           Layanan Warga
+                        </Link>
+                        <Link
+                           as={Link}
+                           to={'/umkm'}
+                           className="cursor-pointer hover:text-orange-500 hover:underline"
+                        >
+                           UMKM
+                        </Link>
                      </ul>
                   </div>
                   <div className="flex flex-col gap-3">

@@ -62,7 +62,7 @@ const UmkmRt = () => {
   return (
     <div>
       <Navbar user={user?.name} onLogout={onLogout} />
-      <div className="container mx-auto pt-28 lg:pt-32" ref={linkRef}>
+      <div className="container mx-auto pt-28 lg:pt-32 mb-8" ref={linkRef}>
         {/* button back to home */}
         <Link
           as={Link}
