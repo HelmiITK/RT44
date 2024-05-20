@@ -8,8 +8,10 @@ import { VscAccount } from "react-icons/vsc";
 import { IoCashOutline } from "react-icons/io5";
 import ProfileWargaWeb from "../../components/ProfileWargaWeb";
 import ValidasiPembayaranPage from "./ValidasiPembayaran/ValidasiPembayaranPage";
+import ManajemenIuranSukarela from "./ManajemenIuranSukarela/ManajemenIuranSukarela";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.css";
+import { BiDonateHeart } from "react-icons/bi";
 
 import { getMe, logout } from "../../redux/actions/authActions";
 
@@ -87,6 +89,17 @@ const DashboardBendaharaPage = () => {
                     <p className="text-lg capitalize">Pembayaran Warga</p>
                   </Link>
 
+                  {/* Manajemen iuran sukarela */}
+                  <Link
+                    as={Link}
+                    // to={}
+                    onClick={() => handleMenuClick(4)}
+                    className="flex items-center gap-3 py-2 pl-5 mt-2 duration-300 hover:bg-gray-200 hover:rounded-lg"
+                  >
+                    <BiDonateHeart className="w-6 h-6 text-gray-600" />
+                    <p className="text-lg capitalize">iuran sukarela</p>
+                  </Link>
+
                   <div className="w-full h-px px-6 mt-4 bg-gray-300"></div>
 
                   {/* profile akun */}
@@ -122,6 +135,11 @@ const DashboardBendaharaPage = () => {
               <ValidasiPembayaranPage
                 handleMenuClick={handleMenuClick}
                 step={step}
+              />
+            )}
+
+            {step === 4 && (
+              <ManajemenIuranSukarela
               />
             )}
 

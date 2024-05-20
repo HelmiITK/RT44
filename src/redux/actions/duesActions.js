@@ -71,3 +71,16 @@ export const falseDues = () => async (dispatch) => {
     swal("error", "ERROR", error.message);
   }
 };
+
+export const createIuranSukarela = (duesName) => async () => {
+  try {
+    const response = await axios.post(`${api_url}/dues/voluntary`, { duesName }, {
+      headers: {'Content-Type': 'application/json'}
+    });
+    if (response.status === 201) {
+      swal("success", "Iuran Sukarela Berhasil Diamabahkan", response.data.message)
+    }
+  } catch (error) {
+    swal("error", "ERROR", error.message);
+  }
+}
