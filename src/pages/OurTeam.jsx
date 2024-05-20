@@ -1,13 +1,20 @@
 import bgITK from "../assets/bg-itk.jpeg";
-import helmi from "../assets/helmi.jpg";
 import logoITK from "../assets/Logo ITK.png"
 import { FaInstagram } from "react-icons/fa";
+import helmi from "../assets/helmi.png";
+import rajab from "../assets/Rajab.png";
+import rudi from "../assets/Rudi.png";
+import asry from "../assets/Asry.png";
+import sarah from "../assets/Sarah.png";
+import sulindah from "../assets/Sulindah.png";
+import jio from "../assets/jio.png"
+
 
 const OurTeam = () => {
    const Team = [
       {
          nama: "helmi",
-         job: "tim pengembang",
+         job: "tim pengembang (Ketua)",
          prodi: "informatika",
          kelahiran: "Muara Badak, 22 Juni 2002",
          sosmed: "https://www.instagram.com/helmitwzzz/",
@@ -17,64 +24,64 @@ const OurTeam = () => {
       },
       {
          nama: "nur ali rajab",
-         job: "tim pengembang",
+         job: "tim pengembang (Perkamjin)",
          prodi: "informatika",
          kelahiran: "Sotek, 03 September 2003",
          sosmed: "https://www.instagram.com/helmitwzzz/",
-         quotes: "jangan takut badai hari ini bisa jadi besok pelangi keindahan menghampiri mu",
-         foto: helmi,
+         quotes: "anu po itulah pokoknya",
+         foto: rajab,
          tagIg: "@_alirajab3",
       },
       {
-         nama: "nur ali rajab",
-         job: "tim pengembang",
-         prodi: "informatika",
-         kelahiran: "Sotek, 03 September 2003",
-         sosmed: "https://www.instagram.com/helmitwzzz/",
-         quotes: "jangan takut badai hari ini bisa jadi besok pelangi keindahan menghampiri mu",
-         foto: helmi,
-         tagIg: "@_alirajab3",
+         nama: "Rudi Subriyanto",
+         job: "Perkamjin",
+         prodi: " Informatika",
+         kelahiran: "Balikpapan, 28 Agustus 2002",
+         sosmed: "https://www.instagram.com/rudi_subriyanto?igsh=cXJ0eHFzOXcwNWtm",
+         quotes: "Waktu tidak bisa di ulang lagi, waktu akan terus maju kedepan. jangan sedih karena itu telah berakhir tapi berbahagialah karena itu pernah terjadi.",
+         foto: rudi,
+         tagIg: "@rudi_subriyanto",
       },
       {
-         nama: "nur ali rajab",
-         job: "tim pengembang",
-         prodi: "informatika",
-         kelahiran: "Sotek, 03 September 2003",
-         sosmed: "https://www.instagram.com/helmitwzzz/",
-         quotes: "jangan takut badai hari ini bisa jadi besok pelangi keindahan menghampiri mu",
-         foto: helmi,
-         tagIg: "@_alirajab3",
+         nama: "Asry",
+         job: "Sekretaris",
+         prodi: "Sistem Informasi",
+         kelahiran: "Kuaro, 13 Januari 2003",
+         sosmed: "https://www.instagram.com/asryatiii",
+         quotes: "apapun yang terjadi, jangan lewatkan indomie kari 🤙",
+         foto: asry,
+         tagIg: "@asryatiii",
       },
       {
-         nama: "nur ali rajab",
-         job: "tim pengembang",
-         prodi: "informatika",
-         kelahiran: "Sotek, 03 September 2003",
-         sosmed: "https://www.instagram.com/helmitwzzz/",
-         quotes: "jangan takut badai hari ini bisa jadi besok pelangi keindahan menghampiri mu",
-         foto: helmi,
-         tagIg: "@_alirajab3",
+         nama: "Sarah Najwa",
+         job: "PDD",
+         prodi: "Sistem Informasi",
+         kelahiran: "Balikpapan, 23 Maret 2003",
+         sosmed: "https://www.instagram.com/heysarnaj?igsh=MThwYWw3Mmtna2RmNg%3D%3D&utm_source=qr",
+         quotes: "Hidup memang sulit. Kalau gamau sulit tidur aja",
+         foto: sarah,
+         tagIg: "@heysarnaj",
       },
       {
-         nama: "nur ali rajab",
-         job: "tim pengembang",
-         prodi: "informatika",
-         kelahiran: "Sotek, 03 September 2003",
-         sosmed: "https://www.instagram.com/helmitwzzz/",
-         quotes: "jangan takut badai hari ini bisa jadi besok pelangi keindahan menghampiri mu",
-         foto: helmi,
-         tagIg: "@_alirajab3",
+         nama: "Jio Wilson",
+         job: "Designer",
+         prodi: "Sistem Informasi",
+         kelahiran: "Balikpapan, 03 Oktober 2003",
+         sosmed: "https://www.instagram.com/jio.wilson/",
+         quotes: "It's not good to expect too much, but you can't do anything if you're being overly pessimistic. If you just wait thinking it's useless, nothing will come of it",
+         foto: jio,
+         tagIg: "@jio.wilson",
       },
       {
-         nama: "nur ali rajab",
-         job: "tim pengembang",
-         prodi: "informatika",
-         kelahiran: "Sotek, 03 September 2003",
-         sosmed: "https://www.instagram.com/helmitwzzz/",
-         quotes: "jangan takut badai hari ini bisa jadi besok pelangi keindahan menghampiri mu",
-         foto: helmi,
-         tagIg: "@_alirajab3",
-      }
+         nama: "Sulindah Permatasari",
+         job: "Bendahara",
+         prodi: "Ilmu Aktuaria",
+         kelahiran: "Balikpapan, 27 Juni 2003",
+         sosmed: "https://www.instagram.com/sulindahhh_?igsh=ZDIwN282cGIzY2Ew&utm_source=qr",
+         quotes: " healing - healing - wisuda",
+         foto: sulindah,
+         tagIg: "@Sulindahhh_",
+      },
    ]
    return (
       <>
@@ -82,12 +89,13 @@ const OurTeam = () => {
          {/* mode hp */}
          <div className="container mx-auto lg:hidden">
             <div className="relative flex flex-col gap-4 items-center bg-cyan-100">
-               {/* <img
-               src={bgITK}
-               alt="foto itk"
-               className="absolute h-screen object-cover w-full"
-            /> */}
-               <h2 className="text-2xl font-bold mt-5">Our Team</h2>
+               <div className="mt-4 flex gap-4 items-center">
+                  <img src={logoITK} alt="logo itk" className="w-28" />
+                  <div>
+                     <h2 className="text-2xl font-bold font-serif ">Our Team</h2>
+                     <h2 className="text-2xl font-bold font-serif ">KKN B1 2023-2024</h2>
+                  </div>
+               </div>
                <div className="mx-2 mt-2 grid grid-cols-1 gap-8">
                   {/* card profile 1 */}
                   {Team.map((item, i) => (
@@ -96,6 +104,7 @@ const OurTeam = () => {
                            <img
                               src={item?.foto}
                               alt="car!"
+                              className=""
                            />
                         </figure>
                         <div className="card-body">
@@ -162,7 +171,7 @@ const OurTeam = () => {
                            </div>
                            <div className="h-px w-full bg-gray-600"></div>
                            <div className="card-actions ">
-                              <q className="text-sm font-light italic font-sans text-gray-500">{item?.quotes}</q>
+                              <q className="text-sm font-light italic font-sans text-white bg-gray-400 rounded-md py-1 px-2">{item?.quotes}</q>
                               <a
                                  href={item?.sosmed}
                                  target="_blank"
