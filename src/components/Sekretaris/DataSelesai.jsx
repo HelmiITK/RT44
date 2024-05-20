@@ -2,11 +2,8 @@ import { useEffect } from "react";
 import PropTypes from "prop-types";
 
 const DataSelesai = ({ letter }) => {
-  //   const dispatch = useDispatch();
-
   useEffect(() => {}, [letter]);
 
-  console.log(letter);
   return (
     <div className="hidden p-8 mt-4 border-2 rounded-lg shadow-lg border-slate-300 lg:block">
       <div className="overflow-x-auto">
@@ -36,6 +33,7 @@ const DataSelesai = ({ letter }) => {
                     <h1>{item.Latter?.perpous}</h1>
                   </div>
                 </td>
+
                 <th>
                   {item.status === "Selesai" && (
                     <div className="px-4 py-2 font-medium text-white capitalize bg-green-500 border-none rounded-md">

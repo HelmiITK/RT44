@@ -1,7 +1,7 @@
-// import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import { CiEdit } from "react-icons/ci";
-// import { AiOutlineDelete } from "react-icons/ai";
 import PropTypes from "prop-types";
 
 import { updateStatusLetter } from "../../redux/actions/latterActions";
@@ -54,10 +54,12 @@ const DataPengajuanSurat = ({ handleMenuClick, letter }) => {
                     >
                       <CiEdit className="w-6 h-6" />
                     </button>
-                    {/* button hapus
-                    <button className="p-3 duration-300 rounded-lg bg-slate-300 hover:bg-red-500 hover:text-white">
-                      <AiOutlineDelete className="w-6 h-6" />
-                    </button> */}
+                    <button
+                      className="px-4 py-2 font-medium text-white capitalize bg-blue-500 border-none rounded-md"
+                      onClick={() => handleMenuClick(7, item.Latter?.id)}
+                    >
+                      Buka Surat
+                    </button>
                   </div>
                 </td>
                 <th>

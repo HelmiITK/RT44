@@ -16,6 +16,7 @@ import PengajuanSuratPage from "./PengajuanSurat/PengajuanSuratPage";
 import DataMasyarakat from "./DataMasyarakat/DataMasyarakat";
 import EditMasyarakat from "../../components/Sekretaris/EditMasyarakat";
 import EditPengajuanSurat from "../../components/Sekretaris/EditPengajuanSurat";
+import PdfViewerPage from "../PdfViewer";
 
 import { getMe, logout } from "../../redux/actions/authActions";
 
@@ -156,6 +157,7 @@ const DashboardSekretarisPage = () => {
 
             {/* myprofile tiap role */}
             {step === 6 && <ProfileWargaWeb />}
+            {step === 7 && <PdfViewerPage id={letterId} />}
           </div>
         </div>
       </div>

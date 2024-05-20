@@ -12,6 +12,9 @@ import DashboardRtPage from "./pages/DashboardRT/DashboardRtPage";
 import DashboardSekretarisPage from "./pages/DashboardSekretaris/DashboardSekretarisPage";
 import DashboardBendaharaPage from "./pages/DashboardBendahara/DashboardBendaharaPage";
 
+import SuratPengantar from "./pages/PdfViewer";
+import SuratPengantarPage from "./components/SuratPengantar";
+
 function App() {
   return (
     <>
@@ -28,11 +31,15 @@ function App() {
             path="/dashboard_sekretaris"
             element={<DashboardSekretarisPage />}
           />
+          <Route path="/surat-pengantar" element={<SuratPengantar />} />
           <Route
             path="/dashboard_bendahara"
             element={<DashboardBendaharaPage />}
           />
-
+          <Route
+            path="/surat-pengantar-page"
+            element={<SuratPengantarPage />}
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
