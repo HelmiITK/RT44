@@ -1,42 +1,78 @@
-import QrCodeBayar from "../../assets/qrcodeBayar.png"
-import FormatFoto from "../../assets/formatfoto.png"
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import PropTypes from "prop-types";
+import Swal from "sweetalert2";
 
-const QrCodeComponent = () => {
+import QrCodeBayar from "../../assets/qrcodeBayar.png";
+import FormatFoto from "../../assets/formatfoto.png";
+import { transactionObligate } from "../../redux/actions/transactionActions";
+
+const QrCodeComponent = ({ handleMenuClick, duesId, userId }) => {
+  const dispatch = useDispatch();
+
+  const [linkProofpayment, setLinkProofpayment] = useState("");
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append("linkProofPayment", file);
+    setLinkProofpayment(formData);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    Swal.fire({
+      title: "Loading...",
+      text: "Please wait while the data is being updated",
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      },
+    });
+    dispatch(transactionObligate(duesId, userId, linkProofpayment))
+      .then(() => {
+        Swal.close();
+        Swal.fire("Success", "Pembayaran Berhasil", "success").then(() => {
+          handleMenuClick(2);
+        });
+      })
+      .catch((error) => {
+        Swal.close(); // Close the loading indicator
+        Swal.fire("Error", error.message, "error");
+      });
+  };
+
   return (
-    <>
-      {/* mode hp */}
-      <div className="flex flex-col gap-4 lg:hidden">
-        <div className="border-[1px] border-black flex flex-col gap-4 justify-center items-center p-4">
-          <h1 className="capitalize font-semibold text-xl">upload gambar</h1>
-          <div className="flex flex-col justify-center items-center gap-4 bg-gray-200 w-full py-6">
-            <img src={FormatFoto} alt="" className="w-32" />
-            <h2 className="text-gray-400 font-medium">Format jpg. png. jpeg.</h2>
-            <input type="file" name="" id="" className="w-1/2" />
-          </div>
-          <button type="" className="capitalize bg-blue-500 text-white font-medium py-2 px-8 rounded-lg w-">
-            submit
-          </button>
+    <div className="flex flex-col gap-4">
+      <div className="border-[1px] border-black flex flex-col gap-4 justify-center items-center p-4">
+        <h1 className="text-xl font-semibold capitalize">upload gambar</h1>
+        <div className="flex flex-col items-center justify-center w-full gap-4 py-6 bg-gray-200">
+          <img src={FormatFoto} alt="" className="w-32" />
+          <h2 className="font-medium text-gray-400">Format jpg. png. jpeg.</h2>
+          <input
+            type="file"
+            name="linkProofpayment"
+            id="linkProofpayment"
+            className="w-1/2"
+            onChange={handleFileChange}
+          />
         </div>
-        <img src={QrCodeBayar} alt="" className="w-full mb-8" />
+        <button
+          type=""
+          className="px-8 py-2 font-medium text-white capitalize bg-blue-500 rounded-lg w-"
+          onClick={handleSubmit}
+        >
+          submit
+        </button>
       </div>
+      <img src={QrCodeBayar} alt="" className="w-full mb-8" />
+    </div>
+  );
+};
 
-      {/* mode web */}
-      <div className="flex flex-row items-start gap-10 w-full">
-        {/* upload bukti tf */}
-        <div className="flex flex-col gap-4 border-2 border-black p-8 bg-white rounded-lg shadow-lg w-1/2">
-          <h1 className="capitalize font-medium text-lg text-center mb-5">upload bukti pembayaran</h1>
-          <div className="flex flex-col justify-center items-center gap-4 bg-gray-200 w-full py-6">
-            <img src={FormatFoto} alt="" className="w-32" />
-            <h2 className="text-gray-400 font-medium">Format jpg. png. jpeg.</h2>
-            <input type="file" name="" id="" className="w-1/2" />
-          </div>
-          <button className="border-none bg-primary hover:bg-green-500 duration-300 rounded-lg py-2 px-4 text-white font-medium capitalize mt-6">submit</button>
-        </div>
-        {/* qrcode */}
-        <img src={QrCodeBayar} alt="" className="w-1/2 mb-8" />
-      </div>
-    </>
-  )
-}
+QrCodeComponent.propTypes = {
+  handleMenuClick: PropTypes.func,
+  duesId: PropTypes.number,
+  userId: PropTypes.number,
+};
 
-export default QrCodeComponent
+export default QrCodeComponent;

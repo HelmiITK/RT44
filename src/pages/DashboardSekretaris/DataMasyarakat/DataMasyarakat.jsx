@@ -1,81 +1,109 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { CiEdit } from "react-icons/ci";
 import { AiOutlineDelete } from "react-icons/ai";
-import PropTypes from "prop-types"
+import Swal from "sweetalert2";
+import PropTypes from "prop-types";
+
+import { getUser, removeUser } from "../../../redux/actions/userActions";
 
 const DataMasyarakat = ({ handleMenuClick }) => {
-   return (
-      <div className="flex flex-col items-center gap-4">
-         {/* heading */}
-         <div className="border-2 border-slate-300 rounded-lg py-6 flex flex-col gap-2 items-center w-full">
-            <h1 className="uppercase text-2xl font-bold">jumlah masyarakat</h1>
-            <h2 className="font-bold text-4xl">10</h2>
-         </div>
-         {/* konten data */}
-         <div className="border-2 border-slate-300 rounded-lg shadow-lg p-8 w-full">
-            <div className="overflow-x-auto">
-               <table className="table">
-                  {/* head */}
-                  <thead>
-                     <tr>
-                        <th>Nama</th>
-                        <th>Alamat</th>
-                        <th>No KK/KTP</th>
-                        <th>NIK</th>
-                        <th>Jumlah Anak</th>
-                        <th>Status Rumah</th>
-                        <th></th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     {/* row 1 */}
-                     <tr>
-                        <td>
-                           <div className="flex items-center gap-3">
-                              <div className="font-bold">Hart Hagerty</div>
-                           </div>
-                        </td>
-                        <td>
-                           Jln kenari rt69 no 20
-                        </td>
-                        <td >
-                           <div className="flex items-center gap-2 ">
-                              54577888974435
-                           </div>
-                        </td>
-                        <td>
-                           <h1>123456789</h1>
-                        </td>
-                        <td>
-                           <h1>3</h1>
-                        </td>
-                        <td>
-                           <h1>Beli</h1>
-                        </td>
-                        <th>
-                           <div className="flex gap-2 items-center">
-                              {/* button edit */}
-                              <button
-                                 onClick={() => handleMenuClick(4)}
-                                 className="rounded-lg p-3 bg-slate-300 hover:bg-primary hover:text-white duration-300">
-                                 <CiEdit className="w-6 h-6" />
-                              </button>
-                              {/* button hapus */}
-                              <button className="rounded-lg p-3 bg-slate-300 hover:bg-red-500 hover:text-white duration-300">
-                                 <AiOutlineDelete className="w-6 h-6" />
-                              </button>
-                           </div>
-                        </th>
-                     </tr>
-                  </tbody>
-               </table>
-            </div>
-         </div>
-      </div>
-   )
-}
+  const dispatch = useDispatch();
 
-export default DataMasyarakat
+  const { user } = useSelector((state) => state.user);
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Apakah anda yakin?",
+      text: "Data yang dihapus tidak dapat dikembalikan!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Ya, hapus!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(removeUser(id));
+        Swal.fire("Dihapus!", "Data anggota telah dihapus.", "success");
+      }
+    });
+  };
+
+  console.log(user);
+  return (
+    <div className="flex flex-col items-center gap-4">
+      {/* heading */}
+      <div className="flex flex-col items-center w-full gap-2 py-6 border-2 rounded-lg border-slate-300">
+        <h1 className="text-2xl font-bold uppercase">jumlah masyarakat</h1>
+        <h2 className="text-4xl font-bold">{user.length}</h2>
+      </div>
+      {/* konten data */}
+      <div className="w-full p-8 border-2 rounded-lg shadow-lg border-slate-300">
+        <div className="overflow-x-auto">
+          <table className="table">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>Nama</th>
+                <th>Alamat</th>
+                <th>No KK</th>
+                <th>NIK</th>
+                <th>Jumlah Anggota</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* row 1 */}
+              {user.map((item, i) => (
+                <tr key={i}>
+                  <td>
+                    <div className="flex items-center gap-3">
+                      <div className="font-bold">{item.name}</div>
+                    </div>
+                  </td>
+                  <td>{item.address}</td>
+                  <td>
+                    <div className="flex items-center gap-2 ">{item.nkk}</div>
+                  </td>
+                  <td>
+                    <h1>{item.nik}</h1>
+                  </td>
+                  <td>
+                    <h1>{item.member}</h1>
+                  </td>
+                  <th>
+                    <div className="flex items-center gap-2">
+                      {/* button edit */}
+                      <button
+                        onClick={() => handleMenuClick(4, item.id)}
+                        className="p-3 duration-300 rounded-lg bg-slate-300 hover:bg-primary hover:text-white"
+                      >
+                        <CiEdit className="w-6 h-6" />
+                      </button>
+                      {/* button hapus */}
+                      <button
+                        onClick={() => handleDelete(item.id)}
+                        className="p-3 duration-300 rounded-lg bg-slate-300 hover:bg-red-500 hover:text-white"
+                      >
+                        <AiOutlineDelete className="w-6 h-6" />
+                      </button>
+                    </div>
+                  </th>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DataMasyarakat;
 
 DataMasyarakat.propTypes = {
-   handleMenuClick: PropTypes.func
-}
+  handleMenuClick: PropTypes.func,
+};
