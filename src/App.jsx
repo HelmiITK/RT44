@@ -5,62 +5,101 @@ import MyProfile from "./pages/MyProfile";
 import Umkm from "./pages/UmkmRt";
 import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import LetterRequest from "./pages/PermohonanSurat/LetterRequest";
 
 import DashboardWargaPage from "./pages/DashboardWarga/DashboardWargaPage";
 import DashboardRtPage from "./pages/DashboardRT/DashboardRtPage";
 import DashboardSekretarisPage from "./pages/DashboardSekretaris/DashboardSekretarisPage";
 import DashboardBendaharaPage from "./pages/DashboardBendahara/DashboardBendaharaPage";
 
-function App() {
+import NoAccessToken from "./security/NoAccessToken";
+import Protected from "./security/Protected";
+import UnauthorizedPage from "./pages/UnauthorizedPage";
 
+import LupaPassword from "./pages/LupaPassword";
+import UbahPassword from "./pages/UbahPassword";
+import OurTeam from "./pages/OurTeam";
+
+function App() {
   return (
     <>
       <Router>
         <Routes>
-          <Route
-            path="/"
-            element={<HomePage />}
-          />
+          <Route path="/" element={<HomePage />} />
           <Route
             path="/login"
-            element={<LoginPage />}
+            element={
+              <NoAccessToken>
+                <LoginPage />
+              </NoAccessToken>
+            }
           />
-          <Route
-            path="/umkm"
-            element={<Umkm />}
-          />
+          <Route path="/umkm" element={<Umkm />} />
           <Route
             path="/myprofile"
-            element={<MyProfile />}
-          />
-          <Route
-            path="/letter_req"
-            element={<LetterRequest />}
+            element={
+              <Protected>
+                <MyProfile />
+              </Protected>
+            }
           />
           <Route
             path="/dashboard_warga"
-            element={<DashboardWargaPage />}
+            element={
+              <Protected role={"member"}>
+                <DashboardWargaPage />
+              </Protected>
+            }
           />
           <Route
             path="/dashboard_rt"
-            element={<DashboardRtPage />}
+            element={
+              <Protected role={"superAdmin"}>
+                <DashboardRtPage />
+              </Protected>
+            }
           />
           <Route
             path="/dashboard_sekretaris"
-            element={<DashboardSekretarisPage />}
+            element={
+              <Protected role={["sekretaris", "superAdmin"]}>
+                <DashboardSekretarisPage />
+              </Protected>
+            }
           />
           <Route
             path="/dashboard_bendahara"
-            element={<DashboardBendaharaPage />}
+            element={
+              <Protected role={"bendahara"}>
+                <DashboardBendaharaPage />
+              </Protected>
+            }
           />
-          
-
+          <Route
+            path={`/lupa_password`}
+            element={
+              <NoAccessToken>
+                <LupaPassword />
+              </NoAccessToken>
+            }
+          />
+          <Route
+            path={'/ubah_password/:id'}
+            element={
+              <Protected>
+                <UbahPassword />
+              </Protected>
+            }
+          />
+          <Route
+            path={'/our_team'}
+            element={<OurTeam/>}
+          />
+          <Route path="/unauthorized" element={<UnauthorizedPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
     </>
-  )
+  );
 }
 
 export default App;
