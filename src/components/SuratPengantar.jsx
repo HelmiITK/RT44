@@ -6,19 +6,12 @@ import {
   StyleSheet,
   Svg,
   Polygon,
-  Path,
+  // Path,
 } from "@react-pdf/renderer";
-import { Font } from "@react-pdf/renderer";
-import MyCostumFont from "../assets/fonts/Cambria.ttf";
 import PropTypes from "prop-types";
 
 // Font.register({ family: "CambriaFamily", src: MyCostumFont });
-Font.register({
-  family: "Cambria",
-  src: MyCostumFont,
-  fontStyle: "normal",
-  fontWeight: "normal",
-});
+
 
 // Create styles
 
