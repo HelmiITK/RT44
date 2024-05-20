@@ -3,6 +3,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import PropTypes from "prop-types";
 import { IoChevronBackOutline } from "react-icons/io5";
+import qrCode from "../../../assets/qrcodeBayar.png";
+
 
 const IuranSukarelaPage = ({ handleMenuClick }) => {
   const [startDate, setStartDate] = useState(new Date());
@@ -19,7 +21,7 @@ const IuranSukarelaPage = ({ handleMenuClick }) => {
       </button>
       <form action="" className="flex flex-col gap-4">
         {/* tanggal */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-2 items-start">
           <h1 className="font-semibold capitalize">tanggal</h1>
           <DatePicker
             selected={startDate}
@@ -39,18 +41,13 @@ const IuranSukarelaPage = ({ handleMenuClick }) => {
           />
         </label>
         {/* keterangan donasi */}
-        <label htmlFor="donasi" className="flex flex-col gap-2">
-          <span className="font-semibold capitalize">deskripsi iuran</span>
-          <textarea
-            id="donasi"
-            className="textarea textarea-bordered textarea-sm w-full border-[1px] border-black py-2 px-4 shadow-lg"
-          ></textarea>
+        <label htmlFor="donasi" className="flex justify-center items-baseline">
+          <img src={qrCode} alt="qrcode" className="w-1/2"/>
         </label>
         {/* button aksi */}
         <div className="flex items-center justify-center gap-8">
           {/* sumbit */}
           <button
-            onClick={() => handleMenuClick(5)}
             className="px-8 py-3 mt-4 text-lg font-semibold capitalize duration-300 border-none rounded-lg bg-primary hover:text-white hover:bg-green-500 hover:shadow-lg hover:drop-shadow-md"
           >
             submit
