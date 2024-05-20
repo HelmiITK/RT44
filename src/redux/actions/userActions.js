@@ -28,6 +28,7 @@ export const getUser = () => async (dispatch) => {
     const filteredUser = user.slice(3);
     const userCount = filteredUser.length;
     dispatch(setUser(filteredUser, userCount));
+    // console.log(user)
   } catch (error) {
     swal("error", "ERROR", error.message);
   }

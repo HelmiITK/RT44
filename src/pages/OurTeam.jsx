@@ -28,7 +28,7 @@ const OurTeam = () => {
          prodi: "informatika",
          kelahiran: "Sotek, 03 September 2003",
          sosmed: "https://www.instagram.com/helmitwzzz/",
-         quotes: "anu po itulah pokoknya",
+         quotes: "Hidup sekali hiduplah yg berarti, berani hidup tak takut mati, takut mati jangan hidup, takut hidup mati saja",
          foto: rajab,
          tagIg: "@_alirajab3",
       },
