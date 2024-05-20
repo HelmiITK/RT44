@@ -38,6 +38,7 @@ const DashboardWargaPage = ({ duesId, id }) => {
   const [step, setStep] = useState(1);
   const [statusSurat, setStatusSurat] = useState(false);
   const [idDues, setIdDues] = useState(duesId);
+  const [idUser, setIdUser] = useState();
   const [idSukarela, setIdSukarela] = useState(id);
   const [profile, setProfile] = useState({
     name: "",
@@ -46,14 +47,16 @@ const DashboardWargaPage = ({ duesId, id }) => {
   });
 
   // Function to handle sidebar menu click
+
+  const { user } = useSelector((state) => state.auth);
+
   const handleMenuClick = (stepNumber, duesId, id) => {
+    setIdUser(user.id);
     setIdDues(duesId);
     setIdSukarela(id);
     setStep(stepNumber);
     setStatusSurat(stepNumber === 7);
   };
-
-  const { user } = useSelector((state) => state.auth);
 
   const handleBackButtonClick = () => {
     setStep(4); // Set step back to 4 (form surat pengantar)
@@ -382,7 +385,13 @@ const DashboardWargaPage = ({ duesId, id }) => {
               />
             )}
             {step === 4 && <SuratPengantarPage id={profile.idUser} />}
-            {step === 5 && <QrCodeComponent duesId={idDues} />}
+            {step === 5 && (
+              <QrCodeComponent
+                handleMenuClick={handleMenuClick}
+                duesId={idDues}
+                userId={idUser}
+              />
+            )}
             {step === 6 && <ProfileWargaWeb />}
             {step === 7 && <StatusSuratPage id={profile.idUser} />}
             {step === 8 && (

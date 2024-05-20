@@ -182,7 +182,7 @@ const SuratPengantarPage = ({ id }) => {
                   >
                     <option value="">Pilih Agama</option>
                     <option value="Islam">Islam</option>
-                    <option value="Protestan">Protestan</option>
+                    <option value="Kristen">Kristen</option>
                     <option value="Katolik">Katolik</option>
                     <option value="Hindu">Hindu</option>
                     <option value="Budha">Budha</option>
@@ -381,100 +381,6 @@ const SuratPengantarPage = ({ id }) => {
                   {/* ) : (
                               <h1>{selectedEmployee?.religion || '-'}</h1>
                            )} */}
-                </div>
-              </div>
-
-              {/* Alamat yang dituju */}
-              <div className="flex flex-col gap-2">
-                <h2 className="font-semibold">Alamat Yang Dituju</h2>
-                <div className="p-4 border-2 rounded-md shadow-md border-slate-200">
-                  {/* jalan, no, rt */}
-                  <div className="flex flex-row gap-2">
-                    {/* jalan */}
-                    <label htmlFor="jalan" className="flex flex-row">
-                      <h2 className="pe-2">Jalan</h2>
-                      <input
-                        type="text"
-                        name="Jalan"
-                        id="jalan"
-                        placeholder="................................................"
-                        className="w-full"
-                      />
-                    </label>
-                    {/* no n RT */}
-                    <div className="flex flex-row">
-                      {/* No */}
-                      <label htmlFor="no" className="flex flex-row">
-                        <h2 className="pe-2">No</h2>
-                        <input
-                          type="text"
-                          name="No"
-                          id="no"
-                          placeholder="......"
-                          className="w-11"
-                        />
-                      </label>
-                      {/* RT */}
-                      <label htmlFor="rt" className="flex flex-row">
-                        <h2 className="pe-2">Rt</h2>
-                        <input
-                          type="text"
-                          name="Rt"
-                          id="rt"
-                          placeholder="......"
-                          className="w-11"
-                        />
-                      </label>
-                    </div>
-                  </div>
-
-                  {/* Kelurahan */}
-                  <label htmlFor="kelurahan" className="flex flex-row">
-                    <h2 className="pe-2">Kelurahan</h2>
-                    <input
-                      type="text"
-                      name="Kelurahan"
-                      id="kelurahan"
-                      placeholder="..................................................."
-                      className="w-full"
-                    />
-                  </label>
-
-                  {/* Kecamatan */}
-                  <label htmlFor="Kecamatan" className="flex flex-row">
-                    <h2 className="pe-2">Kecamatan</h2>
-                    <input
-                      type="text"
-                      name="Kecamatan"
-                      id="Kecamatan"
-                      placeholder="................................................"
-                      className="w-full"
-                    />
-                  </label>
-
-                  {/* Kab/Kota */}
-                  <label htmlFor="Kab/Kota" className="flex flex-row">
-                    <h2 className="pe-2">Kab/Kota</h2>
-                    <input
-                      type="text"
-                      name="KabKota"
-                      id="Kab/Kota"
-                      placeholder="......................................................"
-                      className="w-full"
-                    />
-                  </label>
-
-                  {/* Provinsi */}
-                  <label htmlFor="Provinsi" className="flex flex-row">
-                    <h2 className="pe-2">Provinsi</h2>
-                    <input
-                      type="text"
-                      name="Provinsi"
-                      id="Provinsi"
-                      placeholder="..........................................................."
-                      className="w-full"
-                    />
-                  </label>
                 </div>
               </div>
 

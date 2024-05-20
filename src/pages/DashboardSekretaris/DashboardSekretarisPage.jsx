@@ -16,6 +16,7 @@ import PengajuanSuratPage from "./PengajuanSurat/PengajuanSuratPage";
 import DataMasyarakat from "./DataMasyarakat/DataMasyarakat";
 import EditMasyarakat from "../../components/Sekretaris/EditMasyarakat";
 import EditPengajuanSurat from "../../components/Sekretaris/EditPengajuanSurat";
+import PdfViewerPage from "../PdfViewer";
 
 import { getMe, logout } from "../../redux/actions/authActions";
 
@@ -24,8 +25,12 @@ const DashboardSekretarisPage = () => {
   const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
+  const [letterId, setLetterId] = useState();
+  const [userId, setUserId] = useState();
   // Function to handle sidebar menu click
-  const handleMenuClick = (stepNumber) => {
+  const handleMenuClick = (stepNumber, id) => {
+    setLetterId(id);
+    setUserId(id);
     setStep(stepNumber);
   };
   const { user } = useSelector((state) => state.auth);
@@ -138,15 +143,21 @@ const DashboardSekretarisPage = () => {
             {/* Dashboard data masyarakat */}
             {step === 3 && <DataMasyarakat handleMenuClick={handleMenuClick} />}
             {/* edit data masyrakat */}
-            {step === 4 && <EditMasyarakat handleMenuClick={handleMenuClick} />}
+            {step === 4 && (
+              <EditMasyarakat handleMenuClick={handleMenuClick} id={userId} />
+            )}
 
             {/* edit data pengajuan surat para warga tercinta */}
             {step === 5 && (
-              <EditPengajuanSurat handleMenuClick={handleMenuClick} />
+              <EditPengajuanSurat
+                handleMenuClick={handleMenuClick}
+                id={letterId}
+              />
             )}
 
             {/* myprofile tiap role */}
             {step === 6 && <ProfileWargaWeb />}
+            {step === 7 && <PdfViewerPage id={letterId} />}
           </div>
         </div>
       </div>

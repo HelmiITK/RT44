@@ -1,7 +1,12 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
-import { setDues, setSukarela } from "../reducers/duesReducers";
+import {
+  setDues,
+  setSukarela,
+  setDuesTrue,
+  setDuesFalse,
+} from "../reducers/duesReducers";
 
 const swal = (icon, title, text) =>
   Swal.fire({
@@ -46,4 +51,23 @@ const getUserId = (token) => {
   const payloadOject = JSON.parse(decodedPayload);
   const userId = payloadOject.id;
   return userId;
+};
+
+export const trueDues = () => async (dispatch) => {
+  try {
+    const response = await axios.get(`${api_url}/duesuser/by-true`);
+    const allDuesUser = response.data;
+    dispatch(setDuesTrue(allDuesUser));
+  } catch (error) {
+    swal("error", "ERROR", error.message);
+  }
+};
+export const falseDues = () => async (dispatch) => {
+  try {
+    const response = await axios.get(`${api_url}/duesuser/by-false`);
+    const allDuesUser = response.data;
+    dispatch(setDuesFalse(allDuesUser));
+  } catch (error) {
+    swal("error", "ERROR", error.message);
+  }
 };

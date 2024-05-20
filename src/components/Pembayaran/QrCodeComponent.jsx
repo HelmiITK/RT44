@@ -1,12 +1,13 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import Swal from "sweetalert2";
 
 import QrCodeBayar from "../../assets/qrcodeBayar.png";
 import FormatFoto from "../../assets/formatfoto.png";
 import { transactionObligate } from "../../redux/actions/transactionActions";
 
-const QrCodeComponent = ({ duesId }) => {
+const QrCodeComponent = ({ handleMenuClick, duesId, userId }) => {
   const dispatch = useDispatch();
 
   const [linkProofpayment, setLinkProofpayment] = useState("");
@@ -17,8 +18,27 @@ const QrCodeComponent = ({ duesId }) => {
     formData.append("linkProofPayment", file);
     setLinkProofpayment(formData);
   };
-  const handleSubmit = () => {
-    dispatch(transactionObligate(duesId, linkProofpayment));
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    Swal.fire({
+      title: "Loading...",
+      text: "Please wait while the data is being updated",
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      },
+    });
+    dispatch(transactionObligate(duesId, userId, linkProofpayment))
+      .then(() => {
+        Swal.close();
+        Swal.fire("Success", "Pembayaran Berhasil", "success").then(() => {
+          handleMenuClick(2);
+        });
+      })
+      .catch((error) => {
+        Swal.close(); // Close the loading indicator
+        Swal.fire("Error", error.message, "error");
+      });
   };
 
   return (
@@ -50,7 +70,9 @@ const QrCodeComponent = ({ duesId }) => {
 };
 
 QrCodeComponent.propTypes = {
+  handleMenuClick: PropTypes.func,
   duesId: PropTypes.number,
+  userId: PropTypes.number,
 };
 
 export default QrCodeComponent;

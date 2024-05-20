@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate,useNavigate } from "react-router-dom";
 import { MdDashboard } from "react-icons/md";
 import { VscAccount } from "react-icons/vsc";
 import { FaUsersGear } from "react-icons/fa6";
