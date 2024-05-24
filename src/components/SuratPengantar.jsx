@@ -6,18 +6,15 @@ import {
   StyleSheet,
   Svg,
   Polygon,
-  Path,
+  Font,
 } from "@react-pdf/renderer";
-import { Font } from "@react-pdf/renderer";
-import MyCostumFont from "../assets/Fonts/Cambria.ttf";
+import TimesRoman from "../assets/fonts/Times-Roman Regular.ttf";
 import PropTypes from "prop-types";
 
 // Font.register({ family: "CambriaFamily", src: MyCostumFont });
 Font.register({
-  family: "Cambria",
-  src: MyCostumFont,
-  fontStyle: "normal",
-  fontWeight: "normal",
+  family: "Times-Roman Regular",
+  src: TimesRoman,
 });
 
 // Create styles
@@ -50,7 +47,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   header: {
-    // fontFamily: "FamilyName",
     fontWeight: "bold",
     fontSize: 13,
     textAlign: "center",
