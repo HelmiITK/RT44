@@ -23,19 +23,19 @@ const IuranWajibPage = ({ handleMenuClick }) => {
           <div key={i} className="p-4 mt-4 bg-gray-200 border-none rounded-lg">
             <p
               className={`font-medium capitalize text-end ${
-                item.duesStatus ? "text-green-500" : "text-red-500"
+                item?.duesStatus ? "text-green-500" : "text-red-500"
               }`}
             >
-              {item.duesStatus ? "Sudah Bayar" : "Belum Bayar"}
+              {item?.duesStatus ? "Sudah Bayar" : "Belum Bayar"}
             </p>
             <div className="flex flex-row justify-between">
               <div className="flex flex-col justify-around">
                 <div className="flex flex-col gap-2">
                   <h1 className="text-2xl font-semibold capitalize">
-                    {item.Dues.duesType}
+                    {item?.Dues?.duesType}
                   </h1>
-                  <p>{item.Dues.duesName}</p>
-                  <span className="font-semibold">Rp. {item.Dues.price}</span>
+                  <p>{item?.Dues?.duesName}</p>
+                  <span className="font-semibold">Rp. {item?.Dues?.price}</span>
                 </div>
                 {/* button bayar hp*/}
                 <div

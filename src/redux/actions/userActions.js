@@ -75,7 +75,7 @@ export const postUser =
       });
 
       if (response.status === 201) {
-        swal("success", "Anggota berhasi ditambahkan", response.data.message);
+        swal("success", "Anggota berhasil ditambahkan", response.data.message);
       }
     } catch (error) {
       if (error.response.status === 400) {

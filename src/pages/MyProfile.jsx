@@ -14,6 +14,7 @@ const MyProfile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [profile, setProfile] = useState({
+    id: "",
     image: "",
     nik: "",
     name: "",
@@ -24,10 +25,11 @@ const MyProfile = () => {
   });
 
   const { user } = useSelector((state) => state.auth);
-
+  console.log(user)
   useEffect(() => {
     if (user) {
       setProfile({
+        id: user.id,
         name: user.name,
         email: user.email,
         phoneNumber: user.phoneNumber,
@@ -108,6 +110,7 @@ const MyProfile = () => {
               {/* data  */}
               <div className="flex flex-row gap-12">
                 <div className="flex flex-col gap-3 text-lg font-light">
+                  <h1>ID</h1>
                   <h1>NIK</h1>
                   <h1>Nama</h1>
                   <h1>Tempat, tanggal lahir</h1>
@@ -116,6 +119,7 @@ const MyProfile = () => {
                   <h1>Alamat</h1>
                 </div>
                 <div className="flex flex-col gap-3 text-lg font-medium">
+                  <p>{profile.id}</p>
                   <p>{profile.nik}</p>
                   <p>{profile.name}</p>
                   <p>{profile.placeDateBday}</p>
@@ -134,7 +138,7 @@ const MyProfile = () => {
               </Link>
             </div>
           </div>
-          
+
         </div>
       </div>
       {/* mode hp */}

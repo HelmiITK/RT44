@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import PropTypes from "prop-types";
-
+import Swal from "sweetalert2";
 import { postSurat } from "../../../redux/actions/latterActions";
+
 const SuratPengantarPage = ({ id }) => {
   const dispatch = useDispatch();
 
@@ -42,21 +43,31 @@ const SuratPengantarPage = ({ id }) => {
     );
   };
 
-
   const handleCancel = () => {
-    setLatterType("Surat Pengantar");
-    setFullName("");
-    setGender("");
-    setPlaceDateBday("");
-    setStatus("");
-    setReligion("");
-    setWork("");
-    setBlood("");
-    setCitizenship("");
-    setAddress("");
-    setNik("");
-    setNkk("");
-    setPerpous("");
+    Swal.fire({
+      title: 'Apakah kamu yakin?',
+      text: "Ini akan menghapus data yang sudah kamu isi",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setLatterType("Surat Pengantar");
+        setFullName("");
+        setGender("");
+        setPlaceDateBday("");
+        setStatus("");
+        setReligion("");
+        setWork("");
+        setBlood("");
+        setCitizenship("");
+        setAddress("");
+        setNik("");
+        setNkk("");
+        setPerpous("");
+      }
+    });
   };
 
   return (

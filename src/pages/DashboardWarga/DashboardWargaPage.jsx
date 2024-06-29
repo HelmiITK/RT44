@@ -45,13 +45,10 @@ const DashboardWargaPage = ({ duesId, id }) => {
     noHome: "",
   });
 
-  // Function to handle sidebar menu click
-
   const { user } = useSelector((state) => state.auth);
-  console.log(user)
 
   const handleMenuClick = (stepNumber, duesId, id) => {
-    setIdUser(user.id);
+    setIdUser(user?.id);
     setIdDues(duesId);
     setIdSukarela(id);
     setStep(stepNumber);

@@ -41,6 +41,25 @@ const TambahUmkmComponent = ({ handleMenuClick }) => {
     });
   };
 
+  const handleCancel = () => {
+    Swal.fire({
+      title: 'Apakah kamu yakin?',
+      text: "Ini akan menghapus data yang sudah kamu isi",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setName("");
+        setOwner("");
+        setDescription("");
+        setNoUmkm("");
+        setImageUrl("");
+      }
+    });
+  };
+
   return (
     <>
       {/* Create UMKM */}
@@ -73,11 +92,12 @@ const TambahUmkmComponent = ({ handleMenuClick }) => {
               className="border-[1px] border-black rounded-md py-2 px-4 shadow-md"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              required
             />
           </label>
           {/* nama umkm */}
           <label htmlFor="namaPemilik" className="flex flex-col gap-2">
-            <h2 className="text-lg font-medium">Nama Pemilik</h2>
+            <h2 className="text-lg font-medium">Nama Pemilik</h2> 
             <input
               type="text"
               id="namaPemilik"
@@ -85,6 +105,7 @@ const TambahUmkmComponent = ({ handleMenuClick }) => {
               className="border-[1px] border-black rounded-md py-2 px-4 shadow-md"
               value={owner}
               onChange={(e) => setOwner(e.target.value)}
+              required
             />
           </label>
           {/* nama umkm */}
@@ -97,6 +118,7 @@ const TambahUmkmComponent = ({ handleMenuClick }) => {
               className="border-[1px] border-black rounded-md py-2 px-4 shadow-md"
               value={noUmkm}
               onChange={(e) => setNoUmkm(e.target.value)}
+              required
             />
           </label>
           {/* deskripisi umkm */}
@@ -107,6 +129,7 @@ const TambahUmkmComponent = ({ handleMenuClick }) => {
               className="textarea textarea-bordered textarea-sm w-full border-[1px] border-black py-2 px-4 shadow-lg"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              required
             ></textarea>
           </label>
           {/* upload gambar */}
@@ -125,6 +148,7 @@ const TambahUmkmComponent = ({ handleMenuClick }) => {
                 id=""
                 className="w-1/2"
                 onChange={handleFileChange}
+                required
               />
             </div>
           </div>
@@ -135,7 +159,10 @@ const TambahUmkmComponent = ({ handleMenuClick }) => {
               submit
             </button>
             {/* cancel */}
-            <button className="px-8 py-3 mt-4 text-lg font-semibold capitalize duration-300 bg-red-500 border-none rounded-lg hover:text-white hover:bg-red-700 hover:shadow-lg hover:drop-shadow-md">
+            <button 
+              type="button"
+              onClick={handleCancel}
+              className="px-8 py-3 mt-4 text-lg font-semibold capitalize duration-300 bg-red-500 border-none rounded-lg hover:text-white hover:bg-red-700 hover:shadow-lg hover:drop-shadow-md">
               cancel
             </button>
           </div>
