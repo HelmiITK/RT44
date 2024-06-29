@@ -112,12 +112,6 @@ const HomePage = () => {
     dispatch(getMe());
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (!user) {
-  //     localStorage.removeItem('token');
-  //     navigate("/");
-  //   }
-  // }, [user, navigate]);
   useEffect(() => {
     const hasReloadedBefore = localStorage.getItem("hasReloaded");
 
@@ -176,9 +170,13 @@ const HomePage = () => {
               <h1 className="w-64 p-3 text-4xl font-bold bg-white rounded-3xl bg-opacity-65 lg:text-6xl lg:w-full lg:leading-snug lg:tracking-wide lg:text-black lg:font-extrabold">
                 RT 44 <br /> Gading City
               </h1>
-              <button className="px-6 py-2 font-semibold text-white duration-300 bg-orange-400 w-60 rounded-xl lg:py-4 lg:text-lg lg:font-bold lg:w-72 hover:bg-orange-600 lg:ml-4 lg:shadow-2xl">
-                Info Lebih Lanjut 😊🚀
-              </button>
+              <a 
+                href='https://wa.me/628115400017'
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-2 text-center font-semibold text-white duration-300 bg-orange-400 w-60 rounded-xl lg:py-4 lg:text-lg lg:font-bold lg:w-72 hover:bg-orange-600 lg:ml-4 lg:shadow-2xl">
+                Hubungi Pak RT 😊🚀
+              </a>
             </div>
             {/* gambar v md lg */}
             <img

@@ -5,12 +5,11 @@ import PropTypes from "prop-types";
 import { IoChevronBackOutline } from "react-icons/io5";
 import qrCode from "../../../assets/qrcodeBayar.png";
 
-
 const IuranSukarelaPage = ({ handleMenuClick }) => {
   const [startDate, setStartDate] = useState(new Date());
 
   return (
-    <div className="px-4 pt-4 pb-8 mx-4 border-2 border-black rounded-lg">
+    <div className="px-4 pt-4 pb-8 mb-4 border-2 border-black rounded-lg">
       {/* button back to list iuran sukarela */}
       <button
         onClick={() => handleMenuClick(3)}
@@ -42,7 +41,7 @@ const IuranSukarelaPage = ({ handleMenuClick }) => {
         </label>
         {/* keterangan donasi */}
         <label htmlFor="donasi" className="flex justify-center items-baseline">
-          <img src={qrCode} alt="qrcode" className="w-1/2"/>
+          <img src={qrCode} alt="qrcode" className="w-full lg:w-1/2" />
         </label>
         {/* button aksi */}
         <div className="flex items-center justify-center gap-8">

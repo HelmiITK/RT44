@@ -8,6 +8,7 @@ import asry from "../assets/Asry.png";
 import sarah from "../assets/Sarah.png";
 import sulindah from "../assets/Sulindah.png";
 import jio from "../assets/jio.png"
+import { Link } from "react-router-dom";
 
 
 const OurTeam = () => {
@@ -89,17 +90,17 @@ const OurTeam = () => {
          {/* mode hp */}
          <div className="container mx-auto lg:hidden">
             <div className="relative flex flex-col gap-4 items-center bg-cyan-100">
-               <div className="mt-4 flex gap-4 items-center">
+               <Link as={Link} to={'/'} className="mt-4 flex gap-4 items-center">
                   <img src={logoITK} alt="logo itk" className="w-28" />
                   <div>
                      <h2 className="text-2xl font-bold font-serif ">Our Team</h2>
                      <h2 className="text-2xl font-bold font-serif ">KKN B1 2023-2024</h2>
                   </div>
-               </div>
+               </Link>
                <div className="mx-2 mt-2 grid grid-cols-1 gap-8">
                   {/* card profile 1 */}
                   {Team.map((item, i) => (
-                     <div key={i} className="card w-96 glass shadow-lg drop-shadow-md">
+                     <div key={i} className="card w-96 glass shadow-lg">
                         <figure>
                            <img
                               src={item?.foto}
@@ -138,7 +139,7 @@ const OurTeam = () => {
 
          {/* mode web */}
          <div className="hidden lg:block container mx-auto">
-            <div className="relative flex flex-col gap-4 items-center bg-cyan-100">
+            <Link as={Link} to={'/'} className="relative flex flex-col gap-4 items-center bg-cyan-100">
                <img
                   src={bgITK}
                   alt="foto itk"
@@ -187,7 +188,7 @@ const OurTeam = () => {
                   ))}
 
                </div>
-            </div>
+            </Link>
          </div>
       </>
    )

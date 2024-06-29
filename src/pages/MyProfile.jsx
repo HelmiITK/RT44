@@ -24,7 +24,6 @@ const MyProfile = () => {
   });
 
   const { user } = useSelector((state) => state.auth);
-  console.log(user)
 
   useEffect(() => {
     if (user) {
