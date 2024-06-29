@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { IoArrowBackOutline } from "react-icons/io5";
 import PropTypes from "prop-types";
+import Swal from "sweetalert2";
 
 import { postUser } from "../../redux/actions/userActions";
 
@@ -39,6 +40,31 @@ const TambahAnggotaComponent = ({ handleMenuClick }) => {
       ),
       handleMenuClick(2)
     );
+  };
+
+  const handleCancel = () => {
+    Swal.fire({
+      title: 'Apakah kamu yakin?',
+      text: "Ini akan menghapus data yang sudah kamu isi",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setName(""),
+          setEmail(""),
+          setGender(""),
+          setPlaceDateBday(""),
+          setPhoneNumber(""),
+          setAddress(""),
+          setBlockHome(""),
+          setNoHome(""),
+          setNkk(""),
+          setNik(""),
+          setMember("")
+      }
+    });
   };
 
   return (
@@ -220,7 +246,10 @@ const TambahAnggotaComponent = ({ handleMenuClick }) => {
             submit
           </button>
           {/* cancel */}
-          <button className="px-8 py-3 mt-4 text-lg font-semibold capitalize duration-300 bg-red-500 border-none rounded-lg hover:text-white hover:bg-red-700 hover:shadow-lg hover:drop-shadow-md">
+          <button
+            type="button"
+            onClick={handleCancel}
+            className="px-8 py-3 mt-4 text-lg font-semibold capitalize duration-300 bg-red-500 border-none rounded-lg hover:text-white hover:bg-red-700 hover:shadow-lg hover:drop-shadow-md">
             cancel
           </button>
         </div>

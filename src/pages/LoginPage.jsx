@@ -23,7 +23,8 @@ const LoginPage = () => {
   const [errorPassword, setErrorPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const allowedEmails = ["pakrt@mail.com", "member@mail.com", "bendahara@mail.com", "sekretaris@mail.com"];
+  const allowedEmails = ["pakrt@mail.com", "member@mail.com", "bendahara@mail.com", "sekretaris@mail.com", "helmi220602@gmail.com"];
+  // const allowedEmails = JSON.parse(localStorage.getItem('allowedEmails')) || [];
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -33,13 +34,13 @@ const LoginPage = () => {
       return;
     }
     if (!password) {
-      setErrorPassword("Silahkan isi password anda!");
+      setErrorPassword("Silahkan isi password anda!");      
       return;
     }
 
     // // fungsi redux jika sudah ada API
     dispatch(login(email, password, navigate));
-  };
+  };  
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -53,6 +54,22 @@ const LoginPage = () => {
       localStorage.setItem('validatedEmail', email); // Simpan email di localStorage
     }
   };
+
+  // useEffect(() => {
+  //   dispatch(getMe(null));
+  // }, [dispatch]);
+
+  //   useEffect(() => {
+  //   if (user) {
+  //     // Save user's email to local storage
+  //     localStorage.setItem('email', user.email);
+  //     // Save user's email to the allowed emails list in local storage
+  //     const updatedAllowedEmails = new Set(allowedEmails);
+  //     updatedAllowedEmails.add(user.email);
+  //     localStorage.setItem('allowedEmails', JSON.stringify([...updatedAllowedEmails]));
+  //   }
+  // }, [user]);
+
   return (
     <div className="container mx-auto">
       {/* heading mode mobile*/}
@@ -144,7 +161,6 @@ const LoginPage = () => {
           {/* lupa password  */}
           <Link
             as={Link}
-            // to={`/lupa_password`}
             onClick={handleForgotPassword}
             to={allowedEmails.includes(email) ? "/lupa_password" : "#"}
             title="Klik aku bila lupa password yh"

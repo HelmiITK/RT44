@@ -92,7 +92,7 @@ const ProfileWargaWeb = () => {
           <div className="flex w-full gap-4">
             <h1 className="w-1/4 text-lg font-light capitalize">email</h1>
             <div>:</div>
-            <h2 className="text-lg font-medium capitalize">{profile.email}</h2>
+            <h2 className="text-lg font-medium">{profile.email}</h2>
           </div>
           {/* alamat */}
           <div className="flex w-full gap-4">

@@ -3,7 +3,6 @@ import { TfiMenu } from "react-icons/tfi";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { MdLogout } from "react-icons/md";
-import { CgSearch } from "react-icons/cg";
 import { MdDashboard } from "react-icons/md";
 import { FaMoneyBillWave } from "react-icons/fa6";
 import { IoDocumentTextOutline } from "react-icons/io5";
@@ -46,12 +45,10 @@ const DashboardWargaPage = ({ duesId, id }) => {
     noHome: "",
   });
 
-  // Function to handle sidebar menu click
-
   const { user } = useSelector((state) => state.auth);
 
   const handleMenuClick = (stepNumber, duesId, id) => {
-    setIdUser(user.id);
+    setIdUser(user?.id);
     setIdDues(duesId);
     setIdSukarela(id);
     setStep(stepNumber);
@@ -71,6 +68,7 @@ const DashboardWargaPage = ({ duesId, id }) => {
         blockHome: user.blockHome,
         noHome: user.noHome,
       });
+      localStorage.setItem('email', user.email)
     }
   }, [user]);
 
@@ -105,7 +103,7 @@ const DashboardWargaPage = ({ duesId, id }) => {
   return (
     <div className="container mx-auto">
       {/* navbar mode laptop */}
-      <div className="hidden -mt-4 lg:block">
+      <div className="hidden -mt-4 lg:block xl:flex xl:justify-center xl:mt-1">
         <Navbar onLogout={onLogout} user={profile.name} />
       </div>
       {/* Navbar mode hp*/}
@@ -210,17 +208,6 @@ const DashboardWargaPage = ({ duesId, id }) => {
                 </li>
               </ul>
             </div>
-            {/* searching */}
-            <label htmlFor="search" className="flex items-center">
-              <CgSearch className="w-6 h-6 text-blue-400" />
-              <input
-                type="text"
-                id="search"
-                name="search"
-                placeholder="search"
-                className="w-20 px-2 py-2 border-none rounded-md"
-              />
-            </label>
           </div>
         </div>
       </div>
@@ -319,10 +306,10 @@ const DashboardWargaPage = ({ duesId, id }) => {
             </ul>
           </div>
         </div>
-        <div className="w-full mr-5">
+        <div className="w-full">
           {/* parent konten */}
-          <div className="flex flex-row items-center bg-white border-2 border-black rounded-lg shadow-md">
-            <div className="flex items-center w-[870px] py-4">
+          <div className="flex flex-col bg-white border-2 border-black rounded-lg shadow-md">
+            <div className="flex items-center py-4">
               {/* img */}
               <div className="ml-4">
                 <img src={LogoRt44} alt="logo rt44" className="w-40" />
@@ -357,7 +344,7 @@ const DashboardWargaPage = ({ duesId, id }) => {
                 // Jika statusSurat adalah true, tombol tidak ditampilkan
                 <div
                   onClick={handleBackButtonClick}
-                  className="flex items-center gap-2 px-4 py-2 duration-300 border-none rounded-lg cursor-pointer bg-primary hover:bg-orange-400 hover:drop-shadow-lg hover:text-white hover:scale-105"
+                  className="flex items-center gap-2 px-4 mx-4 mb-4 py-2 duration-300 border-none rounded-lg cursor-pointer bg-primary hover:bg-orange-400 hover:drop-shadow-lg hover:text-white lg:mx-6 lg:mb-6"
                 >
                   <IoArrowBackOutline />
                   <h2>Kembali</h2>
@@ -366,7 +353,7 @@ const DashboardWargaPage = ({ duesId, id }) => {
                 // Jika statusSurat adalah false, tampilkan tombol
                 <div
                   onClick={() => handleMenuClick(7)}
-                  className="flex items-center gap-2 px-4 py-2 duration-300 border-none rounded-lg cursor-pointer bg-primary hover:bg-orange-400 hover:drop-shadow-lg hover:text-white hover:scale-105"
+                  className="flex items-center gap-2 px-4 mx-4 mb-4 py-2 duration-300 border-none rounded-lg cursor-pointer bg-primary hover:bg-orange-400 hover:drop-shadow-lg hover:text-white lg:mx-6 lg:mb-6"
                 >
                   <FaRegPaperPlane className="w-6 h-6" />
                   <h2 className="capitalize">cek status surat</h2>
@@ -381,7 +368,7 @@ const DashboardWargaPage = ({ duesId, id }) => {
             {step === 3 && (
               <CardIuranSukarela
                 handleMenuClick={handleMenuClick}
-                step={step}
+                duesId={idSukarela}
               />
             )}
             {step === 4 && <SuratPengantarPage id={profile.idUser} />}
@@ -397,7 +384,6 @@ const DashboardWargaPage = ({ duesId, id }) => {
             {step === 8 && (
               <IuranSukarelaPage
                 handleMenuClick={handleMenuClick}
-                duesId={idSukarela}
               />
             )}
           </div>

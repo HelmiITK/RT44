@@ -21,6 +21,11 @@ const QrCodeComponent = ({ handleMenuClick, duesId, userId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!linkProofpayment) {
+      Swal.fire("Error", "Bukti Transfer harus diisi", "error");
+      return;
+    }
+
     Swal.fire({
       title: "Loading...",
       text: "Please wait while the data is being updated",
@@ -50,21 +55,24 @@ const QrCodeComponent = ({ handleMenuClick, duesId, userId }) => {
           <h2 className="font-medium text-gray-400">Format jpg. png. jpeg.</h2>
           <input
             type="file"
-            name="linkProofpayment"
-            id="linkProofpayment"
+            name="linkProofPayment"
+            id="linkProofPayment"
             className="w-1/2"
             onChange={handleFileChange}
+            required
           />
         </div>
         <button
-          type=""
+          type="button"
           className="px-8 py-2 font-medium text-white capitalize bg-blue-500 rounded-lg w-"
           onClick={handleSubmit}
         >
           submit
         </button>
       </div>
-      <img src={QrCodeBayar} alt="" className="w-full mb-8" />
+      <div className="flex justify-center">
+        <img src={QrCodeBayar} alt="" className="w-full mb-8 lg:w-1/2" />
+      </div>
     </div>
   );
 };

@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import PropTypes from "prop-types";
-
+import Swal from "sweetalert2";
 import { postSurat } from "../../../redux/actions/latterActions";
+
 const SuratPengantarPage = ({ id }) => {
   const dispatch = useDispatch();
 
@@ -42,11 +43,38 @@ const SuratPengantarPage = ({ id }) => {
     );
   };
 
+  const handleCancel = () => {
+    Swal.fire({
+      title: 'Apakah kamu yakin?',
+      text: "Ini akan menghapus data yang sudah kamu isi",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Batal',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setLatterType("Surat Pengantar");
+        setFullName("");
+        setGender("");
+        setPlaceDateBday("");
+        setStatus("");
+        setReligion("");
+        setWork("");
+        setBlood("");
+        setCitizenship("");
+        setAddress("");
+        setNik("");
+        setNkk("");
+        setPerpous("");
+      }
+    });
+  };
+
   return (
     <>
       <div className="w-full lg:pb-10">
         <div className="lg:flex lg:flex-col lg:justify-center lg:items-center">
-          <div className="p-8 mx-4 mt-4 mb-8 border-2 shadow-lg border-slate-200 rounded-2xl lg:mb-0 lg:bg-white lg:w-full">
+          <div className="py-6 px-4 mt-2 mb-8 border-2 shadow-lg border-slate-200 rounded-2xl lg:mb-0 lg:bg-white lg:w-full lg:px-8">
             <h1 className="text-2xl font-semibold text-center lg:font-bold lg:text-3xl">
               Formulir Surat Pengantar
             </h1>
@@ -66,6 +94,7 @@ const SuratPengantarPage = ({ id }) => {
                   className="px-4 py-2 border-2 shadow-md border-slate-200 rounded-xl"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
+                  required
                 />
               </label>
               <input
@@ -74,9 +103,8 @@ const SuratPengantarPage = ({ id }) => {
                 value={"Surat Pengantar"}
                 onChange={(e) => setLatterType(e.target.value)}
               />
-
               {/* Jenis kelamin */}
-              <label htmlFor="nik" className="flex flex-col gap-2">
+              <label className="flex flex-col gap-2">
                 <h2 className="font-semibold">Jenis Kelamin</h2>
                 <div className="flex items-center gap-3">
                   <input
@@ -115,6 +143,7 @@ const SuratPengantarPage = ({ id }) => {
                   className="px-4 py-2 border-2 shadow-md border-slate-200 rounded-xl"
                   value={placeDateBday}
                   onChange={(e) => setPlaceDateBday(e.target.value)}
+                  required
                 />
               </label>
 
@@ -125,6 +154,7 @@ const SuratPengantarPage = ({ id }) => {
                   <label
                     htmlFor="bk"
                     className="flex flex-row-reverse items-center gap-2 text-blue-500"
+
                   >
                     <h2>Belum Kawin</h2>
                     <input
@@ -179,6 +209,8 @@ const SuratPengantarPage = ({ id }) => {
                     value={religion}
                     onChange={(e) => setReligion(e.target.value)}
                     className="w-full px-2 py-1 text-blue-500 border-2 rounded-lg border-slate-300"
+                    required
+
                   >
                     <option value="">Pilih Agama</option>
                     <option value="Islam">Islam</option>
@@ -188,9 +220,6 @@ const SuratPengantarPage = ({ id }) => {
                     <option value="Budha">Budha</option>
                     <option value="KongHuCu">KongHuCu</option>
                   </select>
-                  {/* ) : (
-                              <h1>{selectedEmployee?.religion || '-'}</h1>
-                           )} */}
                 </div>
               </div>
 
@@ -204,6 +233,7 @@ const SuratPengantarPage = ({ id }) => {
                   className="px-4 py-2 border-2 shadow-md border-slate-200 rounded-xl"
                   value={work}
                   onChange={(e) => setWork(e.target.value)}
+                  required
                 />
               </label>
 
@@ -214,6 +244,7 @@ const SuratPengantarPage = ({ id }) => {
                   <label
                     htmlFor="A"
                     className="flex flex-row-reverse items-center gap-2 text-blue-500"
+                    required
                   >
                     <h2>A</h2>
                     <input
@@ -280,6 +311,7 @@ const SuratPengantarPage = ({ id }) => {
                   <label
                     htmlFor="wna"
                     className="flex flex-row-reverse items-center gap-2 text-blue-500"
+                    required
                   >
                     <h2>WNA</h2>
                     <input
@@ -317,6 +349,7 @@ const SuratPengantarPage = ({ id }) => {
                   className="w-full textarea textarea-bordered textarea-sm lg:h-52"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
+                  required
                 ></textarea>
               </label>
 
@@ -330,6 +363,7 @@ const SuratPengantarPage = ({ id }) => {
                   className="px-4 py-2 border-2 shadow-md border-slate-200 rounded-xl"
                   value={nik}
                   onChange={(e) => setNik(e.target.value)}
+                  required
                 />
               </label>
 
@@ -343,6 +377,7 @@ const SuratPengantarPage = ({ id }) => {
                   className="px-4 py-2 border-2 shadow-md border-slate-200 rounded-xl"
                   value={nkk}
                   onChange={(e) => setNkk(e.target.value)}
+                  required
                 />
               </label>
 
@@ -356,6 +391,7 @@ const SuratPengantarPage = ({ id }) => {
                     value={perpous}
                     onChange={(e) => setPerpous(e.target.value)}
                     className="w-full px-2 py-1 text-blue-500 border-2 rounded-lg border-slate-300"
+                    required
                   >
                     <option value="">Pilih Tujuan Mengurus</option>
                     <option value="KTP">KTP</option>
@@ -378,27 +414,8 @@ const SuratPengantarPage = ({ id }) => {
                     <option value="skck">SKCK</option>
                     <option value="lain-lain">Lain-lain</option>
                   </select>
-                  {/* ) : (
-                              <h1>{selectedEmployee?.religion || '-'}</h1>
-                           )} */}
                 </div>
               </div>
-
-              {/* Jumlah pengikut */}
-              <label htmlFor="jp" className="flex flex-col gap-2">
-                <h2 className="font-semibold">
-                  Jumlah Pengikut : ....... org{" "}
-                </h2>
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="Admin yang mengisi data ini"
-                  disabled
-                  className="px-4 py-2 border-2 shadow-md cursor-not-allowed border-slate-200 rounded-xl"
-                />
-              </label>
-
               {/* button aksi */}
               <div className="flex items-center justify-center gap-8">
                 {/* sumbit */}
@@ -406,7 +423,11 @@ const SuratPengantarPage = ({ id }) => {
                   submit
                 </button>
                 {/* cancel */}
-                <button className="px-8 py-3 mt-4 text-lg font-semibold capitalize duration-300 bg-red-500 border-none rounded-lg hover:text-white hover:bg-red-700 hover:shadow-lg hover:drop-shadow-md">
+                <button
+                  type="button"
+                  onClick={handleCancel}
+                  className="px-8 py-3 mt-4 text-lg font-semibold capitalize duration-300 bg-red-500 border-none rounded-lg hover:text-white hover:bg-red-700 hover:shadow-lg hover:drop-shadow-md"
+                >
                   cancel
                 </button>
               </div>

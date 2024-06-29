@@ -15,7 +15,7 @@ const IuranWajibPage = ({ handleMenuClick }) => {
   }, [dispatch]);
 
   return (
-    <div className="p-4 mx-4 mt-6 border-2 border-black rounded-lg">
+    <div className="p-4 mt-6 border-2 border-black rounded-lg">
       <h1 className="mb-4 text-xl font-semibold capitalize">tagihan</h1>
       <div className="lg:grid lg:grid-cols-3 lg:gap-4">
         {/* card tagihan */}
@@ -23,23 +23,23 @@ const IuranWajibPage = ({ handleMenuClick }) => {
           <div key={i} className="p-4 mt-4 bg-gray-200 border-none rounded-lg">
             <p
               className={`font-medium capitalize text-end ${
-                item.duesStatus ? "text-green-500" : "text-red-500"
+                item?.duesStatus ? "text-green-500" : "text-red-500"
               }`}
             >
-              {item.duesStatus ? "Sudah Bayar" : "Belum Bayar"}
+              {item?.duesStatus ? "Sudah Bayar" : "Belum Bayar"}
             </p>
             <div className="flex flex-row justify-between">
               <div className="flex flex-col justify-around">
                 <div className="flex flex-col gap-2">
                   <h1 className="text-2xl font-semibold capitalize">
-                    {item.Dues.duesType}
+                    {item?.Dues?.duesType}
                   </h1>
-                  <p>{item.Dues.duesName}</p>
-                  <span className="font-semibold">Rp. {item.Dues.price}</span>
+                  <p>{item?.Dues?.duesName}</p>
+                  <span className="font-semibold">Rp. {item?.Dues?.price}</span>
                 </div>
                 {/* button bayar hp*/}
                 <div
-                  className="flex items-center gap-2 px-3 py-1 border-none cursor-pointer bg-primary rounded-xl lg:hidden"
+                  className="flex items-center gap-2 px-3 py-1 mt-2 border-none cursor-pointer bg-primary rounded-xl lg:hidden"
                   onClick={() => handleMenuClick(5)}
                 >
                   <h1 className="font-medium text-white capitalize">
