@@ -17,8 +17,6 @@ const CardIuranSukarela = ({ handleMenuClick }) => {
     dispatch(getDuesSukarela(null));
   }, [dispatch]);
 
-  console.log(sukarela);
-
   return (
     <>
       <div className="p-4 border border-black rounded-lg">

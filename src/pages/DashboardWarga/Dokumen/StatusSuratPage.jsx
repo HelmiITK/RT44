@@ -15,7 +15,7 @@ const StatusSuratPage = ({ id }) => {
   console.log(letterById);
 
   return (
-    <div>
+    <div className="grid grid-rows-2 gap-6">
       {/* status suerat mobile */}
       {letterById.map((item, i) => (
         <div key={i}>

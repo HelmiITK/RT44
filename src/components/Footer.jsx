@@ -62,7 +62,7 @@ const Footer = ({ linkRef, goto }) => {
                      <ul className="text-sm font-light flex flex-col gap-2">
                         <Link
                            as={Link}
-                           to={'our_team'}
+                           to={'/our_team'}
                            className="cursor-pointer hover:text-orange-500 hover:underline"
                         >
                            Tentang Kami

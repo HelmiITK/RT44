@@ -42,24 +42,26 @@ export const login = (email, password, navigate) => async (dispatch) => {
   }
 };
 
-export const getMe = (navigate, navigatePathSuccess, navigatePathError) => async (dispatch, getState) => {
-  try {
-    let { token } = getState().auth;
-    const response = await axios.get(`${api_url}/auth/authme`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const data = response.data.data;
-    dispatch(setUser(data));
-    if (navigatePathSuccess) navigate(navigatePathSuccess);
-  } catch (error) {
-    if (axios.isAxiosError(error) && error.response?.status === 401) {
-      dispatch(logout());
+export const getMe =
+  (navigate, navigatePathSuccess, navigatePathError) =>
+  async (dispatch, getState) => {
+    try {
+      let { token } = getState().auth;
+      const response = await axios.get(`${api_url}/auth/authme`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = response.data.data;
+      dispatch(setUser(data));
+      if (navigatePathSuccess) navigate(navigatePathSuccess);
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response?.status === 401) {
+        dispatch(logout());
+      }
+      if (navigatePathError) navigate(navigatePathError);
     }
-    if (navigatePathError) navigate(navigatePathError);
-  }
-};
+  };
 
 export const logout = () => (dispatch) => {
   dispatch(setToken(null));
@@ -67,64 +69,94 @@ export const logout = () => (dispatch) => {
   window.location.reload();
 };
 
-export const resetPassword = (password, confirmPassword, navigate, email) => async () => {
-  try {
-    const response = await axios.patch(`${api_url}/auth/forgot?email=${email}`, {
-      password,
-      confirmPassword,
-    }, {
-      headers: { 'Content-Type': 'application/json' },
-    });
+export const resetPassword =
+  (password, confirmPassword, navigate, email) => async () => {
+    try {
+      const response = await axios.patch(
+        `${api_url}/auth/forgot?email=${email}`,
+        {
+          password,
+          confirmPassword,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
-    if (response.status === 200) {
-      toast.success("Password berhasil diganti");
-      setTimeout(() => {
-        navigate("/login");
-      }, 2000);
+      if (response.status === 200) {
+        localStorage.removeItem("validatedEmail");
+        toast.success("Password berhasil diganti");
+        setTimeout(() => {
+          navigate("/login");
+        }, 2000);
+      }
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 404) {
+          toast.error("Kunci reset tidak valid atau kedaluwarsa");
+        }
+        if (error.response.status === 400) {
+          toast.error("Password atau ulangi password tidak sesuai.");
+        }
+      } else {
+        toast.error("Terjadi kesalahan pada server. Silakan coba lagi nanti.");
+      }
     }
+  };
+
+export const updatePassword =
+  (oldPassword, newPassword, confirmPassword, id, navigate) =>
+  async (dispatch, getState) => {
+    try {
+      let { token } = getState().auth;
+      const response = await axios.patch(
+        `${api_url}/auth/update/${id}`,
+        {
+          oldPassword,
+          newPassword,
+          confirmPassword,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.status === 200) {
+        toast.success("Password berhasil diperbarui");
+        setTimeout(() => {
+          navigate("/myprofile");
+        }, 6000);
+        dispatch(setUser(setUser));
+      }
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 404) {
+          toast.error("Kunci reset tidak valid atau kedaluwarsa");
+        }
+        if (error.response.status === 400) {
+          toast.error("Password atau ulangi password tidak sesuai.");
+        }
+      } else {
+        toast.error("Terjadi kesalahan pada server. Silakan coba lagi nanti.");
+      }
+    }
+  };
+
+export const cekEmail = (email) => async () => {
+  try {
+    const response = await axios.get(
+      `${api_url}/auth/cek-email?email=${email}`
+    );
+    return response.data.status;
   } catch (error) {
     if (error.response) {
       if (error.response.status === 404) {
-        toast.error("Kunci reset tidak valid atau kedaluwarsa");
-      } if (error.response.status === 400) {
-        toast.error("Password atau ulangi password tidak sesuai.");
+        toast.error("Email tidak terdaftar. Silakan cek kembali email Anda.");
       }
     } else {
       toast.error("Terjadi kesalahan pada server. Silakan coba lagi nanti.");
     }
   }
 };
-
-export const updatePassword = (oldPassword, newPassword, confirmPassword, id, navigate) => async (dispatch, getState) => {
-  try {
-    let { token } = getState().auth;
-    const response = await axios.patch(`${api_url}/auth/update/${id}`, {
-      oldPassword,
-      newPassword,
-      confirmPassword
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    if (response.status === 200) {
-      toast.success("Password berhasil diperbarui");
-      setTimeout(() => {
-        navigate("/myprofile");
-      }, 6000);
-      dispatch(setUser(setUser))
-    }
-
-  } catch (error) {
-    if (error.response) {
-      if (error.response.status === 404) {
-        toast.error("Kunci reset tidak valid atau kedaluwarsa");
-      } if (error.response.status === 400) {
-        toast.error("Password atau ulangi password tidak sesuai.");
-      }
-    } else {
-      toast.error("Terjadi kesalahan pada server. Silakan coba lagi nanti.");
-    }
-  }
-}
