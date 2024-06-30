@@ -84,6 +84,7 @@ export const resetPassword =
       );
 
       if (response.status === 200) {
+        localStorage.removeItem("validatedEmail");
         toast.success("Password berhasil diganti");
         setTimeout(() => {
           navigate("/login");
