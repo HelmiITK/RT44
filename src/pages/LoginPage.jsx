@@ -11,7 +11,7 @@ import { ToastContainer } from "react-toastify";
 import { useState } from "react";
 
 import { MdOutlineKeyOff } from "react-icons/md";
-import { login } from "../redux/actions/authActions";
+import { login, cekEmail } from "../redux/actions/authActions";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -23,52 +23,39 @@ const LoginPage = () => {
   const [errorPassword, setErrorPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const allowedEmails = ["pakrt@mail.com", "member@mail.com", "bendahara@mail.com", "sekretaris@mail.com", "helmi220602@gmail.com"];
   // const allowedEmails = JSON.parse(localStorage.getItem('allowedEmails')) || [];
 
   const handleLogin = (event) => {
     event.preventDefault();
 
     if (!email) {
-      setErrorEmail("Silahkan isi nama anda");
+      setErrorEmail("Silahkan isi email anda");
       return;
     }
     if (!password) {
-      setErrorPassword("Silahkan isi password anda!");      
+      setErrorPassword("Silahkan isi password anda!");
       return;
     }
 
     // // fungsi redux jika sudah ada API
     dispatch(login(email, password, navigate));
-  };  
+  };
 
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleForgotPassword = (e) => {
-    if (!allowedEmails.includes(email)) {
-      setErrorEmail("Email tidak valid atau tidak terdaftar!");
-      e.preventDefault(); // Prevent navigation to forgot password page
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+
+    const response = await dispatch(cekEmail(email));
+    if (response == "Success") {
+      localStorage.setItem("validatedEmail", email);
+      navigate("/lupa_password");
     } else {
-      localStorage.setItem('validatedEmail', email); // Simpan email di localStorage
+      setErrorEmail("Email tidak valid atau tidak terdaftar!");
     }
   };
-
-  // useEffect(() => {
-  //   dispatch(getMe(null));
-  // }, [dispatch]);
-
-  //   useEffect(() => {
-  //   if (user) {
-  //     // Save user's email to local storage
-  //     localStorage.setItem('email', user.email);
-  //     // Save user's email to the allowed emails list in local storage
-  //     const updatedAllowedEmails = new Set(allowedEmails);
-  //     updatedAllowedEmails.add(user.email);
-  //     localStorage.setItem('allowedEmails', JSON.stringify([...updatedAllowedEmails]));
-  //   }
-  // }, [user]);
 
   return (
     <div className="container mx-auto">
@@ -159,18 +146,13 @@ const LoginPage = () => {
             )}
           </div>
           {/* lupa password  */}
-          <Link
-            as={Link}
+          <button
             onClick={handleForgotPassword}
-            to={allowedEmails.includes(email) ? "/lupa_password" : "#"}
-            title="Klik aku bila lupa password yh"
-            className="text-red-500 font-light text-sm flex items-center gap-4 "
+            className="flex items-center gap-4 text-sm font-light text-red-500 "
           >
             <MdOutlineKeyOff className="w-6 h-6" />
-            <h1>
-              Lupa kata sandi?
-            </h1>
-          </Link>
+            <h1>Lupa kata sandi?</h1>
+          </button>
 
           {/* button submit */}
           <button className="py-2 text-lg font-semibold tracking-widest text-white border-none bg-primary rounded-2xl">
@@ -274,18 +256,13 @@ const LoginPage = () => {
                 )}
               </div>
               {/* lupa password */}
-              <Link
-                as={Link}
-                to={allowedEmails.includes(email) ? "/lupa_password" : "#"}
-                title="Klik aku bila lupa password yh"
+              <button
                 onClick={handleForgotPassword}
                 className="text-red-500 font-light text-sm flex items-center gap-4 hover:scale-105 hover:underline hover:text-red-600 duration-300 w-[30%]"
               >
                 <MdOutlineKeyOff className="w-6 h-6" />
-                <h1>
-                  Lupa kata sandi?
-                </h1>
-              </Link>
+                <h1>Lupa kata sandi?</h1>
+              </button>
               {/* button submit */}
               <button className="py-3 text-xl font-semibold tracking-widest text-white duration-300 border-none bg-primary rounded-2xl hover:bg-orange-400">
                 Login
