@@ -62,6 +62,39 @@ export const transactionObligate =
     }
   };
 
+export const transactionVoluntary = (duesId, formData) => async (dispatch) => {
+  try {
+    const token = localStorage.getItem("token");
+    console.log(token);
+
+    // const formData = new FormData();
+    // formData.append("linkProofPayment", linkProofPayment);
+    // formData.append("totalPrice", totalPrice);
+
+    for (let pair of formData.entries()) {
+      console.log(pair[0] + ": " + pair[1]);
+    }
+
+    const response = await axios.post(
+      `${api_url}/transaction/voluntary/${duesId}`,
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    const transaction = response.data;
+    dispatch(setTransaction(transaction));
+    swal("success", "BERHASIL", "Pembayaran Berhasil");
+  } catch (error) {
+    if (error.response.status === 404 || error.response.status === 500) {
+      swal("error", "ERROR", "Masukkan Bukti Pembayaran");
+    }
+  }
+};
+
 export const getTransaction = () => async (dispatch) => {
   try {
     const response = await axios.get(`${api_url}/transaction/`);
